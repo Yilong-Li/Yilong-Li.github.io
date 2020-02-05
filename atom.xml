@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>MyBlog</title>
+  <title>Blog</title>
   <icon>https://yilong-li.github.io/icon.png</icon>
-  <subtitle>MondayCha&#39;s Blog</subtitle>
+  <subtitle>MondayCha&#39;s</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yilong-li.github.io/"/>
-  <updated>2020-02-05T02:03:42.075Z</updated>
+  <updated>2020-02-05T14:06:13.802Z</updated>
   <id>https://yilong-li.github.io/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>轻若无物，质地有声 | JBL T280NC 降噪耳机</title>
+    <link href="https://yilong-li.github.io/2020/02/05/2052/"/>
+    <id>https://yilong-li.github.io/2020/02/05/2052/</id>
+    <published>2020-02-05T13:51:34.000Z</published>
+    <updated>2020-02-05T14:06:13.802Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;如果要给过去两年消费级音频产品的发展趋势做个总结的话，大概用两个词就足以概括——&lt;strong&gt;“TWS”&lt;/strong&gt;（真无线）和&lt;strong&gt;“ANC”&lt;/strong&gt;（主动降噪）。WF-1000XM3与AirP
+      
+    
+    </summary>
+    
+    
+    
+      <category term="测评" scheme="https://yilong-li.github.io/tags/%E6%B5%8B%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>打工？这辈子都不可能哒！（误）</title>
+    <link href="https://yilong-li.github.io/2020/02/05/2051/"/>
+    <id>https://yilong-li.github.io/2020/02/05/2051/</id>
+    <published>2020-02-05T13:35:07.000Z</published>
+    <updated>2020-02-05T13:49:53.845Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;首先关于今天早上的文……Flag已经倒塌了，在投入了196之后一无所获之后，傍晚再次投入了68元……这次出了大库呜呜呜……&lt;/p&gt;
+&lt;p&gt;所以，对Flag进行符合我当前人情的改造行动——&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="影评" scheme="https://yilong-li.github.io/tags/%E5%BD%B1%E8%AF%84/"/>
+    
+  </entry>
   
   <entry>
     <title>也谈“沉没成本”</title>
@@ -46,7 +93,7 @@
     <link href="https://yilong-li.github.io/2020/02/03/203/"/>
     <id>https://yilong-li.github.io/2020/02/03/203/</id>
     <published>2020-02-03T01:16:26.000Z</published>
-    <updated>2020-02-05T02:06:09.835Z</updated>
+    <updated>2020-02-05T13:41:44.078Z</updated>
     
     <summary type="html">
     
