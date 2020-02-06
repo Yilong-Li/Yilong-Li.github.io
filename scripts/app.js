@@ -37,7 +37,7 @@ require([
       visitor: true,
       recordIP: true,
       avatar: 'mp',
-      placeholder: '骑士很煎蛋、骑士很孜然'
+      placeholder: '来都来了，不留句评论再走？(づ￣ 3￣)づ'
     })
   }
 
