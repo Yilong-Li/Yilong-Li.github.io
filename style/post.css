@@ -218,7 +218,7 @@
 .post-entry table,
 .post-wrap table {
   width: 100%;
-  margin: 0.5rem 0;
+  margin: 0;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -244,10 +244,6 @@
   font-weight: bold;
   border-bottom: 3px solid #ddd;
   padding-bottom: 0.5em;
-}
-.post-entry td,
-.post-wrap td {
-  padding: 10px 0;
 }
 .post-entry blockquote,
 .post-wrap blockquote {
