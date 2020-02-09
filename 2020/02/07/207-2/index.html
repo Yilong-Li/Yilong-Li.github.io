@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      标签 - Blog
+      Git-Day2 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#从一次尝试说起"><span class="toc-text">从一次尝试说起</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -69,7 +74,7 @@
           分类
         </a>
         
-        <a href="/tags" class="current">
+        <a href="/tags" class="">
           标签
         </a>
         
@@ -123,7 +128,7 @@
             分类
           </a>
           
-          <a href="/tags" class="current">
+          <a href="/tags" class="">
             标签
           </a>
           
@@ -164,78 +169,124 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            标签 - 随笔
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/02/09/209-1/" title="『ePub资源』有时间谈恋爱不如去抽卡！02">
-                <span>2020/02/09</span>
-                <span>『ePub资源』有时间谈恋爱不如去抽卡！02</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/02/07/207-1/" title="没有生产资料的我直到被现实毒打才回想起那份恐惧">
-                <span>2020/02/07</span>
-                <span>没有生产资料的我直到被现实毒打才回想起那份恐惧</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/02/05/205-1/" title="也谈“沉没成本”">
-                <span>2020/02/05</span>
-                <span>也谈“沉没成本”</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/02/03/203-1/" title="『ePub资源』有时间谈恋爱不如去抽卡！01">
-                <span>2020/02/03</span>
-                <span>『ePub资源』有时间谈恋爱不如去抽卡！01</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/02/02/202-1/" title="第一篇文章！">
-                <span>2020/02/02</span>
-                <span>第一篇文章！</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">Git-Day2</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/02/07</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2020/02/07/207-2/" data-flag-title="Git-Day2">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Git">Git</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/学习">学习</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h3 id="从一次尝试说起">从一次尝试说起<a class="post-anchor" href="#从一次尝试说起"></a></h3><p>今天试着把自己的祭祖代码提交到 Github 上，总结一下操作：</p>
+<ol>
+<li>进入本地项目文件夹，右键“Git Bash Here”</li>
+<li>输入<code>git init</code>，完成初始化</li>
+<li>输入<code>git add .</code>，将当前目录下所有文件添加到仓库</li>
+<li>输入<code>git commit -m "xxxx"</code>，提交修改</li>
+<li>首次提交要git pull 一下，<code>git pull origin master</code></li>
+<li>将代码提交到GitHub上，<code>git push -f origin master</code></li>
+</ol>
+<p>这里，关于第六步，有两种办法：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">git push -u origin master<br>git push -f origin master<br></code></pre></td></tr></tbody></table></figure>
+
+<p>后者是强制上传覆盖远程文件。</p>
+<p>最后总算是提交成功了，附上仓库地址——</p>
+<p><a href="https://github.com/MondayCha/BUAA-CO-2019" target="_blank" rel="noopener">https://github.com/MondayCha/BUAA-CO-2019</a></p>
+<p>床前明月光，疑似地上霜。举头望明月，低头思故乡。</p>
+<p>床前明月光，疑似地上霜，举头望明月，低头思故乡。</p>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/02/09/209-1/">『ePub资源』有时间谈恋爱不如去抽卡！02</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/02/07/207-1/">没有生产资料的我直到被现实毒打才回想起那份恐惧</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://yilong-li.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://yilong-li.github.io/2020/02/07/207-2/">https://yilong-li.github.io/2020/02/07/207-2/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://yilong-li.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
