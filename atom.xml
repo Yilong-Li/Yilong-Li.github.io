@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2020-02-10T02:39:38.431Z</updated>
+  <updated>2020-02-12T02:45:47.266Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Task5蒙圈中</title>
+    <link href="https://mondaycha.github.io/2020/02/12/211-1/"/>
+    <id>https://mondaycha.github.io/2020/02/12/211-1/</id>
+    <published>2020-02-12T02:40:46.000Z</published>
+    <updated>2020-02-12T02:45:47.266Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我需要明确一下接下来的时间规划。&lt;/p&gt;
+&lt;p&gt;上午：进一步了解Java类、继承、集合。&lt;/p&gt;
+&lt;p&gt;下午：纠结微信推送&lt;/p&gt;
+&lt;p&gt;晚上：争取通过Task6&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="OO" scheme="https://mondaycha.github.io/categories/OO/"/>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>为圣杯战争的开始献上礼炮</title>
