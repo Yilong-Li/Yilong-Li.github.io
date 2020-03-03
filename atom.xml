@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2020-02-23T13:31:21.783Z</updated>
+  <updated>2020-03-03T14:13:56.215Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OS-Lab0-实验报告</title>
+    <link href="https://mondaycha.github.io/2020/03/02/303-1/"/>
+    <id>https://mondaycha.github.io/2020/03/02/303-1/</id>
+    <published>2020-03-02T14:13:59.000Z</published>
+    <updated>2020-03-03T14:13:56.215Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;一、实验思考题&lt;/p&gt;
+&lt;p&gt;  请认真针对实验指导书中本次实验思考题进行作答。实验思考都是一些半开放性的问题，希望你能将自己对于实验思考题的回答与见解尽量描述清楚，如果思考中强调了结合代码请一定要与源码结合。&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="OS" scheme="https://mondaycha.github.io/categories/OS/"/>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OS-Lab0</title>
+    <link href="https://mondaycha.github.io/2020/03/01/302-1/"/>
+    <id>https://mondaycha.github.io/2020/03/01/302-1/</id>
+    <published>2020-03-01T15:59:59.000Z</published>
+    <updated>2020-03-03T14:12:37.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;练习0-1&quot;&gt;练习0.1&lt;a class=&quot;post-anchor&quot; href=&quot;#练习0-1&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在 bash 中分别输入&lt;/p&gt;
+&lt;figure class=&quot;highlight plai
+      
+    
+    </summary>
+    
+    
+      <category term="OS" scheme="https://mondaycha.github.io/categories/OS/"/>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>《一堂好课》观后感</title>
@@ -37,6 +88,31 @@
     
     
       <category term="影评" scheme="https://mondaycha.github.io/tags/%E5%BD%B1%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对马克思主义的理解</title>
+    <link href="https://mondaycha.github.io/2020/02/23/226-1/"/>
+    <id>https://mondaycha.github.io/2020/02/23/226-1/</id>
+    <published>2020-02-23T12:57:06.000Z</published>
+    <updated>2020-02-26T03:25:39.302Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 id=&quot;对马克思主义的理解&quot;&gt;对马克思主义的理解&lt;a class=&quot;post-anchor&quot; href=&quot;#对马克思主义的理解&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;46 李亦龙 18373580&lt;/p&gt;
+&lt;p&gt;在参加本学期马克思主义
+      
+    
+    </summary>
+    
+    
+      <category term="马原" scheme="https://mondaycha.github.io/categories/%E9%A9%AC%E5%8E%9F/"/>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -141,6 +217,33 @@
   </entry>
   
   <entry>
+    <title>我们无法一起学习……</title>
+    <link href="https://mondaycha.github.io/2020/02/12/212-1/"/>
+    <id>https://mondaycha.github.io/2020/02/12/212-1/</id>
+    <published>2020-02-12T02:40:46.000Z</published>
+    <updated>2020-02-13T12:58:54.192Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我们无法一起学习，但可以分散学习！&lt;/p&gt;
+&lt;p&gt;假期余额渐渐减少，相信也有好多小伙伴陆续开启了自学模式。&lt;/p&gt;
+&lt;p&gt;……安利下那些宝藏级的学习/工具网站~&lt;/p&gt;
+&lt;h2 id=&quot;课程学习&quot;&gt;课程学习&lt;a class=
+      
+    
+    </summary>
+    
+    
+      <category term="日记" scheme="https://mondaycha.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Task5蒙圈中</title>
     <link href="https://mondaycha.github.io/2020/02/12/211-1/"/>
     <id>https://mondaycha.github.io/2020/02/12/211-1/</id>
@@ -165,33 +268,6 @@
     
     
       <category term="学习" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我们无法一起学习……</title>
-    <link href="https://mondaycha.github.io/2020/02/12/212-1/"/>
-    <id>https://mondaycha.github.io/2020/02/12/212-1/</id>
-    <published>2020-02-12T02:40:46.000Z</published>
-    <updated>2020-02-13T12:58:54.192Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我们无法一起学习，但可以分散学习！&lt;/p&gt;
-&lt;p&gt;假期余额渐渐减少，相信也有好多小伙伴陆续开启了自学模式。&lt;/p&gt;
-&lt;p&gt;……安利下那些宝藏级的学习/工具网站~&lt;/p&gt;
-&lt;h2 id=&quot;课程学习&quot;&gt;课程学习&lt;a class=
-      
-    
-    </summary>
-    
-    
-      <category term="日记" scheme="https://mondaycha.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -448,75 +524,6 @@
     
     
       <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kindle也能用“微信读书”了？实测告诉你体验如何</title>
-    <link href="https://mondaycha.github.io/2020/02/02/202-2/"/>
-    <id>https://mondaycha.github.io/2020/02/02/202-2/</id>
-    <published>2020-02-02T08:23:10.000Z</published>
-    <updated>2020-02-06T13:12:04.436Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;哈喽大家好，我是码呆茶！在前段时间微信读书推出支持文石/口袋阅等一众国产电子书阅读器的墨水屏版App之后，近日
-      
-    
-    </summary>
-    
-    
-      <category term="测评" scheme="https://mondaycha.github.io/categories/%E6%B5%8B%E8%AF%84/"/>
-    
-    
-      <category term="Kindle" scheme="https://mondaycha.github.io/tags/Kindle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第一篇文章！</title>
-    <link href="https://mondaycha.github.io/2020/02/02/202-1/"/>
-    <id>https://mondaycha.github.io/2020/02/02/202-1/</id>
-    <published>2020-02-02T03:44:22.000Z</published>
-    <updated>2020-02-06T13:11:54.048Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;第一篇文章！&quot;&gt;第一篇文章！&lt;a class=&quot;post-anchor&quot; href=&quot;#第一篇文章！&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;前前后后配置了一天终于搭建好了，接下来也加油吧！&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="日记" scheme="https://mondaycha.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://mondaycha.github.io/2020/02/01/201-1/"/>
-    <id>https://mondaycha.github.io/2020/02/01/201-1/</id>
-    <published>2020-02-01T08:37:12.616Z</published>
-    <updated>2020-02-01T08:37:12.616Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Che
-      
-    
-    </summary>
-    
-    
     
   </entry>
   
