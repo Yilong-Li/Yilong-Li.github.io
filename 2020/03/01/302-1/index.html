@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-1"><span class="toc-text">练习0.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考0-1"><span class="toc-text">思考0.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习-0-2"><span class="toc-text">练习 0.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-3"><span class="toc-text">练习0.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题-0-3"><span class="toc-text">思考题 0.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题0-4"><span class="toc-text">思考题0.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-4"><span class="toc-text">练习0.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题0-5"><span class="toc-text">思考题0.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-5"><span class="toc-text">练习0.5</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#面向过程的设计，和面向对象的设计异同点到底在哪？"><span class="toc-text">面向过程的设计，和面向对象的设计异同点到底在哪？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同点："><span class="toc-text">不同点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相同点："><span class="toc-text">相同点：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计院"><span class="toc-text">计院</span></a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-1"><span class="toc-text">练习0.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考0-1"><span class="toc-text">思考0.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习-0-2"><span class="toc-text">练习 0.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-3"><span class="toc-text">练习0.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题-0-2"><span class="toc-text">思考题 0.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题-0-3"><span class="toc-text">思考题 0.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题0-4"><span class="toc-text">思考题0.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-4"><span class="toc-text">练习0.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考题0-5"><span class="toc-text">思考题0.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习0-5"><span class="toc-text">练习0.5</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#面向过程的设计，和面向对象的设计异同点到底在哪？"><span class="toc-text">面向过程的设计，和面向对象的设计异同点到底在哪？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同点："><span class="toc-text">不同点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相同点："><span class="toc-text">相同点：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计院"><span class="toc-text">计院</span></a>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -216,7 +216,7 @@
 <p>三条命令，简单思考其回显结果</p>
 <h2 id="思考0-1">思考0.1<a class="post-anchor" href="#思考0-1"></a></h2><p>通过你的使用经验，简单分析 CLI Shell，GUI Shell 在你使用过程中的各自优劣（100 字以内）</p>
 <h2 id="练习-0-2">练习 0.2<a class="post-anchor" href="#练习-0-2"></a></h2><p>执行如下命令,并查看结果</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">echo first<br><br>echo second > output.txt<br><br>echo third > output.txt<br><br>echo forth > > output.txt<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">echo first<br>echo second > output.txt<br>echo third > output.txt<br>echo forth > > output.txt<br></code></pre></td></tr></tbody></table></figure>
 
 <p>ctags，很好用的小工具</p>
 <p>(若实验环境中tree命令无效，输入sudo apt-get install tree命令安装，后面locate、tmux等同理)</p>
@@ -226,6 +226,7 @@
 <p>使用 cat Untracked.txt 和 cat Stage.txt，对比一下两次的结果，体会一下README.txt 两次所处位置的不同。</p>
 <p>修改 README.txt 文件，再使用 git status > Modified.txt 。</p>
 <p>使用 cat Modified.txt ，观察它和第一次 add 之前的 status 一样吗，思考一 下为什么？</p>
+<h2 id="思考题-0-2">思考题 0.2<a class="post-anchor" href="#思考题-0-2"></a></h2><p>使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为test），将创建该文件的命令序列保存在command文件中，并将test文件作为批处理文件运行，将运行结果输出至result文件中。给出command文件和result文件的内容，并对最后的结果进行解释说明（可以从test文件的内容入手）             具体实现的过程中思考下列问题：echo echo Shell Start 与 echo ‘echo Shell Start’效果是否有区别                    echo echo $c>file1 与 echo ‘echo $c>file1’ 效果是否有区别</p>
 <h2 id="思考题-0-3">思考题 0.3<a class="post-anchor" href="#思考题-0-3"></a></h2><p>仔细看看这张图，思考一下箭头中的 add the file 、stage the file 和commit 分别对应的是 Git 里的哪些命令呢？</p>
 <h2 id="思考题0-4">思考题0.4<a class="post-anchor" href="#思考题0-4"></a></h2><p>深夜，小明在做操作系统实验。困意一阵阵袭来，小明睡倒在了键盘上。等到小明早上醒来的时候，他惊恐地发现，他把一个重要的代码文件printf.c删除掉了。苦恼的小明向你求助，你该怎样帮他把代码文件恢复呢？</p>
 <p>正在小明苦恼的时候，小红主动请缨帮小明解决问题。小红很爽快地在键盘上敲下了git rm printf.c，这下事情更复杂了，现在你又该如何处理才能弥补小红的过错呢？</p>
@@ -291,7 +292,7 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/03/02/303-1/">OS-Lab0-实验报告</a>
+          <a href="/2020/03/03/303-1/">OS-Lab0-实验报告-题干</a>
         
     </div>
     <div class="item right">

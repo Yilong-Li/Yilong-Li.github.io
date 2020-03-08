@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      OS-Lab0-实验报告 - Blog
+      如何获取更多Homework2性能分？ - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何获取更多Homework2性能分？"><span class="toc-text">如何获取更多Homework2性能分？</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -167,11 +172,11 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">OS-Lab0-实验报告</div>
+      <div class="title">如何获取更多Homework2性能分？</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2020/03/02</span>
+          <span>2020/03/05</span>
         </span>
 
         
@@ -182,7 +187,7 @@
           <span>
               
                 
-                  <a href="/categories/OS">OS</a>
+                  <a href="/categories/OO">OO</a>
                 
               
           </span>
@@ -205,16 +210,62 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><p>一、实验思考题</p>
-<p>  请认真针对实验指导书中本次实验思考题进行作答。实验思考都是一些半开放性的问题，希望你能将自己对于实验思考题的回答与见解尽量描述清楚，如果思考中强调了结合代码请一定要与源码结合。</p>
-<p>二、实验难点图示</p>
-<p>  对于本次实验中你认为比较难的地方，用示意图、流程图或思维导图的方式来尽量表述清楚。</p>
-<p>三、体会与感想</p>
-<p>  对于本次实验，给出你自己的难度评价，并如实记录你在这次实验上花费的时间，写出完成此次实验的体会和感想。</p>
-<p>四、【可选】指导书反馈</p>
-<p>  我们的实验指导书还有许多问题，某些地方缺乏流畅性与简洁性，也有可能部分地方的理解是错的。如果你觉得哪里可以改进，希望积极提出，并给出修正的意见。</p>
-<p>五、【可选】残留难点</p>
-<p>在本次实验中你有哪些地方还很模糊，希望可以写出来与大家一起交流探讨。</p>
+    <html><head></head><body><h1 id="如何获取更多Homework2性能分？">如何获取更多Homework2性能分？<a class="post-anchor" href="#如何获取更多Homework2性能分？"></a></h1><p>为了获得更多的性能分，个人目前想到了以下注意点：</p>
+<p>Homework2与Homework1还是有不少相似之处的，因此在上次作业中的这些性能提升点，此次依然有效——</p>
+<ul>
+<li>表达式之间不含空格</li>
+<li>如果存在正项，则表达式以正项为首项（且省略）</li>
+<li>合并同类项</li>
+<li>函数指数部分为0时不输出</li>
+<li>非常数项：系数为1时不输出，系数为-1时仅保留负号</li>
+<li>指数为1时不输出</li>
+<li>0项不输出</li>
+</ul>
+<p>而也有一些此次作业中新出现的抢分点：</p>
+<ul>
+<li>x**2以x*x形式输出</li>
+<li>$sin^2(x)+cos^2(x)=1$</li>
+<li>$sin^2(x)-cos^2(x)=1-2cos^2(x)$</li>
+</ul>
+<p>其中三角函数的化简较为复杂。</p>
+<p>前者，我们注意到，对于形如<br>$$<br>a<em>x^i</em>sin^j(x)<em>cos^k(x)<br>$$<br>的项，能够以此规则化简的只有两种形式——<br>$$<br>a</em>x^i<em>sin^{j+2}(x)</em>cos^{k-2}(x)<br>$$</p>
+<p>$$<br>a<em>x^i</em>sin^{j-2}(x)*cos^{k+2}(x)<br>$$</p>
+<p>化简后两项合并为——<br>$$<br>2<em>a</em>x^i<em>sin^{j-2}(x)</em>cos^{k-2}(x)<br>$$<br>因此我们可以遍历容器并检查邻项是否存在，从而化简；而后者，在<code>j=2|k=2</code>时是肯定可以提升性能分的，方法与$sin^2(x)+cos^2(x)=1$的类似。</p>
+<p>当然，个人觉得除非针对后两点构造数据，其出现的机率并不大，是否要为了性能分牺牲性能也是一个问题。</p>
+<p><strong>也求有想法的大佬交流下更好的方法与隐藏的内卷点(～￣▽￣)～</strong></p>
+<p>为了获得更多的性能分，个人目前想到了以下注意点：</p>
+<p>Homework2与Homework1还是有不少相似之处的，因此在上次作业中的这些性能提升点，此次依然有效——</p>
+<ul>
+<li>表达式之间不含空格</li>
+<li>如果存在正项，则表达式以正项为首项（且省略）</li>
+<li>合并同类项</li>
+<li>函数指数部分为0时不输出</li>
+<li>非常数项：系数为1时不输出，系数为-1时仅保留负号</li>
+<li>指数为1时不输出</li>
+<li>0项不输出</li>
+</ul>
+<p>而也有一些此次作业中新出现的抢分点：</p>
+<ul>
+<li>x**2以x*x形式输出</li>
+<li>$sin^2(x)+cos^2(x)=1$</li>
+<li>$sin^2(x)-cos^2(x)=1-2 cos^2(x)$</li>
+</ul>
+<p>其中三角函数的化简较为复杂。</p>
+<p>前者，我们注意到，对于形如$a*x^i*sin^j(x)*cos^k(x) $<br>的项，能够以此规则化简的只有两种形式——</p>
+<p>$$<br>a*x^i*sin^{j+2}(x)*cos^{k-2}(x)<br>$$</p>
+<p>$$<br>a*x^i*sin^{j-2}(x)*cos^{k+2}(x)<br>$$</p>
+<p>化简后两项合并为——$2*a*x^i*sin^{j-2}(x)*cos^{k-2}(x)$</p>
+<p>因此我们可以遍历容器并检查邻项是否存在，从而化简；而后者，在<code>j=2|k=2</code>时是肯定可以提升性能分的，方法与$sin^2(x)+cos^2(x)=1$的类似。</p>
+<p>当然，个人觉得除非针对后两点构造数据，其出现的机率并不大，是否要为了性能分牺牲性能也是一个问题。</p>
+<p><strong>也求有想法的大佬交流下更好的方法与隐藏的内卷点(～￣▽￣)～</strong></p>
+<p>既然无法贪心，只好搜索。</p>
+<p>dfs，每次找到可合并的两个项去合并，然后回溯，不断记录最短答案，其中，两个项合并的次数(即合并之后的系数)要满足至少要用完其中一个项。</p>
+<p>改完dfs发现要T（爆栈），就把每次dfs前的答案扔进set判重，即记忆化。</p>
+<p>合并的话一开始只考虑了sin(x)2+cos(x)2=1然后用1−sin(x)2=cos(x)2以拆分常数项 和不含sin(x)sin(x)或cos(x)cos(x)的项来体现。后来发现速度很快但效果不好。</p>
+<p>在队友丁总对我的指导下，我把1−sin(x)2=cos(x)2放进了dfs，成为合并两个项的新选择。</p>
+<p>关于极端数据爆栈，卡住dfs次数和程序运行时间即可。最终性能分满分。</p>
+<p>正常随机数据或项数不多的数据可以随便跑完，评论区里面的数据应该都能搜完。</p>
+<p>欢迎大佬们批评指正，本数学弱鸡，码力选手只能想到这种暴力做法，写了快10k的优化类，累死。</p>
 </body></html>
 
   
@@ -241,10 +292,12 @@
   <div class="post-guide">
     <div class="item left">
         
+          <a href="/2020/03/06/304-1/">OS Lab0实验报告</a>
+        
     </div>
     <div class="item right">
         
-          <a href="/2020/03/01/302-1/">OS-Lab0</a>
+          <a href="/2020/03/04/304-2/">宅家学习小窍门，你get到了吗？</a>
         
     </div>
   </div>
@@ -256,7 +309,7 @@
       本文作者：<a href="https://mondaycha.github.io">DLee</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://mondaycha.github.io/2020/03/02/303-1/">https://mondaycha.github.io/2020/03/02/303-1/</a>
+      永久链接：<a href="https://mondaycha.github.io/2020/03/05/305-1/">https://mondaycha.github.io/2020/03/05/305-1/</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
