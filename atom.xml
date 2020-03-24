@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2020-03-20T04:38:54.514Z</updated>
+  <updated>2020-03-24T04:37:28.132Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,105 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OS Lab2 学习笔记</title>
+    <link href="https://mondaycha.github.io/2020/03/23/323-2/"/>
+    <id>https://mondaycha.github.io/2020/03/23/323-2/</id>
+    <published>2020-03-23T09:54:36.000Z</published>
+    <updated>2020-03-24T04:37:28.132Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;挑战开始了，加油！！！&lt;/p&gt;
+&lt;h3 id=&quot;双向链表操作拾遗&quot;&gt;双向链表操作拾遗&lt;a class=&quot;pos
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
+    
+      <category term="学习笔记" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用Git从远程仓库获取所有分支</title>
+    <link href="https://mondaycha.github.io/2020/03/23/323-1/"/>
+    <id>https://mondaycha.github.io/2020/03/23/323-1/</id>
+    <published>2020-03-23T09:00:36.000Z</published>
+    <updated>2020-03-23T14:13:24.326Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs shell&quot;&gt;git branch -r | gr
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Git" scheme="https://mondaycha.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OS Lab1实验报告</title>
+    <link href="https://mondaycha.github.io/2020/03/21/321-1/"/>
+    <id>https://mondaycha.github.io/2020/03/21/321-1/</id>
+    <published>2020-03-21T02:37:09.000Z</published>
+    <updated>2020-03-22T01:13:59.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;OS-Lab1-实验报告&quot;&gt;OS Lab1 实验报告&lt;a class=&quot;post-anchor&quot; href=&quot;#OS-Lab1-实验报告&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p align=&quot;right&quot;&gt;18373580 李亦
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《航空航天概论》Week4</title>
+    <link href="https://mondaycha.github.io/2020/03/20/320-1/"/>
+    <id>https://mondaycha.github.io/2020/03/20/320-1/</id>
+    <published>2020-03-20T09:26:43.000Z</published>
+    <updated>2020-03-21T02:40:52.705Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;爱课程-3-4-探月工程发展&quot;&gt;爱课程 3.4 探月工程发展&lt;a class=&quot;post-anchor&quot; href=&quot;#爱课程-3-4-探月工程发展&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在这节课我学习到，嫦娥三期工程，中国整
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
+    
+  </entry>
   
   <entry>
     <title>OO 第一单元总结 表达式求导</title>
@@ -91,30 +190,6 @@
   </entry>
   
   <entry>
-    <title>《航空航天概论》Week2</title>
-    <link href="https://mondaycha.github.io/2020/03/09/312-1/"/>
-    <id>https://mondaycha.github.io/2020/03/09/312-1/</id>
-    <published>2020-03-09T06:40:49.000Z</published>
-    <updated>2020-03-19T05:55:41.552Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;2-1-世界航空技术发展&quot;&gt;2.1 世界航空技术发展&lt;a class=&quot;post-anchor&quot; href=&quot;#2-1-世界航空技术发展&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在第一节，我学习到了大气层划分为对流层、平流层、中
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《来自缤纷世界的明日》— 摆脱黑暗去迎接明天</title>
     <link href="https://mondaycha.github.io/2020/03/09/309-1/"/>
     <id>https://mondaycha.github.io/2020/03/09/309-1/</id>
@@ -138,6 +213,30 @@
       <category term="ACG" scheme="https://mondaycha.github.io/tags/ACG/"/>
     
       <category term="来自多彩世界的明天" scheme="https://mondaycha.github.io/tags/%E6%9D%A5%E8%87%AA%E5%A4%9A%E5%BD%A9%E4%B8%96%E7%95%8C%E7%9A%84%E6%98%8E%E5%A4%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《航空航天概论》Week2</title>
+    <link href="https://mondaycha.github.io/2020/03/09/312-1/"/>
+    <id>https://mondaycha.github.io/2020/03/09/312-1/</id>
+    <published>2020-03-09T06:40:49.000Z</published>
+    <updated>2020-03-19T05:55:41.552Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;2-1-世界航空技术发展&quot;&gt;2.1 世界航空技术发展&lt;a class=&quot;post-anchor&quot; href=&quot;#2-1-世界航空技术发展&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在第一节，我学习到了大气层划分为对流层、平流层、中
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
     
   </entry>
   
@@ -413,111 +512,6 @@
     
     
       <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OO预习第三弹</title>
-    <link href="https://mondaycha.github.io/2020/02/13/213-1/"/>
-    <id>https://mondaycha.github.io/2020/02/13/213-1/</id>
-    <published>2020-02-13T12:57:41.000Z</published>
-    <updated>2020-03-19T05:50:30.890Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 id=&quot;OO预习第三弹&quot;&gt;OO预习第三弹&lt;a class=&quot;post-anchor&quot; href=&quot;#OO预习第三弹&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;今天终于做完了Pre1的Task6，借助TreeSet类。&lt;/p&gt;
-&lt;p&gt;OO第
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OO" scheme="https://mondaycha.github.io/tags/OO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Task5蒙圈中</title>
-    <link href="https://mondaycha.github.io/2020/02/12/211-1/"/>
-    <id>https://mondaycha.github.io/2020/02/12/211-1/</id>
-    <published>2020-02-12T02:40:46.000Z</published>
-    <updated>2020-03-19T05:49:39.879Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我需要明确一下接下来的时间规划。&lt;/p&gt;
-&lt;p&gt;上午：进一步了解Java类、继承、集合。&lt;/p&gt;
-&lt;p&gt;下午：纠结微信推送&lt;/p&gt;
-&lt;p&gt;晚上：争取通过Task6&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OO" scheme="https://mondaycha.github.io/tags/OO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我们无法一起学习……</title>
-    <link href="https://mondaycha.github.io/2020/02/12/212-1/"/>
-    <id>https://mondaycha.github.io/2020/02/12/212-1/</id>
-    <published>2020-02-12T02:40:46.000Z</published>
-    <updated>2020-03-19T06:00:46.867Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我们无法一起学习，但可以分散学习！&lt;/p&gt;
-&lt;p&gt;假期余额渐渐减少，相信也有好多小伙伴陆续开启了自学模式。&lt;/p&gt;
-&lt;p&gt;……安利下那些宝藏级的学习/工具网站~&lt;/p&gt;
-&lt;h2 id=&quot;课程学习&quot;&gt;课程学习&lt;a class=
-      
-    
-    </summary>
-    
-    
-      <category term="写作" scheme="https://mondaycha.github.io/categories/%E5%86%99%E4%BD%9C/"/>
-    
-    
-      <category term="推送" scheme="https://mondaycha.github.io/tags/%E6%8E%A8%E9%80%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为圣杯战争的开始献上礼炮</title>
-    <link href="https://mondaycha.github.io/2020/02/10/210-1/"/>
-    <id>https://mondaycha.github.io/2020/02/10/210-1/</id>
-    <published>2020-02-10T02:27:50.000Z</published>
-    <updated>2020-03-19T05:49:36.987Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 id=&quot;BUAA-OO&quot;&gt;BUAA-OO&lt;a class=&quot;post-anchor&quot; href=&quot;#BUAA-OO&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;从昨天开始，BUAA 2020年春季的面向对象课程就算是拉开帷幕了。&lt;/p&gt;
-&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OO" scheme="https://mondaycha.github.io/tags/OO/"/>
     
   </entry>
   
