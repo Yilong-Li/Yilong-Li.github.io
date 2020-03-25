@@ -221,24 +221,20 @@
 <p>链表的插入操作，对注释做了一点修正——</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Note: assign a to b <==> a = b</span><br><span class="hljs-comment">//Step 1, assign elm.next to listelem.next.</span><br><span class="hljs-comment">//Step 2: Judge whether listelm.next is NULL, if not, then assign listelm.next.pre to a proper value.</span><br><span class="hljs-comment">//step 3: Assign listelm.next to a proper value.</span><br><span class="hljs-comment">//step 4: Assign elm.pre to a proper value.</span><br></code></pre></td></tr></tbody></table></figure>
 
+<p>这个设计感觉还是很巧妙的。</p>
+<h3 id="关于全局变量">关于全局变量<a class="post-anchor" href="#关于全局变量"></a></h3><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 1: Initialize basemem.<br>* (When use real computer, CMOS tells us how many kilobytes there are). */</span><br>basemem = <span class="hljs-number">0x4000000</span>;<br>maxpa = <span class="hljs-number">0x4000000</span>;<br>extmem = <span class="hljs-number">0x0</span>;<br><span class="hljs-comment">// Step 2: Calculate corresponding npage value.</span><br>npage = basenum >> <span class="hljs-number">12</span>;<br></code></pre></td></tr></tbody></table></figure>
 
-
-<h3 id="关于全局变量">关于全局变量<a class="post-anchor" href="#关于全局变量"></a></h3><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 1: Initialize basemem.<br>    * (When use real computer, CMOS tells us how many kilobytes there are). */</span><br>   basemem = <span class="hljs-number">0x4000000</span>;<br>   maxpa = <span class="hljs-number">0x4000000</span>;<br>   extmem = <span class="hljs-number">0x0</span>;<br>   <span class="hljs-comment">// Step 2: Calculate corresponding npage value.</span><br>   npage = basenum >> <span class="hljs-number">12</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-
-
+<p>后来看了一下在mmu.h里面有对SHIFT的定义，更严谨的来说应该是要写那个吧。</p>
 <h3 id="如何用命令行压缩文件">如何用命令行压缩文件<a class="post-anchor" href="#如何用命令行压缩文件"></a></h3><p>压缩服务器上当前目录的内容为xxx.zip文件</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">zip -r xxx.zip ./*<br></code></pre></td></tr></tbody></table></figure>
 
 <p>解压zip文件到当前目录</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">unzip filename.zip<br></code></pre></td></tr></tbody></table></figure>
 
-
-
+<p>这样就可以从实验环境copy代码了！</p>
 <h3 id="如何运行内核">如何运行内核<a class="post-anchor" href="#如何运行内核"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">gxemul -E testmips -C R3000 -M 64<br></code></pre></td></tr></tbody></table></figure>
 
-
-
+<p>后面可以跟vmlinux的地址，也可以写个sh脚本来运行。</p>
 <h3 id="课程群零散知识点收集">课程群零散知识点收集<a class="post-anchor" href="#课程群零散知识点收集"></a></h3><h4 id="2-1">2.1<a class="post-anchor" href="#2-1"></a></h4><ol>
 <li>助教提示：typeof的使用</li>
 <li>注释提示错误：应该是listelm->field.next->field.prev</li>
@@ -282,6 +278,8 @@
   
   <div class="post-guide">
     <div class="item left">
+        
+          <a href="/2020/03/24/324-1/">学累了吗？要不要来听点什么……</a>
         
     </div>
     <div class="item right">
