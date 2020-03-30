@@ -249,12 +249,11 @@
 <p>这就是在上次的总结中提过的特殊的双重链表结构，好处是删除方便。所以在<code>Page</code>结构体中，<code>pp_link</code>有两个域，其中<code>le_next</code>指向下一个页结构体，<code>le_prev</code>指向上一个页结构体的<code>pp_link</code>的<code>le_next</code>。<code>(listelm)->field.le_prev</code>是<code>listelm</code>上一个<code>elm</code>的<code>le_next</code>，让它指向新增的<code>elm</code>。关于这一点可以在<code>include/queue.h</code>中的<code>LIST_INSERT_AFTER</code>定义中找到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">(elm)->field.le_prev = &((listelm)->field.le_next);<br></code></pre></td></tr></tbody></table></figure>
 
-<p><code>pp_ref</code>则是这一页面的引用次数，在通过<code>page_alloc</code>进行分配的时候要记得修改。所以Page结构体大概就是一张存储页使用信息、地址的链表，本身并不是物理内存页。</p>
-<p>之后的exercise2.1就是关于链表操作函数<code>LIST_INSERT_HEAD</code>和<code>LIST_INSERT_TAIL</code>的补全。单从插入效率的角度<code>LIST_INSERT_HEAD</code>函数显然更好一些，后者还要遍历链表。</p>
+<p><code>pp_ref</code>则是这一页面的引用次数。所以Page结构体大概就是一张存储页使用信息、地址的链表，本身并不是物理内存页。之后的exercise2.1就是关于链表操作函数<code>LIST_INSERT_HEAD</code>和<code>LIST_INSERT_TAIL</code>的补全。单从插入效率的角度<code>LIST_INSERT_HEAD</code>函数显然更好一些，后者还要遍历链表。</p>
 <p>这边的链表操作函数实在是绕……比如<code>LIST_INSERT_BEFORE</code>函数：</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*<br> * Insert the element "elm" *before* the element "listelm" which is<br> * already in the list.  The "field" name is the link element<br> * as above.<br> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_INSERT_BEFORE(listelm, elm, field) do {                    \<br>                (elm)->field.le_prev = (listelm)->field.le_prev;        \<br>                LIST_NEXT((elm), field) = (listelm);                    \<br>                *(listelm)->field.le_prev = (elm);                      \	<span class="hljs-comment">// 1</span></span><br>                (listelm)->field.le_prev = &LIST_NEXT((elm), field);    \	<span class="hljs-comment">// 2</span><br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*<br> * Insert the element "elm" *before* the element "listelm" which is<br> * already in the list.  The "field" name is the link element<br> * as above.<br> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_INSERT_BEFORE(listelm, elm, field) do {                    \<br>                (elm)->field.le_prev = (listelm)->field.le_prev;        \<br>                LIST_NEXT((elm), field) = (listelm);                    \<br>                *(listelm)->field.le_prev = (elm);                      \	</span><br>                (listelm)->field.le_prev = &LIST_NEXT((elm), field);    \	<br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
 
-<p>这里的1是<code>*((listelm)->field.le_prev)</code>，也就是<code>listelm</code>的上一个<code>preelm</code>的<code>next</code>指向插入的<code>elm</code>；2则是让<code>listelm</code>的<code>prev</code>指针指向<code>elm</code>的<code>next</code>指针，从而实现链表的前插操作。</p>
+<p>这里的9是<code>*((listelm)->field.le_prev)</code>，也就是<code>listelm</code>的上一个<code>preelm</code>的<code>next</code>指向插入的<code>elm</code>；10则是让<code>listelm</code>的<code>prev</code>指针指向<code>elm</code>的<code>next</code>指针，从而实现链表的前插操作。</p>
 <p>再次祭出这张群友发的图（现在想想数据结构是大一下，彼时是大二下的助教们大概率就是从OS课上获得的灵感）：</p>
 <p><a href="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" alt></a></p>
 <p>所以<code>LIST_REMOVE</code>函数就是这么写的：</p>
@@ -284,7 +283,7 @@
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> u_long Pde;<br><span class="hljs-keyword">typedef</span> u_long Pte;<br></code></pre></td></tr></tbody></table></figure>
 
 <p>两者都是<code>unsigned long</code>类型，长度为32位，而虚拟地址的长度也是32位，方便转换。</p>
-<p>这里还不够理解深入，援引学长的解释：</p>
+<p>这里理解还不够深入，援引学长的解释：</p>
 <blockquote>
 <p>下面说明一下<code>Pde*</code>的理解（<code>Pde*</code>和<code>Pte*</code>是一样的）</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">Pde *pgdir_entryp;<br></code></pre></td></tr></tbody></table></figure>
@@ -302,7 +301,7 @@
 <h3 id="地址映射">地址映射<a class="post-anchor" href="#地址映射"></a></h3><p>将相应的物理页面地址填入对应虚拟地址的页表项，填充<code>mm/pmap.c</code>中的<code>boot_map_segment</code>函数。</p>
 <p>在exercise2.6，将[va, va+size)的虚拟地址映射到物理地址[pa,pa+size)中，根据perm对这个地址标记位更新，实现了在虚拟地址所对应的二级页表里存放（物理页框的）物理地址。</p>
 <p>通过for循环实现，函数内还给了临时变量。</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 2: Map virtual address space to physical address. */</span><br><span class="hljs-comment">/* Hint: Use `boot_pgdir_walk` to get the page table <br> * entry of virtual address `va`. */</span><br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i < (<span class="hljs-built_in">size</span> / BY2PG); i++)<br>{<br>    va_temp = va + i * BY2PG;	<br>    <span class="hljs-comment">// 突然发现这里可以用更好的方式……</span><br>    pgtable_entry = boot_pgdir_walk(pgdir, va_temp, <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 返回页表项的虚拟地址</span><br>    *pgtable_entry = (pa + i * BY2PG) | perm | PTE_V;<br>    <span class="hljs-comment">// 指向物理地址，设置标记位</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 2: Map virtual address space to physical address. */</span><br><span class="hljs-comment">/* Hint: Use `boot_pgdir_walk` to get the page table <br> * entry of virtual address `va`. */</span><br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i < (<span class="hljs-built_in">size</span> / BY2PG); i++)<br><span class="hljs-comment">// 这里回头记得修改，感觉Pb说的很有道理……</span><br>{<br>    va_temp = va + i * BY2PG;	<br>    <span class="hljs-comment">// 突然发现这里可以用更好的方式……</span><br>    pgtable_entry = boot_pgdir_walk(pgdir, va_temp, <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 返回页表项的虚拟地址</span><br>    *pgtable_entry = (pa + i * BY2PG) | perm | PTE_V;<br>    <span class="hljs-comment">// 指向物理地址，设置标记位</span><br>}<br></code></pre></td></tr></tbody></table></figure>
 
 <p>这个函数完成了对于[va,va+size)这一片虚拟地址的页表的设置，把对应的物理地址存入了对应的页表中。</p>
 <h3 id="page-insert-and-page-remove">page insert and page remove<a class="post-anchor" href="#page-insert-and-page-remove"></a></h3><p>在exercise2.7，需要填充<code>page_insert</code>函数，该函数将va虚拟地址和其要对应的物理页pp的映射关系以perm的权限设置加入页目录。</p>
@@ -341,6 +340,8 @@
   
   <div class="post-guide">
     <div class="item left">
+        
+          <a href="/2020/03/31/331-1/">shields测试</a>
         
     </div>
     <div class="item right">

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2020-03-30T15:24:49.036Z</updated>
+  <updated>2020-03-30T16:15:53.323Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>shields测试</title>
+    <link href="https://mondaycha.github.io/2020/03/31/331-1/"/>
+    <id>https://mondaycha.github.io/2020/03/31/331-1/</id>
+    <published>2020-03-30T16:12:26.000Z</published>
+    <updated>2020-03-30T16:15:53.323Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;这是测试页，如果正常，下方有图片——&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.shields.io/badge/dynamic/json?color=pink&amp;label=Bilibili%20fans&amp;qu
+      
+    
+    </summary>
+    
+    
+      <category term="日记" scheme="https://mondaycha.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="随笔" scheme="https://mondaycha.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>OS Lab2 学习笔记 (Part 2)</title>
     <link href="https://mondaycha.github.io/2020/03/29/329-1/"/>
     <id>https://mondaycha.github.io/2020/03/29/329-1/</id>
     <published>2020-03-29T09:46:36.000Z</published>
-    <updated>2020-03-30T15:24:49.036Z</updated>
+    <updated>2020-03-30T16:05:04.967Z</updated>
     
     <summary type="html">
     
@@ -276,6 +301,30 @@
   </entry>
   
   <entry>
+    <title>《航空航天概论》Week2</title>
+    <link href="https://mondaycha.github.io/2020/03/09/312-1/"/>
+    <id>https://mondaycha.github.io/2020/03/09/312-1/</id>
+    <published>2020-03-09T06:40:49.000Z</published>
+    <updated>2020-03-19T05:55:41.552Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;2-1-世界航空技术发展&quot;&gt;2.1 世界航空技术发展&lt;a class=&quot;post-anchor&quot; href=&quot;#2-1-世界航空技术发展&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在第一节，我学习到了大气层划分为对流层、平流层、中
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《来自缤纷世界的明日》— 摆脱黑暗去迎接明天</title>
     <link href="https://mondaycha.github.io/2020/03/09/309-1/"/>
     <id>https://mondaycha.github.io/2020/03/09/309-1/</id>
@@ -299,30 +348,6 @@
       <category term="ACG" scheme="https://mondaycha.github.io/tags/ACG/"/>
     
       <category term="影评" scheme="https://mondaycha.github.io/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《航空航天概论》Week2</title>
-    <link href="https://mondaycha.github.io/2020/03/09/312-1/"/>
-    <id>https://mondaycha.github.io/2020/03/09/312-1/</id>
-    <published>2020-03-09T06:40:49.000Z</published>
-    <updated>2020-03-19T05:55:41.552Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;2-1-世界航空技术发展&quot;&gt;2.1 世界航空技术发展&lt;a class=&quot;post-anchor&quot; href=&quot;#2-1-世界航空技术发展&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在第一节，我学习到了大气层划分为对流层、平流层、中
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
     
   </entry>
   
@@ -473,31 +498,6 @@
     
     
       <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>对马克思主义的理解</title>
-    <link href="https://mondaycha.github.io/2020/02/23/226-1/"/>
-    <id>https://mondaycha.github.io/2020/02/23/226-1/</id>
-    <published>2020-02-23T12:57:06.000Z</published>
-    <updated>2020-03-19T05:53:07.912Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 id=&quot;对马克思主义的理解&quot;&gt;对马克思主义的理解&lt;a class=&quot;post-anchor&quot; href=&quot;#对马克思主义的理解&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;46 李亦龙 18373580&lt;/p&gt;
-&lt;p&gt;在参加本学期马克思主义
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="马克思主义" scheme="https://mondaycha.github.io/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
     
   </entry>
   
