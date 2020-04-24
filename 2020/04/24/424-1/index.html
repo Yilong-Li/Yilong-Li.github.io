@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      OS Lab3 学习笔记 - Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程控制块"><span class="toc-text">进程控制块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-3-2"><span class="toc-text">Exercise 3.2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程的标识"><span class="toc-text">进程的标识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-3-3"><span class="toc-text">Exercise 3.3</span></a></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">DLee</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">DLee</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/MondayCha" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/7283248296" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/Dlee-01" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">OS Lab3 学习笔记</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/04/24</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/学习">学习</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/OS">OS</a>
+                  
+                
+                  
+                    <a href="/tags/学习笔记">学习笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>OS Lab3的难度还是比较大的，为了更好的掌握，我希望能通过撰写博客加深对相关知识点的理解。</p>
+<p>今天的内容是OS Lab3的学习复习笔记，然后下午去写理论课第八次作业。</p>
+<p>Lab3的内容是进程与异常，将运行一个用户模式的进程。你需要使用数据结构进程控制块 Env 来跟踪用户进程。通过建立一个简单的用户进程，加载一个程序镜像到进程控制块中，并让它运行起来。</p>
+<h2 id="进程控制块">进程控制块<a class="post-anchor" href="#进程控制块"></a></h2><p>进程控制块(PCB) 是系统为了管理进程设置的一个专门的数据结构，用它来记录进程的外部特征，描述进程的运动变化过程。</p>
+<h3 id="Exercise-3-2">Exercise 3.2<a class="post-anchor" href="#Exercise-3-2"></a></h3><p>需要补充env_init 函数。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*** exercise 3.2 ***/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">env_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span><br></span>{<br>    <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-comment">/*Step 1: Initial env_free_list. */</span><br>    LIST_INIT(&env_free_list);		<br>    <span class="hljs-comment">// 初始化env_free_list</span><br>    LIST_INIT(&env_sched_list[<span class="hljs-number">0</span>]);<br>    LIST_INIT(&env_sched_list[<span class="hljs-number">1</span>]);<br>    <span class="hljs-comment">// 根据调度方法进行初始化，我把这步放在了env_init(void)函数里</span><br><br>    <span class="hljs-comment">/*Step 2: Traverse the elements of 'envs' array,<br>     * set their status as free and insert them into the env_free_list.<br>     * Choose the correct loop order to finish the insertion.<br>     * Make sure, after the insertion, the order of envs in the list<br>     * should be the same as it in the envs array. */</span><br>    <span class="hljs-keyword">for</span> (i = NENV - <span class="hljs-number">1</span>; i >= <span class="hljs-number">0</span>; i--)	<span class="hljs-comment">// 倒序插入，总共是1024个进程</span><br>    {<br>        envs[i].env_status = ENV_FREE;<br>        <span class="hljs-comment">/* 初始化进程状态<br>         * 有ENV_FREE，ENV_NOT_RUNNABLE，ENV_RUNNABLE三种<br>         * ENV_FREE : 表明该进程是不活动的，即该进程控制块处于进程空闲链表中。<br>         * ENV_NOT_RUNNABLE : 表明该进程处于阻塞状态<br>         * 处于该状态的进程往往在等待一定的条件才可以变为就绪状态从而被CPU 调度。<br>         * ENV_RUNNABLE : 表明该进程处于就绪状态，正在等待被调度<br>         * 但处于RUNNABLE 状态的进程可以是正在运行的，也可能不在运行中 */</span><br>        LIST_INSERT_HEAD(&env_free_list, &envs[i], env_link);<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>LIST_INSERT_HEAD效率高，采用逆序插入，确保在插入之后，env在列表中的顺序应该与envs数组中的相同，这样就会使第一次调用env_alloc()时返回envs[0]。</p>
+<p>复习一下LIST_INSERT_HEAD，传入的三个参数分别为链表头、插入元素、链表指针。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_INSERT_HEAD(head, elm, field) do {                         \<br>                <span class="hljs-meta-keyword">if</span> ((LIST_NEXT((elm), field) = LIST_FIRST((head))) != NULL)     \<br>                        LIST_FIRST((head))->field.le_prev = &LIST_NEXT((elm), field);\<br>                LIST_FIRST((head)) = (elm);                                     \<br>                (elm)->field.le_prev = &LIST_FIRST((head));                     \<br>        } while (0)</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>在Lab3要区分清楚env_link和env_sched_link。</p>
+<h2 id="进程的标识">进程的标识<a class="post-anchor" href="#进程的标识"></a></h2><p>每个进程都有独一无二的标识符，在创建每个新的进程的时候必须为它赋予一个与众不同的id来作为它的标识符，mkenvid的作用就是生成一个新的进程id。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function">u_int <span class="hljs-title">mkenvid</span><span class="hljs-params">(struct Env *e)</span><br></span>{<br>    <span class="hljs-keyword">static</span> u_long next_env_id = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">/*Hint: lower bits of envid hold e's position in the envs array. */</span><br>    u_int idx = e - envs;<br><br>    <span class="hljs-comment">/*Hint:  high bits of envid hold an increasing number. */</span><br>    <span class="hljs-keyword">return</span> (++next_env_id << (<span class="hljs-number">1</span> + LOG2NENV)) | idx;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>extra就涉及对这个的修改。在这里我其实是比较疑惑的，我们的造作系统设置的最大进程数目为1024，也就是idx的取值范围，按理说next_env_id只需要左移10位就可以满足需求，PB在群里问了操作系统的WL老师，表示和GET_ENV_ASID这个宏有关：</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GET_ENV_ASID(envid) (((envid)>> 11)<<6)</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>想了想可能和操作系统改成大猩猩也能看懂的实验课（此处为青猪梗，我完全看不懂）之前是支持理论最多2048个进程有关，比如Windows 32位系统中就是这样（不过一个进程能使用的最大虚拟内存为2G，而一个线程的默认线程栈为1M，一般在线程数接近2000时就异常退出了）。</p>
+<h3 id="Exercise-3-3">Exercise 3.3<a class="post-anchor" href="#Exercise-3-3"></a></h3><p>需要补充envid2env函数，将一个envid转换为一个env指针。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*** exercise 3.3 ***/</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">envid2env</span><span class="hljs-params">(u_int envid, struct Env **penv, <span class="hljs-keyword">int</span> checkperm)</span><br></span>{<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Env</span> *<span class="hljs-title">e</span>;</span><br>    <span class="hljs-comment">/* Hint: If envid is zero, return curenv.*/</span><br>    <span class="hljs-keyword">if</span> (envid == <span class="hljs-number">0</span>)<br>    {<br>        *penv = curenv;<br>        <span class="hljs-comment">// curenv是一个全局变量，表示当前进程</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    }<br><br>    <span class="hljs-comment">/*Step 1: Assign value to e using envid. */</span><br>    e = &envs[ENVX(envid)];<br><br>    <span class="hljs-keyword">if</span> (e->env_status == ENV_FREE || e->env_id != envid)<br>    {<br>        *penv = <span class="hljs-number">0</span>;	<span class="hljs-comment">// sets *penv to NULL</span><br>        <span class="hljs-keyword">return</span> -E_BAD_ENV;<br>    }<br>    <span class="hljs-comment">/*     Hint:<br>     *     Check that the calling env has enough permissions<br>     *     to manipulate the specified env.<br>     *     If checkperm is set, the specified env<br>     *     must be either curenv<br>     *     or an immediate child of curenv.<br>     *     If not, error! */</span><br>    <span class="hljs-comment">/*     Step 2: Make a check according to checkperm. */</span><br>    <span class="hljs-keyword">if</span> (checkperm)<br>    {<br>        <span class="hljs-keyword">if</span> (e != curenv && e->env_parent_id != curenv->env_id)<br>        {<br>            *penv = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">return</span> -E_BAD_ENV;<br>        }<br>    }<br><br>    *penv = e;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/04/24/424-2/">OS Lab3 实验报告</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/04/23/423-1/">《航空航天概论》Week8</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2020/04/24/424-1/">https://mondaycha.github.io/2020/04/24/424-1/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://mondaycha.github.io">DLee</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OS-Lab1-实验报告"><span class="toc-text">OS Lab1 实验报告</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思考题0-1"><span class="toc-text">思考题0.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考题0-2"><span class="toc-text">思考题0.2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、实验难点图示"><span class="toc-text">二、实验难点图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、体会与感想"><span class="toc-text">三、体会与感想</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OS-Lab1-实验报告"><span class="toc-text">OS Lab1 实验报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、实验思考题"><span class="toc-text">一、实验思考题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思考题0-1"><span class="toc-text">思考题0.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考题0-2"><span class="toc-text">思考题0.2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、实验难点图示"><span class="toc-text">二、实验难点图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、体会与感想"><span class="toc-text">三、体会与感想</span></a></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -210,10 +210,7 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><h1 id="OS-Lab1-实验报告">OS Lab1 实验报告<a class="post-anchor" href="#OS-Lab1-实验报告"></a></h1><p align="right">18373580 李亦龙</p>
-## 一、实验思考题
-
-<h3 id="思考题0-1">思考题0.1<a class="post-anchor" href="#思考题0-1"></a></h3><p>也许你会发现我们的readelf程序是不能解析之前生成的内核文件(内核文件是可执行文件)的，而我们之后将要介绍的工具readelf则可以解析，这是为什么呢？(提示：尝试使用readelf -h，观察不同)</p>
+    <html><head></head><body><h1 id="OS-Lab1-实验报告">OS Lab1 实验报告<a class="post-anchor" href="#OS-Lab1-实验报告"></a></h1><h2 id="一、实验思考题">一、实验思考题<a class="post-anchor" href="#一、实验思考题"></a></h2><h3 id="思考题0-1">思考题0.1<a class="post-anchor" href="#思考题0-1"></a></h3><p>也许你会发现我们的readelf程序是不能解析之前生成的内核文件(内核文件是可执行文件)的，而我们之后将要介绍的工具readelf则可以解析，这是为什么呢？(提示：尝试使用readelf -h，观察不同)</p>
 <p><strong>答：</strong></p>
 <p>通过<code>readelf -h</code>可以发现，我们之前生成的内核文件vmlinux是大尾端elf文件，而测试使用的testELF是小尾端elf文件。</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">~/work/18373580-lab/gxemul$ readelf -h vmlinux<br>ELF Header:<br>  Magic:   7f 45 4c 46 01 02 01 00 00 00 00 00 00 00 00 00<br>  Class:                             ELF32<br>  Data:                              2's complement, big endian<br>  ...<br>  <br>~/work/18373580-lab/gxemul$ readelf -h ../readelf/testELF<br>ELF Header:<br>  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00<br>  Class:                             ELF32<br>  Data:                              2's complement, little endian<br>  ...<br></code></pre></td></tr></tbody></table></figure>
