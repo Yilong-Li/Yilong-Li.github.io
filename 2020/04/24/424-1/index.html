@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      424-1 - Blog
+      OS Lab3 学习笔记 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -172,7 +172,7 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">424-1</div>
+      <div class="title">OS Lab3 学习笔记</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
@@ -233,10 +233,11 @@
 <h3 id="Thinking-3-1">Thinking 3.1<a class="post-anchor" href="#Thinking-3-1"></a></h3><p>为什么我们在构造空闲进程链表时必须使用特定的插入的顺序？(顺序或者逆序)</p>
 <p>答：</p>
 <p>因为注释要求“确保在插入之后，env在列表中的顺序应该与envs数组中的相同”，这样就会使第一次调用env_alloc()时返回envs[0]。</p>
+<p>（是为了Lab 4 Extra 进阶 Part 2，Pb在5月5日如是说）</p>
 <h2 id="进程的标识">进程的标识<a class="post-anchor" href="#进程的标识"></a></h2><p>每个进程都有独一无二的标识符，在创建每个新的进程的时候必须为它赋予一个与众不同的id来作为它的标识符，mkenvid的作用就是生成一个新的进程id。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function">u_int <span class="hljs-title">mkenvid</span><span class="hljs-params">(struct Env *e)</span><br></span>{<br>    <span class="hljs-keyword">static</span> u_long next_env_id = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">/*Hint: lower bits of envid hold e's position in the envs array. */</span><br>    u_int idx = e - envs;<br><br>    <span class="hljs-comment">/*Hint:  high bits of envid hold an increasing number. */</span><br>    <span class="hljs-keyword">return</span> (++next_env_id << (<span class="hljs-number">1</span> + LOG2NENV)) | idx;<br>}<br></code></pre></td></tr></tbody></table></figure>
 
-<p>extra就涉及对这个的修改。在这里我其实是比较疑惑的，我们的造作系统设置的最大进程数目为1024，也就是idx的取值范围，按理说next_env_id只需要左移10位就可以满足需求，PB在群里问了操作系统的WL老师，表示和GET_ENV_ASID这个宏有关：</p>
+<p>extra就涉及对这个的修改。在这里我其实是比较疑惑的，我们的操作系统设置的最大进程数目为1024，也就是idx的取值范围，按理说next_env_id只需要左移10位就可以满足需求，PB在群里问了操作系统的WL老师，表示和GET_ENV_ASID这个宏有关：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GET_ENV_ASID(envid) (((envid)>> 11)<<6)</span><br></code></pre></td></tr></tbody></table></figure>
 
 <p>想了想可能和操作系统改成大猩猩也能看懂的实验课（此处为青猪梗，我完全看不懂）之前是支持理论最多2048个进程有关，比如Windows 32位系统中就是这样（不过一个进程能使用的最大虚拟内存为2G，而一个线程的默认线程栈为1M，一般在线程数接近2000时就异常退出了）。</p>

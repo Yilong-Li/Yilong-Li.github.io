@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      OS Lab4 学习笔记 - Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#系统调用"><span class="toc-text">系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-4-1"><span class="toc-text">Exercise 4.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking-4-1"><span class="toc-text">Thinking 4.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-4-2"><span class="toc-text">Exercise 4.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-4-3"><span class="toc-text">Exercise 4.3</span></a></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">DLee</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">DLee</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/MondayCha" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/7283248296" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/Dlee-01" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">OS Lab4 学习笔记</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/05/05</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/学习">学习</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/OS">OS</a>
+                  
+                
+                  
+                    <a href="/tags/学习笔记">学习笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>今天的内容是OS Lab4的学习复习笔记……这周的OO强测只拿了20分，之前的所有优化努力直接白给……蓝瘦。</p>
+<p>所以OS不能再一知半解了，在一开始同样放下学长博客与课程指导中心的视频——</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/SivilTaram/p/os_lab4.html" target="_blank" rel="noopener">https://www.cnblogs.com/SivilTaram/p/os_lab4.html</a></p>
+<p><a href="https://www.cnblogs.com/sharinka0715/p/10776860.html" target="_blank" rel="noopener">https://www.cnblogs.com/sharinka0715/p/10776860.html</a></p>
+<p><a href="https://ausar.xyz/index.php/archives/77/" target="_blank" rel="noopener">https://ausar.xyz/index.php/archives/77/</a></p>
+<p><a href="https://www.cnblogs.com/Yzx835/p/10775984.html" target="_blank" rel="noopener">https://www.cnblogs.com/Yzx835/p/10775984.html</a></p>
+<p><a href="https://blog.csdn.net/qq_36740940/article/details/89523911" target="_blank" rel="noopener">https://blog.csdn.net/qq_36740940/article/details/89523911</a></p>
+<p><a href="https://blog.csdn.net/weixin_44689094/article/details/105893744" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44689094/article/details/105893744</a></p>
+<p><a href="https://blog.csdn.net/weixin_41412192/article/details/89522232" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41412192/article/details/89522232</a></p>
+<p><a href="https://www.yizhibo.com/l/z3OzSureOCT8QEQT.html" target="_blank" rel="noopener">https://www.yizhibo.com/l/z3OzSureOCT8QEQT.html</a></p>
+</blockquote>
+<p>在这一节的实验中，我们需要实现系统调用机制，并在此基础上实现进程间通信（IPC）机制和一个重要的系统调用fork。在梳理博客的时候，有的学长是根据运行顺序来总结的，我目前还是先跟着题目走。</p>
+<h2 id="系统调用">系统调用<a class="post-anchor" href="#系统调用"></a></h2><p>系统调用的流程：</p>
+<ol>
+<li>调用一个封装好的用户空间的库函数（如writef）</li>
+<li>调用用户空间的syscall_* 函数</li>
+<li>调用msyscall，用于陷入内核态</li>
+<li>陷入内核，内核取得信息，执行对应的内核空间的系统调用函数（sys_*）</li>
+<li>执行系统调用，并返回用户态，同时将返回值“传递”回用户态</li>
+<li>从库函数返回，回到用户程序调用处</li>
+</ol>
+<h3 id="Exercise-4-1">Exercise 4.1<a class="post-anchor" href="#Exercise-4-1"></a></h3><p>填写user/syscall_wrap.S 中的msyscall 函数，使得用户部分的系统调用机制可以正常工作。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">LEAF(msyscall)<br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> you JUST need to execute a `syscall` instruction and return from msyscall</span><br>	<span class="hljs-function">syscall<br>    jr ra<br>    nop<br><span class="hljs-title">END</span><span class="hljs-params">(msyscall)</span></span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>执行syscall指令，然后从函数返回。</p>
+<h3 id="Thinking-4-1">Thinking 4.1<a class="post-anchor" href="#Thinking-4-1"></a></h3><p>思考并回答下面的问题：</p>
+<ul>
+<li>内核在保存现场的时候是如何避免破坏通用寄存器的？</li>
+<li>系统陷入内核调用后可以直接从当时的$a0-$a3 参数寄存器中得到用户调用msyscall 留下的信息吗？</li>
+<li>我们是怎么做到让sys 开头的函数“认为”我们提供了和用户调用msyscall 时同样的参数的？</li>
+<li>内核处理系统调用的过程对Trapframe 做了哪些更改？这种修改对应的用户态的变化是？</li>
+</ul>
+<h3 id="Exercise-4-2">Exercise 4.2<a class="post-anchor" href="#Exercise-4-2"></a></h3><p>按照lib/syscall.S 中的提示，完成handle_sys 函数，使得内核部分的系统调用机制可以正常工作。</p>
+<p>在通过特权指令syscall 陷入内核态后，处理器将PC 寄存器指向一个相同的内核异常入口。在trap_init 函数中将系统调用类型的异常的入口设置为了handle_sys 函数。</p>
+<p>第一个TODO，MIPS有异常程序计数器（exception program counter,EPC)，属于CP0寄存器，用于保存造成异常的那条指令的地址。让EPC值+4到下一条指令，这样就不会陷入反复中断的死循环之中。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*** exercise 4.2 ***/</span><br>NESTED(handle_sys,TF_SIZE, sp)			<span class="hljs-comment">// 把用户态的所有寄存器存进栈帧，sp相当于栈顶</span><br>    SAVE_ALL                            <span class="hljs-comment">// 用于保存所有寄存器的汇编宏</span><br>    CLI                                 <span class="hljs-comment">// 用于屏蔽中断位的设置的汇编宏</span><br>    nop<br>    .<span class="hljs-built_in">set</span> at                             <span class="hljs-comment">// 恢复$at寄存器的使用</span><br><br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Fetch EPC from Trapframe, calculate a proper value and store it back to trapframe.</span><br>	lw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 将Trapframe的EPC寄存器取出</span><br>	addu 	t0, <span class="hljs-number">4</span> 						<span class="hljs-comment">// 计算一个合理的值</span><br>	sw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 存回Trapframe中</span><br></code></pre></td></tr></tbody></table></figure>
+<p>第二个TODO，这里其实是多余的，因为a0的值没有改变过。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">   <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Copy the syscall number into $a0.</span><br>lw 		a0, TF_REG4(sp) 			<span class="hljs-comment">// 将系统调用号“复制”入寄存器$a0，a0是4号寄存器</span><br></code></pre></td></tr></tbody></table></figure>
+<p>之后是保存其他的值啦。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">addiu   a0, a0, -__SYSCALL_BASE     <span class="hljs-comment">// a0 <- “相对”系统调用号</span><br>sll     t0, a0, <span class="hljs-number">2</span>                   <span class="hljs-comment">// t0 <- 相对系统调用号* 4</span><br>la      t1, sys_call_table          <span class="hljs-comment">// t1 <- 系统调用函数的入口表基地址</span><br>addu    t1, t1, t0                  <span class="hljs-comment">// t1 <- 特定系统调用函数入口表项地址</span><br>lw      t2, <span class="hljs-number">0</span>(t1)                   <span class="hljs-comment">// t2 <- 特定系统调用函数入口函数地址</span><br><br>lw      t0, TF_REG29(sp)            <span class="hljs-comment">// t0 <- 用户态的栈指针</span><br>lw      t3, <span class="hljs-number">16</span>(t0)                  <span class="hljs-comment">// t3 <- msyscall的第5个参数</span><br>lw      t4, <span class="hljs-number">20</span>(t0)                  <span class="hljs-comment">// t4 <- msyscall的第6个参数</span><br></code></pre></td></tr></tbody></table></figure>
+<p>这里有一步还原偏移的操作，__SYSCALL_BASE的定义在unistd.h里可以看到：</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> UNISTD_H</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> UNISTD_H</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __SYSCALL_BASE 9527</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __NR_SYSCALLS 20</span><br><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_putchar 		((__SYSCALL_BASE ) + (0 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_getenvid 		((__SYSCALL_BASE ) + (1 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_yield			((__SYSCALL_BASE ) + (2 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_env_destroy		((__SYSCALL_BASE ) + (3 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_pgfault_handler	((__SYSCALL_BASE ) + (4 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_alloc		((__SYSCALL_BASE ) + (5 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_map			((__SYSCALL_BASE ) + (6 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_unmap		((__SYSCALL_BASE ) + (7 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_env_alloc		((__SYSCALL_BASE ) + (8 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_env_status	((__SYSCALL_BASE ) + (9 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_trapframe		((__SYSCALL_BASE ) + (10 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_panic			((__SYSCALL_BASE ) + (11 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_ipc_can_send		((__SYSCALL_BASE ) + (12 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_ipc_recv		((__SYSCALL_BASE ) + (13 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_cgetc			((__SYSCALL_BASE ) + (14 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>第三个TODO，和MIPS的传参有关，前4 个参数会被syscall 开头的函数分别存入a0−a3（$4~$7） 寄存器的空间内，同时栈帧底部保留16 字节的空间；后2个参数只会被存入在前4的参数的预留空间之上的8字节空间内。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Allocate a space of six arguments on current kernel stack and copy the six arguments to proper location</span><br>lw      a0, TF_REG4(sp)				<span class="hljs-comment">// 这一步也是多余的</span><br>lw      a1, TF_REG5(sp)<br>lw      a2, TF_REG6(sp)<br>lw      a3, TF_REG7(sp)<br>subu    sp, sp, <span class="hljs-number">24</span><br>sw      t3, <span class="hljs-number">16</span>(sp)					<span class="hljs-comment">// 0-16：栈帧底部保留的16字节空间</span><br>sw      t4, <span class="hljs-number">20</span>(sp)<br><br>jalr    t2                          <span class="hljs-comment">// 调用sys_*函数</span><br>nop<br></code></pre></td></tr></tbody></table></figure>
+<p>第四个TODO，恢复sp指针的值。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Resume current kernel stack</span><br>	addiu 	sp, sp, <span class="hljs-number">24</span>					<span class="hljs-comment">// 恢复栈指针到分配前的状态</span><br>    <br><br>    sw      v0, TF_REG2(sp)             <span class="hljs-comment">// 此时已经从系统调用中返回，将返回值存入Trapframe</span><br><br>    j       ret_from_exception          <span class="hljs-comment">// 从异常中返回（恢复现场）</span><br>    <span class="hljs-function">nop<br><span class="hljs-title">END</span><span class="hljs-params">(handle_sys)</span></span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>最后就将返回值保存到v0，同时从系统调用中返回了。</p>
+<h3 id="Exercise-4-3">Exercise 4.3<a class="post-anchor" href="#Exercise-4-3"></a></h3><p>实现lib/syscall_all.c 中的int sys_mem_alloc(int sysno,u_int envid,u_int va, u_int perm) 函数。</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 概述:<br> * 分配一页内存，并映射到'va'的权限<br> * 'envid'的地址空间中的'perm'。<br> * 如果一个页面已经在'va'被映射，那么该页面将被取消映射。<br> * 前提:<br> * perm：需要PTE_V，不允许使用PTE_COW(返回-E_INVAL)，<br> * 其他位是可选的。<br> *<br> * 后置条件:<br> * 成功返回0，错误< 0<br> * va必须 < UTOP<br> * env可以修改自己的地址空间或其子节点的地址空间<br> * /<br>/*** exercise 4.3 ***/</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sys_mem_alloc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sysno, u_int envid, u_int va, u_int perm)</span><br></span>{<br>	<span class="hljs-comment">// Your code here.</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Env</span> *<span class="hljs-title">env</span>;</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Page</span> *<span class="hljs-title">ppage</span>;</span><br>	<span class="hljs-keyword">int</span> ret;<br>	ret = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-comment">// 2020-04-28</span><br>	<span class="hljs-keyword">if</span> (va >= UTOP || (perm & PTE_COW) || !(perm & PTE_V)) 	<span class="hljs-comment">// PTE_V may?</span><br>		<span class="hljs-keyword">return</span> -E_INVAL;<br><br>	ret = envid2env(envid, &env, <span class="hljs-number">0</span>);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	ret = page_alloc(&ppage);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	ret = page_insert(env->env_pgdir, ppage, va, perm);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/05/06/506-2/">OS Lab4-extra 学习笔记</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/04/30/430-1/">《航空航天概论》Week9</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2020/05/05/505-1/">https://mondaycha.github.io/2020/05/05/505-1/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://mondaycha.github.io">DLee</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      OS Lab4-extra 学习笔记 - Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lab4-extra-学习笔记"><span class="toc-text">Lab4-extra 学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础测试1"><span class="toc-text">基础测试1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目要求"><span class="toc-text">题目要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Printf"><span class="toc-text">Printf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体实现"><span class="toc-text">具体实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PB-YYDS"><span class="toc-text">PB,YYDS</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">DLee</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">DLee</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/MondayCha" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/7283248296" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/Dlee-01" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">OS Lab4-extra 学习笔记</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/05/06</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/学习">学习</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/OS">OS</a>
+                  
+                
+                  
+                    <a href="/tags/学习笔记">学习笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="Lab4-extra-学习笔记">Lab4-extra 学习笔记<a class="post-anchor" href="#Lab4-extra-学习笔记"></a></h1><p>Extra，干巴爹。</p>
+<p>（5/9，刚刚才知道今年的Extra基础是去年的Exam1，我biss……）</p>
+<h2 id="基础测试1">基础测试1<a class="post-anchor" href="#基础测试1"></a></h2><h3 id="题目要求">题目要求<a class="post-anchor" href="#题目要求"></a></h3><p>实现可变参数的系统调用参数传递。</p>
+<h3 id="题目解析">题目解析<a class="post-anchor" href="#题目解析"></a></h3><p>之前提到过，syscall 开头的函数与内核中的系统调用函数（sys 开头的函数）是一一对应的。调用过程如下：</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span><br><span class="hljs-title">syscall_mem_map</span><span class="hljs-params">(u_int srcid, u_int srcva, u_int dstid, u_int dstva, u_int perm)</span><br></span>{<br>	<span class="hljs-keyword">return</span> msyscall(SYS_mem_map, srcid, srcva, dstid, dstva, perm);<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>所以现在就要指定参数数目，在原有lib/syscall_all.c中代码不更改的情况下可以使系统调用机制正常运行。</p>
+<p>指导书提示我们学习printf的实现方式，下面就来看看。</p>
+<h3 id="Printf">Printf<a class="post-anchor" href="#Printf"></a></h3><p>首先是lib/printf.c中的实现：</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printf</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *fmt, ...)</span>				<span class="hljs-comment">// printf有一个固定参数fmt</span><br></span>{<br>        va_list ap;						<span class="hljs-comment">// 定义了一个指针ap, 用于指示可选的参数</span><br>        va_start(ap, fmt);				<span class="hljs-comment">// 以固定参数的地址为起点，确定变参的内存起始地址</span><br>        lp_Print(myoutput, <span class="hljs-number">0</span>, fmt, ap);	<span class="hljs-comment">// 将printf的va_list传递给lp_Print</span><br>        va_end(ap);						<span class="hljs-comment">// 清空参数列表, 并置参数指针ap无效</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>除了有一个参数fmt固定以外，后面跟的参数的个数和类型是可变的（用三个点“…”做参数占位符）。这里我们实际上是将printf的可变长参数直接传递给lp_Print，后者在在Lab1实现过，也比较复杂。关于那几个宏定义的作用，参考这里的解释：</p>
+<blockquote>
+<p>（1）va_list<br>　　定义了一个指针arg_ptr, 用于指示可选的参数.</p>
+<p>（2）va_start(arg_ptr, argN)<br> 　使参数列表指针arg_ptr指向函数参数列表中的第一个可选参数，argN是位于第一个可选参数之前的固定参数, 或者说最后一个固定参数.如有一va函数的声明是void va_test(char a, char b, char c, …), 则它的固定参数依次是a,b,c, 最后一个固定参数argN为c, 因此就是va_start(arg_ptr, c).</p>
+<p>（3）va_arg(arg_ptr, type)<br> 返回参数列表中指针arg_ptr所指的参数, 返回类型为type. 并使指针arg_ptr指向参数列表中下一个参数.返回的是可选参数, 不包括固定参数.</p>
+<p>（4）va_end(arg_ptr)<br> 清空参数列表, 并置参数指针arg_ptr无效.</p>
+<p>  （注：va在这里是variable-argument(可变参数)的意思.  这些宏定义在stdarg.h中,所以用到可变参数的程序应该包含这个头文件）</p>
+</blockquote>
+<p>以上知识均在基础中没有用。</p>
+<h3 id="具体实现">具体实现<a class="post-anchor" href="#具体实现"></a></h3><p>首先修改user/lib.h中的msyscall函数声明：</p>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//////////////////////////////////////////////////syscall_lib</span><br><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> <span class="hljs-title">msyscall</span><span class="hljs-params">(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>, ...)</span></span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<p>C语言调用汇编函数，用extern关键字定义。在syscall_* 系列函数中，我们将参数传递给了msyscall 函数。</p>
+<p>在MIPS 的调用规范中，进入函数体时会通过对栈指针做减法的方式为自身的局部变量、返回地址、调用函数的参数分配存储空间（叶函数没有后两者），在函数调用结束之后会对栈指针做加法来释放这部分空间，我们把这部分空间称为栈帧（Stack Frame）。非叶函数是在调用方的栈帧的底部预留被调用函数的参数存储空间（被调用方从调用方函数的栈帧中取得参数）。</p>
+<p>msyscall叶函数没有局部变量，不需要分配栈帧，我们只需要执行特权指令（syscall）来陷入内核态以及函数调用返回即可。在通过特权指令syscall 陷入内核态后，处理器将PC 寄存器指向一个相同的内核异常入口。在trap_init 函数中将系统调用类型的异常的入口设置为了handle_sys 函数，这就是我们要修改的第二个地方：修改lib/syscall.S，增加拷贝多个参数的循环。</p>
+<blockquote>
+<p>TIPS：汇编内的跳转注意延迟槽，内核态参数拷贝时注意使用s0-s7保存栈空间</p>
+</blockquote>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">NESTED(handle_sys,TF_SIZE, sp)<br>    SAVE_ALL                            <span class="hljs-comment">// 用于保存所有寄存器的汇编宏</span><br>    CLI                                 <span class="hljs-comment">// 用于屏蔽中断位的设置的汇编宏</span><br>    nop<br>    .<span class="hljs-built_in">set</span> at                             <span class="hljs-comment">// 恢复$at寄存器的使用</span><br><br>	lw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 将Trapframe的EPC寄存器取出</span><br>	addu 	t0, <span class="hljs-number">4</span> 						<span class="hljs-comment">// 计算一个合理的值</span><br>	sw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 存回Trapframe中</span><br><br>	lw 		a0, TF_REG4(sp) 			<span class="hljs-comment">// 将系统调用号“复制”入寄存器$a0</span><br><br>    addiu   a0, a0, -__SYSCALL_BASE     <span class="hljs-comment">// a0 <- “相对”系统调用号</span><br>    sll     t0, a0, <span class="hljs-number">2</span>                   <span class="hljs-comment">// t0 <- 相对系统调用号* 4</span><br>    la      t1, sys_call_table          <span class="hljs-comment">// t1 <- 系统调用函数的入口表基地址</span><br>    addu    t1, t1, t0                  <span class="hljs-comment">// t1 <- 特定系统调用函数入口表项地址</span><br>    lw      t2, <span class="hljs-number">0</span>(t1)                   <span class="hljs-comment">// t2 <- 特定系统调用函数入口函数地址</span><br><br>    lw      t0, TF_REG29(sp)            <span class="hljs-comment">// t0 <- 用户态的栈指针</span><br><br>    <span class="hljs-comment">/* lw      t3, 16(t0)                  // t3 <- msyscall的第5个参数 */</span><br>    <span class="hljs-comment">/* lw      t4, 20(t0)                  // t4 <- msyscall的第6个参数 */</span><br><br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Allocate a space of six arguments on current kernel stack and copy the six arguments to proper location</span><br>    lw      a0, TF_REG4(sp)<br>    lw      a1, TF_REG5(sp)<br><br>    li		s0, <span class="hljs-number">0</span>		                <span class="hljs-comment">// 当前参数个数</span><br><br>    beq		s0, a1, labelend	        <span class="hljs-comment">// if s0 == a1 then target</span><br>    nop<br>    lw      a2, TF_REG6(sp)<br>    addiu   s0, s0, <span class="hljs-number">1</span>                   <span class="hljs-comment">// s0 = 1</span><br><br>    beq		s0, a1, labelend	        <span class="hljs-comment">// if s0 == a1 then target</span><br>    nop<br>    lw      a3, TF_REG7(sp)<br>    addiu   s0, s0, <span class="hljs-number">1</span>                   <span class="hljs-comment">// s0 = 2</span><br><br>    li		s1, <span class="hljs-number">16</span>		                <span class="hljs-comment">// 当前栈高度</span><br><br>fori:<br>    beq		s0, a1, beforej	            <span class="hljs-comment">// if s0 == a1 then target</span><br>    nop<br>    addiu   s0, s0, <span class="hljs-number">1</span>                   <span class="hljs-comment">// s0 = s0 + 1</span><br>    addiu   s1, s1, <span class="hljs-number">4</span>                   <span class="hljs-comment">// s1 = s1 + 4</span><br>    j       fori<br>    nop<br><br>beforej:<br>    subu	sp, sp, s1			        <span class="hljs-comment">// sp = sp - s1</span><br>    li      s0, <span class="hljs-number">2</span>                       <span class="hljs-comment">// 当前已保存的参数个数</span><br>    addiu   s2, t0, <span class="hljs-number">16</span>                  <span class="hljs-comment">// tf寄存器偏移量，每次步进4</span><br>    addiu   s3, sp, <span class="hljs-number">16</span>                  <span class="hljs-comment">// sp寄存器偏移量，每次步进4</span><br><br>forj:<br>    beq		s0, a1, labelend	        <span class="hljs-comment">// if s0 == a1 then target</span><br>    nop<br>    <br>    lw      t3, <span class="hljs-number">0</span>(s2)                   <span class="hljs-comment">// t3 <- msyscall的第((s2 - t0) / 4 + 1)个参数</span><br>    sw      t3, <span class="hljs-number">0</span>(s3)<br>    addiu   s0, s0, <span class="hljs-number">1</span>                   <span class="hljs-comment">// s0 = s0 + 1</span><br>    addiu   s2, s2, <span class="hljs-number">4</span><br>    addiu   s3, s3, <span class="hljs-number">4</span><br>    j       forj<br>    nop<br>    <br>labelend:<br><br>    jalr    t2                          <span class="hljs-comment">// Invoke sys_* function</span><br>    nop<br>    <br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Resume current kernel stack</span><br>	addiu 	sp, sp, s1<br><br>    sw      v0, TF_REG2(sp)             <span class="hljs-comment">// Store return value of function sys_* (in $v0) into trapframe</span><br><br>    j       ret_from_exception          <span class="hljs-comment">// Return from exeception</span><br>    <span class="hljs-function">nop<br><span class="hljs-title">END</span><span class="hljs-params">(handle_sys)</span></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+<h1 id="PB-YYDS">PB,YYDS<a class="post-anchor" href="#PB-YYDS"></a></h1></body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/05/06/506-1/">谈谈对《关于费尔巴哈的提纲》第三条的理解</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/05/05/505-1/">OS Lab4 学习笔记</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2020/05/06/506-2/">https://mondaycha.github.io/2020/05/06/506-2/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://mondaycha.github.io">DLee</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
