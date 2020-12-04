@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      20201204 - Blog
+      LeetCode(659) 分割数组为连续子序列 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法1-哈希表-最小堆"><span class="toc-text">方法1: 哈希表+最小堆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码"><span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答结果"><span class="toc-text">解答结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法2-贪心"><span class="toc-text">方法2: 贪心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路-1"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码-1"><span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答结果-1"><span class="toc-text">解答结果</span></a></li></ol></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -167,7 +172,7 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">20201204</div>
+      <div class="title">LeetCode(659) 分割数组为连续子序列</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
@@ -176,14 +181,79 @@
 
         
 
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/LeetCode">LeetCode</a>
+                
+              
+          </span>
+        </span>
         
         
-        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/每日一题">每日一题</a>
+                  
+                
+                  
+                    <a href="/tags/贪心">贪心</a>
+                  
+                
+                  
+                    <a href="/tags/哈希表">哈希表</a>
+                  
+                
+            </span>
+          </span>
+         
       </div>
       <div>
       </div>
     </div>
-    
+    <html><head></head><body><p>在经过一番挣扎之后, 我的Hexo博客终于再次开张了.这几天又没有坚持LeetCode打卡, 算法作业也还没有动笔.</p>
+<p>今天的每日我其实也没有思路, 那就把题解尝试一下吧.</p>
+<h2 id="方法1-哈希表-最小堆">方法1: 哈希表+最小堆<a class="post-anchor" href="#方法1-哈希表-最小堆"></a></h2><h3 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h3><ul>
+<li>哈希表: 键为子序列的最后一个数字, 值为最小堆</li>
+<li>最小堆: 通过长度+最后一个字符的形式可以表示一个连续子序列, 所以最小堆顶部就是最短的子序列长度.</li>
+</ul>
+<p>遍历结束时, 遍历最小堆的堆顶元素, 是否都不小于3.</p>
+<h3 id="Java代码">Java代码<a class="post-anchor" href="#Java代码"></a></h3><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SplitArrayIntoConsecutiveSubsequences</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        Solution solution = <span class="hljs-keyword">new</span> SplitArrayIntoConsecutiveSubsequences().<span class="hljs-keyword">new</span> Solution();<br>        System.out.println(solution.isPossible(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>}));<br>    }<br><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPossible</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>{<br>            HashMap<Integer, PriorityQueue<Integer>> childMap = <span class="hljs-keyword">new</span> HashMap<>();<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : nums) {<br>                <span class="hljs-keyword">if</span> (!childMap.containsKey(i)) {<br>                    childMap.put(i, <span class="hljs-keyword">new</span> PriorityQueue<>());<br>                }<br>                <span class="hljs-keyword">if</span> (childMap.containsKey(i - <span class="hljs-number">1</span>)) {<br>                    <span class="hljs-keyword">int</span> minLength = childMap.get(i - <span class="hljs-number">1</span>).poll();<br>                    <span class="hljs-keyword">if</span> (childMap.get(i - <span class="hljs-number">1</span>).isEmpty()) {<br>                        childMap.remove(i - <span class="hljs-number">1</span>);<br>                    }<br>                    childMap.get(i).offer(minLength + <span class="hljs-number">1</span>);<br>                } <span class="hljs-keyword">else</span> {<br>                    childMap.get(i).offer(<span class="hljs-number">1</span>);<br>                }<br>            }<br>            <span class="hljs-keyword">for</span> (PriorityQueue<Integer> queue : childMap.values()) {<br>                <span class="hljs-keyword">if</span> (queue.peek() < <span class="hljs-number">3</span>) {<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                }<br>            }<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        }<br>    }<br><span class="hljs-comment">//leetcode submit region end(Prohibit modification and deletion)</span><br><br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度">复杂度<a class="post-anchor" href="#复杂度"></a></h3><ul>
+<li><p>时间复杂度为$O(n\log n)$</p>
+<blockquote>
+<p>需要遍历数组，对于数组中的每个数，都要对哈希表和最小堆进行更新。每个数对应的最小堆的长度不超过 n，因此每次对最小堆的操作的时间复杂度是 $O(\log n)$，数组长度为 n，因此时间复杂度是 $O(n \log n)$。<br>然后需要遍历哈希表中的每一条记录，判断是否满足每个子序列的长度都不小于3，子序列的数量不会超过 n，因此时间复杂度是 $O(n)$。<br>因此总时间复杂度是 $O(n \log n)$</p>
+</blockquote>
+</li>
+<li><p>空间复杂度为$O(n)$</p>
+<blockquote>
+<p>空间复杂度：<em>O(n)*，其中 *n</em> 是数组的长度。需要使用哈希表和最小堆存储以每个数结尾的各个子序列的长度，哈希表和最小堆中的元素数量不会超过数组的长度。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="解答结果">解答结果<a class="post-anchor" href="#解答结果"></a></h3><pre><code>执行耗时:84 ms,击败了12.12% 的Java用户
+内存消耗:39.7 MB,击败了58.51% 的Java用户</code></pre><h2 id="方法2-贪心">方法2: 贪心<a class="post-anchor" href="#方法2-贪心"></a></h2><h3 id="基本思路-1">基本思路<a class="post-anchor" href="#基本思路-1"></a></h3><p>将x加入已有的子序列总是比新建一个长度为1 的子序列更优.</p>
+<ul>
+<li>使用两个哈希表, 一个存储每个数字的剩余次数, 一个存储每个数字作为结尾的子序列(长度大于等于3)的数量.</li>
+<li>先初始化剩余次数</li>
+<li>遍历数组, 由于产生新的子序列时会预读, 所以需要判断该数字的剩余次数, 维护这两个哈希表</li>
+</ul>
+<h3 id="Java代码-1">Java代码<a class="post-anchor" href="#Java代码-1"></a></h3><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPossible</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>{<br>        HashMap<Integer, Integer> leftTimes = <span class="hljs-keyword">new</span> HashMap<>();<br>        HashMap<Integer, Integer> subsCount = <span class="hljs-keyword">new</span> HashMap<>();<br>        <span class="hljs-comment">// 初始化剩余次数</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : nums) {<br>            leftTimes.put(i, leftTimes.getOrDefault(i, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>        }<br>        <span class="hljs-comment">// 遍历数组, 由于产生新的子序列时会预读, 所以需要判断该数字的剩余次数, 维护这两个哈希表</span><br>        <span class="hljs-keyword">int</span> xTime, lastLength;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x : nums) {<br>            <span class="hljs-keyword">if</span> ((xTime = leftTimes.getOrDefault(x, <span class="hljs-number">0</span>)) > <span class="hljs-number">0</span>) {<br>                leftTimes.put(x, xTime - <span class="hljs-number">1</span>);<br>                <span class="hljs-keyword">if</span> ((lastLength = subsCount.getOrDefault(x - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)) > <span class="hljs-number">0</span>) {<br>                    <span class="hljs-comment">// 取前</span><br>                    subsCount.put(x - <span class="hljs-number">1</span>, lastLength - <span class="hljs-number">1</span>);<br>                    subsCount.put(x, subsCount.getOrDefault(x, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>                } <span class="hljs-keyword">else</span> {<br>                    <span class="hljs-comment">// 产生新的子序列</span><br>                    <span class="hljs-keyword">int</span> yTime, zTime;<br>                    <span class="hljs-keyword">if</span> ((yTime = leftTimes.getOrDefault(x + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)) == <span class="hljs-number">0</span> ||<br>                            (zTime = leftTimes.getOrDefault(x + <span class="hljs-number">2</span>, <span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>) {<br>                        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                    }<br>                    leftTimes.put(x + <span class="hljs-number">1</span>, yTime - <span class="hljs-number">1</span>);<br>                    leftTimes.put(x + <span class="hljs-number">2</span>, zTime - <span class="hljs-number">1</span>);<br>                    subsCount.put(x + <span class="hljs-number">2</span>, subsCount.getOrDefault(x + <span class="hljs-number">2</span>, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>                }<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析">复杂度分析<a class="post-anchor" href="#复杂度分析"></a></h3><ul>
+<li>时间复杂度: O(n)</li>
+<li>空间复杂度: O(n)</li>
+</ul>
+<h3 id="解答结果-1">解答结果<a class="post-anchor" href="#解答结果-1"></a></h3><pre><code>执行耗时:37 ms,击败了36.70% 的Java用户
+内存消耗:39.6 MB,击败了66.67% 的Java用户</code></pre></body></html>
 
   
     <div class="post-reward">
