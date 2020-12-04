@@ -23,7 +23,7 @@
     
 <link rel="stylesheet" href="/style/style.css">
 
-  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
 </head>
   <body>
     <canvas id='pagemap'></canvas>
@@ -222,7 +222,7 @@
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Note: assign a to b <==> a = b</span><br><span class="hljs-comment">//Step 1, assign elm.next to listelem.next.</span><br><span class="hljs-comment">//Step 2: Judge whether listelm.next is NULL, if not, then assign listelm.next.pre to a proper value.</span><br><span class="hljs-comment">//step 3: Assign listelm.next to a proper value.</span><br><span class="hljs-comment">//step 4: Assign elm.pre to a proper value.</span><br></code></pre></td></tr></tbody></table></figure>
 
 <p>这个设计感觉还是很巧妙的。</p>
-<h3 id="关于全局变量">关于全局变量<a class="post-anchor" href="#关于全局变量"></a></h3><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 1: Initialize basemem.<br>* (When use real computer, CMOS tells us how many kilobytes there are). */</span><br>basemem = <span class="hljs-number">0x4000000</span>;<br>maxpa = <span class="hljs-number">0x4000000</span>;<br>extmem = <span class="hljs-number">0x0</span>;<br><span class="hljs-comment">// Step 2: Calculate corresponding npage value.</span><br>npage = basenum >> <span class="hljs-number">12</span>;<br></code></pre></td></tr></tbody></table></figure>
+<h3 id="关于全局变量">关于全局变量<a class="post-anchor" href="#关于全局变量"></a></h3><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 1: Initialize basemem.</span><br><span class="hljs-comment">* (When use real computer, CMOS tells us how many kilobytes there are). */</span><br>basemem = <span class="hljs-number">0x4000000</span>;<br>maxpa = <span class="hljs-number">0x4000000</span>;<br>extmem = <span class="hljs-number">0x0</span>;<br><span class="hljs-comment">// Step 2: Calculate corresponding npage value.</span><br>npage = basenum >> <span class="hljs-number">12</span>;<br></code></pre></td></tr></tbody></table></figure>
 
 <p>后来看了一下在mmu.h里面有对SHIFT的定义，更严谨的来说应该是要写那个吧。</p>
 <h3 id="如何用命令行压缩文件">如何用命令行压缩文件<a class="post-anchor" href="#如何用命令行压缩文件"></a></h3><p>压缩服务器上当前目录的内容为xxx.zip文件</p>

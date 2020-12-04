@@ -23,7 +23,7 @@
     
 <link rel="stylesheet" href="/style/style.css">
 
-  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
 </head>
   <body>
     <canvas id='pagemap'></canvas>
@@ -241,7 +241,7 @@
 <p>​    D. fork 只在子进程中被调用了一次，在两个进程中各产生一个返回值</p>
 <h3 id="Thinking-4-4">Thinking 4.4<a class="post-anchor" href="#Thinking-4-4"></a></h3><p>如果仔细阅读上述这一段话, 你应该可以发现, 我们并不是对所有的用户空间页都使用duppage 进行了保护。那么究竟哪些用户空间页可以保护，哪些不可以呢，请结合include/mmu.h 里的内存布局图谈谈你的看法。</p>
 <p>答：</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*<br>o  UTOP,UENVS   -----> +----------------------------+------------0x7f40 0000    |<br>o  UXSTACKTOP -/       |     user exception stack   |     BY2PG                 |<br>o                      +----------------------------+------------0x7f3f f000    |<br>o                      |       Invalid memory       |     BY2PG                 |<br>o      USTACKTOP ----> +----------------------------+------------0x7f3f e000    |<br>o                      |     normal user stack      |     BY2PG                 |<br>o                      +----------------------------+------------0x7f3f d000    |<br>*/</span><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment">o  UTOP,UENVS   -----> +----------------------------+------------0x7f40 0000    |</span><br><span class="hljs-comment">o  UXSTACKTOP -/       |     user exception stack   |     BY2PG                 |</span><br><span class="hljs-comment">o                      +----------------------------+------------0x7f3f f000    |</span><br><span class="hljs-comment">o                      |       Invalid memory       |     BY2PG                 |</span><br><span class="hljs-comment">o      USTACKTOP ----> +----------------------------+------------0x7f3f e000    |</span><br><span class="hljs-comment">o                      |     normal user stack      |     BY2PG                 |</span><br><span class="hljs-comment">o                      +----------------------------+------------0x7f3f d000    |</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
 
 <p>在[0,UTOP)的用户空间中，[USTACKTOP,USTACKTOP+BY2PG)是无效内存，子进程缺页中断时作为临时空间，不需要保护；[USTACKTOP+BY2PG,UXSTACKTOP)是错误栈，不需要保护，否则父子进程错误栈相同，会陷入死循环中。</p>
 <p>另外在duppage函数内部，对不同权限的页有着不同的处理方式。对于只读、共享、写时复制保持其原有的权限即可，对于可写页面则需要对父子进程的页表项加上PTE_COW 标记。</p>

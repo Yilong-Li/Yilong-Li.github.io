@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2020-06-05T08:13:16.903Z</updated>
+  <updated>2020-12-04T06:22:42.967Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -17,11 +17,100 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>大作业</title>
+    <title>20201204</title>
+    <link href="https://mondaycha.github.io/2020/12/04/20201204/"/>
+    <id>https://mondaycha.github.io/2020/12/04/20201204/</id>
+    <published>2020-12-04T06:22:42.000Z</published>
+    <updated>2020-12-04T06:22:42.967Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode(767) 重构字符串</title>
+    <link href="https://mondaycha.github.io/2020/11/30/767/"/>
+    <id>https://mondaycha.github.io/2020/11/30/767/</id>
+    <published>2020-11-30T03:02:09.000Z</published>
+    <updated>2020-11-30T03:08:56.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;思路分析&quot;&gt;思路分析&lt;a class=&quot;post-anchor&quot; href=&quot;#思路分析&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h2 id=&quot;代码实现&quot;&gt;代码实现&lt;a class=&quot;post-anchor&quot; href=&quot;#代码实现
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://mondaycha.github.io/categories/LeetCode/"/>
+    
+    
+      <category term="每日一题" scheme="https://mondaycha.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2020 OO 第四单元总结</title>
+    <link href="https://mondaycha.github.io/2020/06/14/614-1/"/>
+    <id>https://mondaycha.github.io/2020/06/14/614-1/</id>
+    <published>2020-06-14T11:10:06.000Z</published>
+    <updated>2020-11-30T03:04:32.412Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;针对&lt;strong&gt;第四单元和本学期所学的内容&lt;/strong&gt;，在独立思考的前提下在博客园完成技术博客的撰写：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;（1）总结&lt;strong&gt;本单元&lt;/strong&gt;三次作业的&lt;strong&gt;架构设计
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="OO" scheme="https://mondaycha.github.io/tags/OO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十部动漫</title>
+    <link href="https://mondaycha.github.io/2020/06/13/613-1/"/>
+    <id>https://mondaycha.github.io/2020/06/13/613-1/</id>
+    <published>2020-06-13T08:57:42.000Z</published>
+    <updated>2020-06-17T07:34:54.902Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;前进吧，那些能让你笑着流泪的番剧推荐&quot;&gt;前进吧，那些能让你笑着流泪的番剧推荐&lt;a class=&quot;post-anchor&quot; href=&quot;#前进吧，那些能让你笑着流泪的番剧推荐&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;6月，也许作为
+      
+    
+    </summary>
+    
+    
+      <category term="写作" scheme="https://mondaycha.github.io/categories/%E5%86%99%E4%BD%9C/"/>
+    
+    
+      <category term="推送" scheme="https://mondaycha.github.io/tags/%E6%8E%A8%E9%80%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《航空航天概论》大作业</title>
     <link href="https://mondaycha.github.io/2020/06/05/605-1/"/>
     <id>https://mondaycha.github.io/2020/06/05/605-1/</id>
     <published>2020-06-05T06:37:06.000Z</published>
-    <updated>2020-06-05T08:13:16.903Z</updated>
+    <updated>2020-06-13T04:35:22.842Z</updated>
     
     <summary type="html">
     
@@ -41,11 +130,11 @@
   </entry>
   
   <entry>
-    <title>第十五周作业</title>
+    <title>马原十五周作业：垄断产生消除了竞争？</title>
     <link href="https://mondaycha.github.io/2020/06/03/603-1/"/>
     <id>https://mondaycha.github.io/2020/06/03/603-1/</id>
     <published>2020-06-03T06:37:06.000Z</published>
-    <updated>2020-06-05T05:01:33.955Z</updated>
+    <updated>2020-06-13T04:35:54.515Z</updated>
     
     <summary type="html">
     
@@ -422,108 +511,6 @@
       <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
     
       <category term="学习笔记" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《航空航天概论》Week8</title>
-    <link href="https://mondaycha.github.io/2020/04/23/423-1/"/>
-    <id>https://mondaycha.github.io/2020/04/23/423-1/</id>
-    <published>2020-04-23T04:48:43.000Z</published>
-    <updated>2020-04-30T11:25:40.855Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;爱课程-6-1-液体火箭发动机&quot;&gt;爱课程 6.1 液体火箭发动机&lt;a class=&quot;post-anchor&quot; href=&quot;#爱课程-6-1-液体火箭发动机&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;今天课堂的内容是航天器发展的基础
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>杜伽 K320 深空灰白光限定版 测评</title>
-    <link href="https://mondaycha.github.io/2020/04/22/422-1/"/>
-    <id>https://mondaycha.github.io/2020/04/22/422-1/</id>
-    <published>2020-04-22T07:23:10.000Z</published>
-    <updated>2020-04-24T04:25:02.322Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;作为机械键盘界的后起之秀，杜伽的口碑也一直不错，主打的产品线K320历经多次打磨，还有那么几分不将就的意味。&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="测评" scheme="https://mondaycha.github.io/categories/%E6%B5%8B%E8%AF%84/"/>
-    
-    
-      <category term="机械键盘" scheme="https://mondaycha.github.io/tags/%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98/"/>
-    
-      <category term="杜伽" scheme="https://mondaycha.github.io/tags/%E6%9D%9C%E4%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《航空航天概论》Week7</title>
-    <link href="https://mondaycha.github.io/2020/04/16/416-1/"/>
-    <id>https://mondaycha.github.io/2020/04/16/416-1/</id>
-    <published>2020-04-16T04:48:43.000Z</published>
-    <updated>2020-04-16T08:47:59.287Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;爱课程-4-3-航天器的飞行原理&quot;&gt;爱课程 4.3 航天器的飞行原理&lt;a class=&quot;post-anchor&quot; href=&quot;#爱课程-4-3-航天器的飞行原理&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;航天器遵循天体力学（主要是
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冯如杯创业大赛-风险投资部分</title>
-    <link href="https://mondaycha.github.io/2020/04/16/421-1/"/>
-    <id>https://mondaycha.github.io/2020/04/16/421-1/</id>
-    <published>2020-04-16T04:48:43.000Z</published>
-    <updated>2020-04-21T07:11:57.610Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;风险因素&quot;&gt;风险因素&lt;a class=&quot;post-anchor&quot; href=&quot;#风险因素&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;技术风险&lt;/p&gt;
-&lt;p&gt;市场风险&lt;/p&gt;
-&lt;p&gt;管理风险&lt;/p&gt;
-&lt;p&gt;财务风险&lt;/p&gt;
-&lt;p&gt;其
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="冯如杯" scheme="https://mondaycha.github.io/tags/%E5%86%AF%E5%A6%82%E6%9D%AF/"/>
     
   </entry>
   

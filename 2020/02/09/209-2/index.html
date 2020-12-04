@@ -23,7 +23,7 @@
     
 <link rel="stylesheet" href="/style/style.css">
 
-  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
 </head>
   <body>
     <canvas id='pagemap'></canvas>
@@ -237,7 +237,7 @@
 <p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
 <h3 id="删除文件">删除文件<a class="post-anchor" href="#删除文件"></a></h3><p>从版本库中删除文件<code>git rm</code></p>
 <p>并且使用<code>git commit</code>进行提交操作</p>
-<figure class="highlight"><table><tbody><tr><td class="code"><pre><code class="hljs c">$ git rm test.txt<br>rm 'test.txt'<br><br>$ git commit -m "remove test.txt"<br>[master d46f35e] remove test.txt<br> 1 file changed, 1 deletion(-)<br> delete mode 100644 test.txt<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">$ git rm test.txt<br>rm 'test.txt'<br><br>$ git commit -m <span class="hljs-string">"remove test.txt"</span><br>[master d46f35e] <span class="hljs-built_in">remove</span> test.txt<br> <span class="hljs-number">1</span> file changed, <span class="hljs-number">1</span> deletion(-)<br> <span class="hljs-keyword">delete</span> mode <span class="hljs-number">100644</span> test.txt<br></code></pre></td></tr></tbody></table></figure>
 
 <p><code>git checkout</code>是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
 <h3 id="远程仓库">远程仓库<a class="post-anchor" href="#远程仓库"></a></h3><p>ssh密钥的配置在研究HEXO的时候做过了，感动！</p>

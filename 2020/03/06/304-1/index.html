@@ -23,7 +23,7 @@
     
 <link rel="stylesheet" href="/style/style.css">
 
-  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
 </head>
   <body>
     <canvas id='pagemap'></canvas>
@@ -233,10 +233,10 @@
 
 <p><strong>效果是否有区别：</strong></p>
 <p><code>echo echo Shell Start</code> 与 <code>echo 'echo Shell Start'</code>效果没有区别，均在Shell中打印<code>echo Shell Start</code>内容。</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> Shell Start</span><br>echo Shell Start<br><span class="hljs-meta"><br>$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo Shell Start'</span></span><br>echo Shell Start<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> Shell Start</span><br>echo Shell Start<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo Shell Start'</span></span><br>echo Shell Start<br></code></pre></td></tr></tbody></table></figure>
 
 <p><code>echo echo \$c>file1</code> 与 <code>echo 'echo \$c>file1'</code> 效果有区别：前者将<code>echo $c</code>重定向至file1，后者在Shell中打印<code>echo \$c>file1</code>内容。</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> cat file1</span><br>3<br><span class="hljs-meta"><br>$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$c</span>>file1</span><br><span class="hljs-meta"><br>$</span><span class="bash"> cat file1</span><br>echo $c<br><span class="hljs-meta"><br>$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo \$c>file1'</span></span><br>echo \$c>file1<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> cat file1</span><br>3<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$c</span>>file1</span><br><br><span class="hljs-meta">$</span><span class="bash"> cat file1</span><br>echo $c<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo \$c>file1'</span></span><br>echo \$c>file1<br></code></pre></td></tr></tbody></table></figure>
 
 
 
