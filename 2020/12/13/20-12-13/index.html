@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      基于Vue的手办百科与交易平台 - Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网站主页"><span class="toc-text">网站主页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户注册与登录"><span class="toc-text">用户注册与登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#商品与交易"><span class="toc-text">商品与交易</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#百科信息"><span class="toc-text">百科信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-页面初始化"><span class="toc-text">4.1 页面初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-添加项目"><span class="toc-text">4.2 添加项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-删除数据"><span class="toc-text">4.3 删除数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-查找数据"><span class="toc-text">4.4 查找数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-修改数据"><span class="toc-text">4.5 修改数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-上传图片"><span class="toc-text">4.6 上传图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评论管理"><span class="toc-text">评论管理</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">DLee</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">DLee</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/MondayCha" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/7283248296" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/Dlee-01" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">基于Vue的手办百科与交易平台</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/12/13</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/前端">前端</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/Vue">Vue</a>
+                  
+                
+                  
+                    <a href="/tags/Antd">Antd</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><blockquote>
+<p>项目地址：<a href="https://github.com/MondayCha/FigureHub-Frontend" target="_blank" rel="noopener">https://github.com/MondayCha/FigureHub-Frontend</a></p>
+</blockquote>
+<h2 id="网站主页">网站主页<a class="post-anchor" href="#网站主页"></a></h2><p>网站名为“Figure Hub”，通过npm run serve指令，将前端部署到本地服务器后，即可进入数据库网站。网站整体采用新拟态风格，效果介于扁平化与投影风之间。</p>
+<p>对于访客用户，可以浏览首页的推荐以及商城卡片，需要注册登录才能浏览百科、商品详情，进行购买、发布商品等操作。</p>
+<p><a href="https://pic2.zhimg.com/v2-f3847ae7927c0b2d46cd72fc9c60a86d_b.png" target="_blank" rel="noopener" data-caption="我的动画啊啊啊啊，全部不能展示" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-f3847ae7927c0b2d46cd72fc9c60a86d_b.png" alt="我的动画啊啊啊啊，全部不能展示"></a></p>
+<h2 id="用户注册与登录">用户注册与登录<a class="post-anchor" href="#用户注册与登录"></a></h2><p>通过顶部栏的“登录”按钮可以进入登录以及注册页面。前端实现了简单的数据校验，密码支持英文、数字、下划线，当检验到用户名和密码不为空时，才发送登录请求。</p>
+<p><a href="https://pic3.zhimg.com/v2-e690c85af268ae3384a52ea8056c2886_b.png" target="_blank" rel="noopener" data-caption="pixiv id：81821752" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-e690c85af268ae3384a52ea8056c2886_b.png" alt="pixiv id：81821752"></a></p>
+<p>点击注册按钮进入注册页面，输入用户名、密码，上传头像和登记昵称后，在注册页面可以进行用户类型的选择。</p>
+<p>可以注册的用户类型包括管理员、厂商用户、普通用户。通过前端的业务逻辑以及后端的token校验，为不同类型的访问者提供对应的功能。</p>
+<p><a href="https://pic2.zhimg.com/v2-c8b44a1c9ffaeef5af748fdf28566745_b.png" target="_blank" rel="noopener" data-caption="没错，你说得对" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-c8b44a1c9ffaeef5af748fdf28566745_b.png" alt="没错，你说得对"></a></p>
+<p><a href="https://pic4.zhimg.com/v2-57568fc97a2f00bda6ab9d45204909ef_b.png" target="_blank" rel="noopener" data-caption="感谢PB给我抄登陆界面" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-57568fc97a2f00bda6ab9d45204909ef_b.png" alt="感谢PB给我抄登陆界面"></a></p>
+<h2 id="商品与交易">商品与交易<a class="post-anchor" href="#商品与交易"></a></h2><p>登陆后，顶部导航栏显示用户头像，并在最右侧显示“发布”按钮，普通用户可以在这里发布自己的二手或全新手办模型，在一次交易发起后从商城下架，厂商用户则可以发布余量充足的产品。</p>
+<p><a href="https://pic4.zhimg.com/v2-61025aeab91539610d70a3560b07ecb7_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-61025aeab91539610d70a3560b07ecb7_b.png" alt="img"></a></p>
+<p>在上传商品时，最多可以上传9张详情图片。</p>
+<p><a href="https://pic3.zhimg.com/v2-734a934a7a5ee7156dd015a06da92e3a_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-734a934a7a5ee7156dd015a06da92e3a_b.png" alt="img"></a></p>
+<p>发布成功后将弹出成功提示，并在“购物”栏目下显示发布的手办橱窗。与详情页相比，橱窗卡片显示了价格、发布者等简要信息。</p>
+<p><a href="https://pic1.zhimg.com/v2-beac2ab565141fb156faa1fd2ea922d0_b.png" target="_blank" rel="noopener" data-caption="233" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-beac2ab565141fb156faa1fd2ea922d0_b.png" alt="233"></a></p>
+<p>橱窗整体采用三栏布局，每次对商品表进行计算后排列。</p>
+<p><a href="https://pic4.zhimg.com/v2-1cbc26ebd28885d610a672ec0833bed7_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-1cbc26ebd28885d610a672ec0833bed7_b.png" alt="img"></a></p>
+<p>抄的Pixivic和舍友修改的代码</p>
+<blockquote>
+<p> 源地址：<a href="https://github.com/cheer-fun/pixivic-pcgithub.com" target="_blank" rel="noopener">https://github.com/cheer-fun/pixivic-pcgithub.com</a></p>
+</blockquote>
+<p>首页同样可以点击卡片引流，进入详情页面。</p>
+<p><a href="https://pic3.zhimg.com/v2-d3b9e24c4bee0ee00068ca7c1748d1ee_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-d3b9e24c4bee0ee00068ca7c1748d1ee_b.png" alt="img"></a></p>
+<blockquote>
+<p>首页参考的是Bilibili-Evgithub.com</p>
+</blockquote>
+<p>点击橱窗卡片（或从首页进入）后，会显示动画效果并跳转到详情页面，集成了浏览详情图片（多张，滚动播放）、收藏、购买、百科、发布者主页、相关推荐、评论、点赞、删除评论等功能。用户可在个人中心下架自己发布的商品。</p>
+<p><a href="https://pic1.zhimg.com/v2-7bbdb8a63e0f704d662982869cb69808_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-7bbdb8a63e0f704d662982869cb69808_b.png" alt="img"></a></p>
+<p>点击详情页面的“收藏”按钮，可以将商品加入收藏。</p>
+<p><a href="https://pic1.zhimg.com/v2-25203d045698db58d171cfd7fed98da0_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-25203d045698db58d171cfd7fed98da0_b.png" alt="img"></a></p>
+<p>点击“购买”按钮，可以确认当前商品信息，执行假支付后将提交交易订单，交易状态为待确认。</p>
+<p><a href="https://pic3.zhimg.com/v2-9ddc8d930b90994c7e43b30f9d901dae_b.png" target="_blank" rel="noopener" data-caption="感谢GTC给我抄支付页面" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-9ddc8d930b90994c7e43b30f9d901dae_b.png" alt="感谢GTC给我抄支付页面"></a></p>
+<p>通过顶部栏的“订单”可以进入订单页面，显示用户发布、卖出、买入信息，管理员账户则增加“交易管理”页面，可以删除订单。</p>
+<p><a href="https://pic4.zhimg.com/v2-9b0e0899393b4dd23948b48cc729d97b_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-9b0e0899393b4dd23948b48cc729d97b_b.png" alt="img"></a></p>
+<p>在订单页面，可以确认收货：</p>
+<p><a href="https://pic3.zhimg.com/v2-feed8280a48aca9fe46d0b3abfee844e_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-feed8280a48aca9fe46d0b3abfee844e_b.png" alt="img"></a></p>
+<p>收货后交易状态变更为待评价，按钮变为“我要评价”：</p>
+<p><a href="https://pic2.zhimg.com/v2-570ee8589aff27d27a10595023ef6e75_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-570ee8589aff27d27a10595023ef6e75_b.png" alt="img"></a></p>
+<p>评价完成后，可以查看自己发布的评论：</p>
+<p><a href="https://pic4.zhimg.com/v2-98ae30b36a14c2c047cc98efc38fd2bb_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-98ae30b36a14c2c047cc98efc38fd2bb_b.png" alt="img"></a></p>
+<p>用户也可以删除自己买入和卖出的订单：</p>
+<p><a href="https://pic3.zhimg.com/v2-ff36aa9eb7798f32835b89e67062e6ca_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-ff36aa9eb7798f32835b89e67062e6ca_b.png" alt="img"></a></p>
+<h2 id="百科信息">百科信息<a class="post-anchor" href="#百科信息"></a></h2><p>在管理界面，管理员以及厂商用户可以对厂商信息、角色信息、手办模型信息、作品信息以及手办与角色对应关系进行增删查改等操作。对普通用户，“百科管理”并不显示（如上图演示的管理界面中就没有此页面）。</p>
+<p><a href="https://pic4.zhimg.com/v2-761d9a1d7fdede89f857c2b2a2f9f393_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-761d9a1d7fdede89f857c2b2a2f9f393_b.png" alt="img"></a></p>
+<p>通过左侧的侧边栏选择不同的列表。同时页面支持响应式布局，可以针对不同页面宽度，自行适配合适的页面布局。</p>
+<p><a href="https://pic4.zhimg.com/v2-e779dea7a3661f2edc2147afd8799a57_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-e779dea7a3661f2edc2147afd8799a57_b.png" alt="img"></a></p>
+<p>下面进行表格的增加、删除、查找、修改操作的演示。</p>
+<h3 id="4-1-页面初始化">4.1 页面初始化<a class="post-anchor" href="#4-1-页面初始化"></a></h3><p>开启页面时，前端通过axios向后端发送请求，如果不能正常加载数据，则显示加载动画和错误提示。</p>
+<p><a href="https://pic1.zhimg.com/v2-18f550c30ad1f41b4dc37cfc6409fa28_b.jpg" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-18f550c30ad1f41b4dc37cfc6409fa28_b.jpg" alt="img"></a></p>
+<p>初始化成功，页面以每页4条的格式渲染数据，并显示当前的总数据量。</p>
+<p><a href="https://pic4.zhimg.com/v2-114c68825c13a0928d8bd9862930ea53_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-114c68825c13a0928d8bd9862930ea53_b.png" alt="img"></a></p>
+<h3 id="4-2-添加项目">4.2 添加项目<a class="post-anchor" href="#4-2-添加项目"></a></h3><p>单击左上角的“添加”按钮，即可弹出添加新项目的表单。</p>
+<p><a href="https://pic3.zhimg.com/v2-4beb392f1f2fe052dc8d43b292dc93ee_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-4beb392f1f2fe052dc8d43b292dc93ee_b.png" alt="img"></a></p>
+<p>在表单中会对项目内容做初步验证（如模型名称不能为空、价格须为数字等）。</p>
+<p><a href="https://pic4.zhimg.com/v2-5075585dafe932c01e5ffb09b21c9443_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-5075585dafe932c01e5ffb09b21c9443_b.png" alt="img"></a></p>
+<p>添加成功后，前端向后端发送添加请求，重新获取数据后渲染到页面，同时在数据库可查询到添加的项目。</p>
+<p><a href="https://pic1.zhimg.com/v2-8abf0b54a9ba933968ae892c2f815410_b.jpg" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-8abf0b54a9ba933968ae892c2f815410_b.jpg" alt="img"></a></p>
+<h3 id="4-3-删除数据">4.3 删除数据<a class="post-anchor" href="#4-3-删除数据"></a></h3><p>需要删除某一条数据时，单击操作中的“删除”按钮，弹出气泡确认框。</p>
+<p><a href="https://pic2.zhimg.com/v2-8984ec85b5cf0ba3f51d2a9896292971_b.jpg" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-8984ec85b5cf0ba3f51d2a9896292971_b.jpg" alt="img"></a></p>
+<p>确定后，前端向后端发送删除请求，并在重新获取数据后将其渲染到页面，自动进行刷新，原本的条目已被删除。</p>
+<h3 id="4-4-查找数据">4.4 查找数据<a class="post-anchor" href="#4-4-查找数据"></a></h3><p>在右上角的输入框选择筛选的类型（如：名字、性别等），可以进行关键词搜索。</p>
+<p><a href="https://pic2.zhimg.com/v2-3d27ff9310cd27f9493eae970557a641_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-3d27ff9310cd27f9493eae970557a641_b.png" alt="img"></a></p>
+<h3 id="4-5-修改数据">4.5 修改数据<a class="post-anchor" href="#4-5-修改数据"></a></h3><p>对需要修改的数据进行修改操作，会弹出修改项目的表单，该行数据的内容已预填入表单中：</p>
+<p><a href="https://pic2.zhimg.com/v2-339a464a500d7a3281d5036cd843ee69_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-339a464a500d7a3281d5036cd843ee69_b.png" alt="img"></a></p>
+<p>在这里我们将模型类型修改成“粘土人”，在通过字典转换成int型数据后，向后端发送修改请求并拉取新数据。</p>
+<p><a href="https://pic3.zhimg.com/v2-d9672045e6de627c21e73c79a30fec66_b.jpg" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-d9672045e6de627c21e73c79a30fec66_b.jpg" alt="img"></a></p>
+<h3 id="4-6-上传图片">4.6 上传图片<a class="post-anchor" href="#4-6-上传图片"></a></h3><p>角色和手办模型都对应多张图片，每次最多可以上传9张详情图片。         </p>
+<p><a href="https://pic3.zhimg.com/v2-a89f8b330c5d4df910ab2422c0d3c74a_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic3.zhimg.com/v2-a89f8b330c5d4df910ab2422c0d3c74a_b.png" alt="img"></a></p>
+<p>为了方便管理，图片在管理页面中不显示，可以在百科中显示。</p>
+<p><a href="https://pic4.zhimg.com/v2-1c4d2b9359438d8fe29bb7cf5188c43f_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-1c4d2b9359438d8fe29bb7cf5188c43f_b.png" alt="img"></a></p>
+<h2 id="评论管理">评论管理<a class="post-anchor" href="#评论管理"></a></h2><p>用户除了发布评价，还可以对手办进行评论。在商品页面，将该商品对应的厂商以及关键词以标签形式展示，点击标签即可跳转到对应的百科页面。</p>
+<p><a href="https://pic1.zhimg.com/v2-b2480c8b1e8a9f81f778997dc75d4d9c_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-b2480c8b1e8a9f81f778997dc75d4d9c_b.png" alt="img"></a></p>
+<p>评论有两个入口，一是商品页面直接链接到该商品对应手办的评论区；一是手办的百科详情页。</p>
+<p><a href="https://pic4.zhimg.com/v2-fd8d3268f671bfd444b40f5e7c19e4fb_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-fd8d3268f671bfd444b40f5e7c19e4fb_b.png" alt="img"></a></p>
+<p>输入评论后即可发布，将显示时间戳、点赞、删除（管理员或者自己可以删除）按钮。自己无法给自己的评论点赞，通过前端实现此逻辑。</p>
+<p><a href="https://pic1.zhimg.com/v2-feb43028317af0b41dbd2c5e65986a64_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-feb43028317af0b41dbd2c5e65986a64_b.png" alt="img"></a></p>
+<p>时间戳将转换为时间范围，鼠标浮动时显示具体的时间，提升用户体验。</p>
+<p><a href="https://pic2.zhimg.com/v2-f100e44f8b8e019591d40155c019f679_b.png" target="_blank" rel="noopener" data-caption="感谢WPB的评论区！！！" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-f100e44f8b8e019591d40155c019f679_b.png" alt="感谢WPB的评论区！！！"></a>点击删除后将删除此评论。</p>
+<p><a href="https://pic4.zhimg.com/v2-141a90143919a368001126b7e9652baf_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic4.zhimg.com/v2-141a90143919a368001126b7e9652baf_b.png" alt="img"></a></p>
+<p>其他用户可以为该用户点赞，点赞后按钮变为粉色，显示点赞数，无法继续点赞。         </p>
+<p><a href="https://pic2.zhimg.com/v2-48971b33d59e6c2962764f5137663361_b.png" target="_blank" rel="noopener" data-caption="img" data-fancybox="images"><img src="https://pic2.zhimg.com/v2-48971b33d59e6c2962764f5137663361_b.png" alt="img"></a></p>
+<p>在商品详情页面右侧，显示了发布者的信息，可以进入个人主页：</p>
+<p><a href="https://pic1.zhimg.com/v2-bffaa5b58e0fb6e0c6b3e16328601e08_b.png" target="_blank" rel="noopener" data-caption="感谢DBX的详情页！他是仿的Pixiv" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-bffaa5b58e0fb6e0c6b3e16328601e08_b.png" alt="感谢DBX的详情页！他是仿的Pixiv"></a></p>
+<p>在个人主页，可以查看该用户的用户类型、收藏与评论信息：</p>
+<p><a href="https://pic1.zhimg.com/v2-177f9f9c6fd265becfedb1a73eb95118_b.png" target="_blank" rel="noopener" data-caption="感谢WPB！！！" data-fancybox="images"><img src="https://pic1.zhimg.com/v2-177f9f9c6fd265becfedb1a73eb95118_b.png" alt="感谢WPB！！！"></a></p>
+<p>以上，网站源代码见开头，后端不是我写的，所以没给代码。</p>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/12/04/20201204/">LeetCode(659) 分割数组为连续子序列</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2020/12/13/20-12-13/">https://mondaycha.github.io/2020/12/13/20-12-13/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://mondaycha.github.io">DLee</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

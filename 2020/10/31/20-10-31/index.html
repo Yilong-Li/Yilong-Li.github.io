@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      归档2020 - Blog
+      我的第一个Vue练手项目 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#起因"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目地址"><span class="toc-text">项目地址</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -61,7 +66,7 @@
           首页
         </a>
         
-        <a href="/archives" class="current">
+        <a href="/archives" class="">
           归档
         </a>
         
@@ -115,7 +120,7 @@
             首页
           </a>
           
-          <a href="/archives" class="current">
+          <a href="/archives" class="">
             归档
           </a>
           
@@ -164,124 +169,112 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            归档 
-             - 2020
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/04/16/419-1/" title="冯如杯创业大赛第一次修改意见">
-                <span>2020/04/16</span>
-                <span>冯如杯创业大赛第一次修改意见</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/16/421-1/" title="冯如杯创业大赛-风险投资部分">
-                <span>2020/04/16</span>
-                <span>冯如杯创业大赛-风险投资部分</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/09/409-1/" title="《航空航天概论》Week6">
-                <span>2020/04/09</span>
-                <span>《航空航天概论》Week6</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/09/414-1/" title="2020 OO 第二单元总结">
-                <span>2020/04/09</span>
-                <span>2020 OO 第二单元总结</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/04/404-1/" title="操作系统 OS Lab2 实验报告">
-                <span>2020/04/04</span>
-                <span>操作系统 OS Lab2 实验报告</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/02/402-1/" title="《航空航天概论》Week5">
-                <span>2020/04/02</span>
-                <span>《航空航天概论》Week5</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/03/31/331-1/" title="Shields 测试">
-                <span>2020/03/31</span>
-                <span>Shields 测试</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/03/29/329-1/" title="操作系统 OS Lab2 学习笔记 (Part 2)">
-                <span>2020/03/29</span>
-                <span>操作系统 OS Lab2 学习笔记 (Part 2)</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/03/25/325-1/" title="操作系统 OS 第五次作业">
-                <span>2020/03/25</span>
-                <span>操作系统 OS 第五次作业</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/03/23/323-2/" title="操作系统 OS Lab2 学习笔记 (Part 1)">
-                <span>2020/03/23</span>
-                <span>操作系统 OS Lab2 学习笔记 (Part 1)</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="page-number" href="/archives/2020/page/6/">6</a>
-</div>
-</div>
+      <div class="title">我的第一个Vue练手项目</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/10/31</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/前端">前端</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/Vue">Vue</a>
+                  
+                
+                  
+                    <a href="/tags/Antd">Antd</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><blockquote>
+<p>My first Vue project，为网易有道词典笔百日阅读打卡活动写的格式规范工具</p>
+</blockquote>
+<h2 id="起因">起因<a class="post-anchor" href="#起因"></a></h2><p>哎，参加了一个打卡活动，有个大佬本来写了个小程序，很方便，不过后来又是广告又是视频的，所以我自己试着写了一个。</p>
+<h2 id="项目地址">项目地址<a class="post-anchor" href="#项目地址"></a></h2><p><a href="https://github.com/MondayCha/Youdao-Dictionary-Pen-Assistant" target="_blank" rel="noopener">https://github.com/MondayCha/Youdao-Dictionary-Pen-Assistant</a></p>
+<p>がんばれ!</p>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/11/30/767/">LeetCode(767) 重构字符串</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/06/14/614-1/">2020 OO 第四单元总结</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2020/10/31/20-10-31/">https://mondaycha.github.io/2020/10/31/20-10-31/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2021
