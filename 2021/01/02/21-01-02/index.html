@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    
+    <title>
+      LeetCode(239) 滑动窗口最大值 - Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deque数据结构"><span class="toc-text">Deque数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入元素"><span class="toc-text">插入元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除元素"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取元素"><span class="toc-text">获取元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java代码"><span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解答结果"><span class="toc-text">解答结果</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          首页
+        </a>
+        
+        <a href="/archives" class="">
+          归档
+        </a>
+        
+        <a href="/categories" class="">
+          分类
+        </a>
+        
+        <a href="/tags" class="">
+          标签
+        </a>
+        
+        <a href="/friends" class="">
+          友链
+        </a>
+        
+        <a href="/about" class="">
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">DLee</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">DLee</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            首页
+          </a>
+          
+          <a href="/archives" class="">
+            归档
+          </a>
+          
+          <a href="/categories" class="">
+            分类
+          </a>
+          
+          <a href="/tags" class="">
+            标签
+          </a>
+          
+          <a href="/friends" class="">
+            友链
+          </a>
+          
+          <a href="/about" class="">
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/MondayCha" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/7283248296" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/Dlee-01" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">LeetCode(239) 滑动窗口最大值</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2021/01/02</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/LeetCode">LeetCode</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/每日一题">每日一题</a>
+                  
+                
+                  
+                    <a href="/tags/双向队列">双向队列</a>
+                  
+                
+                  
+                    <a href="/tags/单调队列">单调队列</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>前段时间的LeetCode每日打卡也许可以说坚持住了, 接下来朝着每次做完都输出题解的目标努力吧.</p>
+<h2 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h2><p>之前没有做过滑动窗口的题,看到它我的第一反应: DP! 那么就需要维护当前窗口内的index与数字大小次序, 但是要如何把已经位于窗口左侧的数字剔除呢? 我没有很好的思路.</p>
+<p>最后看了题解……原来是这样的啊.队首的元素必然是窗口以及窗口之前元素的最大值, 在取出队首元素时判断是否已经过期, 如果过期则出队, 妙耶.</p>
+<p>index和对应数字都小的必然不会被选择, 所以可以将这个双向队列优化为单调队列.</p>
+<h2 id="Deque数据结构">Deque数据结构<a class="post-anchor" href="#Deque数据结构"></a></h2><p>要达到$O(n)$级别复杂度的关键就在于双向队列这个数据结构, 可以在队列的首尾进行操作(而一般的队列只能从队尾入队, 从队首出队).</p>
+<p>Deque的API如下:</p>
+<blockquote>
+<h3 id="插入元素">插入元素<a class="post-anchor" href="#插入元素"></a></h3><p><code>addFirst()</code>: 向队头插入元素，如果元素为空，则发生NPE(NPE是指编程语言中的空指针异常)<br><code>addLast()</code>: 向队尾插入元素，如果为空，则发生NPE<br><code>offerFirst()</code>: 向队头插入元素，如果插入成功返回true，否则返回false<br><code>offerLast()</code>: 向队尾插入元素，如果插入成功返回true，否则返回false</p>
+<h3 id="移除元素">移除元素<a class="post-anchor" href="#移除元素"></a></h3><p><code>removeFirst()</code>: 返回并移除队头元素，如果该元素是null，则发生NoSuchElementException<br><code>removeLast()</code>: 返回并移除队尾元素，如果该元素是null，则发生NoSuchElementException<br><code>pollFirst()</code>: 返回并移除队头元素，如果队列无元素，则返回null<br><code>pollLast()</code>: 返回并移除队尾元素，如果队列无元素，则返回null</p>
+<h3 id="获取元素">获取元素<a class="post-anchor" href="#获取元素"></a></h3><p><code>getFirst()</code>: 获取队头元素但不移除，如果队列无元素，则发生NoSuchElementException<br><code>getLast()</code>: 获取队尾元素但不移除，如果队列无元素，则发生NoSuchElementException<br><code>peekFirst()</code>: 获取队头元素但不移除，如果队列无元素，则返回null<br><code>peekLast()</code>: 获取队尾元素但不移除，如果队列无元素，则返回null</p>
+</blockquote>
+<p>区别主要在遇到空元素或队列无元素时, 是抛异常还是返回false或者null. 所以最常用的还是<code>offer</code>和<code>poll</code>/<code>peek</code>吧.</p>
+<h2 id="Java代码">Java代码<a class="post-anchor" href="#Java代码"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] maxSlidingWindow(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k) {<br>        Deque<Integer> deque = <span class="hljs-keyword">new</span> LinkedList<>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i < k; i++) {<br>            <span class="hljs-keyword">while</span> (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {<br>                deque.pollLast();<br>            }<br>            deque.offerLast(i);<br>        }<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n - k + <span class="hljs-number">1</span>];<br>        ans[<span class="hljs-number">0</span>] = nums[deque.peekFirst()];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = k; i < n; i++) {<br>            <span class="hljs-keyword">while</span> (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {<br>                deque.pollLast();<br>            }<br>            deque.offerLast(i);<br>            <span class="hljs-keyword">while</span> (deque.peekFirst() < i - k + <span class="hljs-number">1</span>) {<br>                deque.pollFirst();<br>            }<br>            ans[i - k + <span class="hljs-number">1</span>] = nums[deque.peekFirst()];<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<h2 id="复杂度">复杂度<a class="post-anchor" href="#复杂度"></a></h2><ul>
+<li><p>时间复杂度为$O(n)$</p>
+<blockquote>
+<p>其中n是数组 nums的长度。每一个下标恰好被放入队列一次，并且最多被弹出队列一次，因此时间复杂度为 O(n)</p>
+</blockquote>
+</li>
+<li><p>空间复杂度为$O(k)$</p>
+<blockquote>
+<p>队列中最多不会有超过 k+1个元素</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="解答结果">解答结果<a class="post-anchor" href="#解答结果"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">执行用时: 35 ms<br>内存消耗: 58.2 MB<br></code></pre></td></tr></tbody></table></figure>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/12/13/20-12-13/">基于Vue的手办百科与交易平台</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">DLee</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2021/01/02/21-01-02/">https://mondaycha.github.io/2021/01/02/21-01-02/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://mondaycha.github.io">DLee</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
