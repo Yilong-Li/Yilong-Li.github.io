@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      冯如杯创业大赛第一次修改意见 - Blog
+      LeetCode(86) 分隔链表 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java代码"><span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解答结果"><span class="toc-text">解答结果</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -167,11 +172,11 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">冯如杯创业大赛第一次修改意见</div>
+      <div class="title">LeetCode(86) 分隔链表</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2020/04/16</span>
+          <span>2021/01/03</span>
         </span>
 
         
@@ -182,7 +187,7 @@
           <span>
               
                 
-                  <a href="/categories/学习">学习</a>
+                  <a href="/categories/LeetCode">LeetCode</a>
                 
               
           </span>
@@ -195,7 +200,11 @@
             <span>
                 
                   
-                    <a href="/tags/冯如杯">冯如杯</a>
+                    <a href="/tags/每日一题">每日一题</a>
+                  
+                
+                  
+                    <a href="/tags/链表">链表</a>
                   
                 
             </span>
@@ -205,15 +214,26 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><p>1、文中列举的数据和插图最好都说明来源 </p>
-<hr>
-<p>2、专有名词在策划书中第一次出现时需要用全称非缩写，增强整体可读性 </p>
-<hr>
-<p>3、竞争产品分析中，需要对产品进一步剖析，通过现有产品的局限突出自己产品的优势 </p>
-<hr>
-<p>4、市场分析角度不够广，还可以加入对目标顾客群体的分析、营销策略的选择等等 </p>
-<hr>
-<p>5、前一半是科技论文的写法，需要进行修改，目前在策划书里显得生硬</p>
+    <html><head></head><body><h2 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h2><p>感觉和快速排序中的<code>Partition</code>很接近, 相比数组的分割, 链表可以直接分别储存左支和右支, 在思路上会清晰很多.</p>
+<p>而如果依然是采用快排的方式, 那么就需要在交换两个节点时依次替换所有关联节点, 效率不如前者.</p>
+<h2 id="Java代码">Java代码<a class="post-anchor" href="#Java代码"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">partition</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> x)</span> </span>{<br>    ListNode smallHead = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>    ListNode smallEnd = smallHead;<br>    ListNode largeHead = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>    ListNode largeEnd = largeHead;<br>    ListNode currentNode = head;<br>    <span class="hljs-keyword">while</span> (currentNode != <span class="hljs-keyword">null</span>) {<br>      <span class="hljs-keyword">if</span> (currentNode.val < x) {<br>        smallEnd.next = currentNode;<br>        smallEnd = smallEnd.next;<br>      } <span class="hljs-keyword">else</span> {<br>        largeEnd.next = currentNode;<br>        largeEnd = largeEnd.next;<br>      }<br>      currentNode = currentNode.next;<br>    }<br>    largeEnd.next = <span class="hljs-keyword">null</span>;<br>    smallEnd.next = largeHead.next;<br>    <span class="hljs-keyword">return</span> smallHead.next;<br>  }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>测试代码:</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>  Solution solution = <span class="hljs-keyword">new</span> PartitionList().<span class="hljs-keyword">new</span> Solution();<br>  ListNode n1 = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">1</span>);<br>  ListNode n2 = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">2</span>);<br>  ListNode n3 = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">3</span>);<br>  ListNode n4 = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">4</span>);<br>  n4.next = n3;<br>  n3.next = n1;<br>  n1.next = n2;<br>  System.out.println(solution.partition(n4, <span class="hljs-number">2</span>));<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="复杂度">复杂度<a class="post-anchor" href="#复杂度"></a></h2><ul>
+<li><p>时间复杂度为$O(n)$</p>
+<blockquote>
+<p>遍历了链表一次</p>
+</blockquote>
+</li>
+<li><p>空间复杂度为$O(1)$</p>
+</li>
+</ul>
+<h2 id="解答结果">解答结果<a class="post-anchor" href="#解答结果"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">执行耗时:0 ms,击败了100.00% 的Java用户<br>内存消耗:37.9 MB,击败了35.15% 的Java用户<br></code></pre></td></tr></tbody></table></figure>
+
 </body></html>
 
   
@@ -240,12 +260,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/04/23/423-1/">《航空航天概论》Week8</a>
-        
     </div>
     <div class="item right">
         
-          <a href="/2020/04/16/416-1/">《航空航天概论》Week7</a>
+          <a href="/2021/01/02/21-01-02/">LeetCode(239) 滑动窗口最大值</a>
         
     </div>
   </div>
@@ -257,7 +275,7 @@
       本文作者：<a href="https://mondaycha.github.io">DLee</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://mondaycha.github.io/2020/04/16/419-1/">https://mondaycha.github.io/2020/04/16/419-1/</a>
+      永久链接：<a href="https://mondaycha.github.io/2021/01/03/21-01-03/">https://mondaycha.github.io/2021/01/03/21-01-03/</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://mondaycha.github.io">DLee</a>的博客，转载请注明出处！
