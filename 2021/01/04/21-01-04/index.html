@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      标签 - Blog
+      LeetCode(509) 斐波那契数 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#官方题解"><span class="toc-text">官方题解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#法1-动态规划"><span class="toc-text">法1: 动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#法2-矩阵快速幂"><span class="toc-text">法2: 矩阵快速幂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#法3-通项公式"><span class="toc-text">法3: 通项公式</span></a></li></ol></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -69,7 +74,7 @@
           分类
         </a>
         
-        <a href="/tags" class="current">
+        <a href="/tags" class="">
           标签
         </a>
         
@@ -123,7 +128,7 @@
             分类
           </a>
           
-          <a href="/tags" class="current">
+          <a href="/tags" class="">
             标签
           </a>
           
@@ -164,42 +169,116 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            标签 - 基数排序
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/11/30/767/" title="LeetCode(767) 重构字符串">
-                <span>2020/11/30</span>
-                <span>LeetCode(767) 重构字符串</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">LeetCode(509) 斐波那契数</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2021/01/04</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/LeetCode">LeetCode</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/每日一题">每日一题</a>
+                  
+                
+                  
+                    <a href="/tags/矩阵快速幂">矩阵快速幂</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h2 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h2><p>看到是斐波那契数, 默默写了个时间复杂度和空间复杂度都是$O(n)$的解法……</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">执行耗时:0 ms,击败了100.00% 的Java用户<br>内存消耗:35.1 MB,击败了67.02% 的Java用户<br></code></pre></td></tr></tbody></table></figure>
+
+<p>因为限制了N的大小, 理论上你甚至可以打表:</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{<br>    <span class="hljs-keyword">int</span>[] fibArrays = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">31</span>];<br>    fibArrays[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    fibArrays[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i <= n; i++) {<br>      fibArrays[i] = fibArrays[i - <span class="hljs-number">1</span>] + fibArrays[i - <span class="hljs-number">2</span>];<br>    }<br>    <span class="hljs-keyword">return</span> fibArrays[n];<br>  }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>不过我这种解法在面试官面前显然毫无亮点啊……下面是膜拜官方题解时间.</p>
+<h2 id="官方题解">官方题解<a class="post-anchor" href="#官方题解"></a></h2><h3 id="法1-动态规划">法1: 动态规划<a class="post-anchor" href="#法1-动态规划"></a></h3><p>和我的差不多, 可以进一步优化空间复杂度.</p>
+<h3 id="法2-矩阵快速幂">法2: 矩阵快速幂<a class="post-anchor" href="#法2-矩阵快速幂"></a></h3><p>$$<br>\left[\begin{array}{cc}<br>1 & 1 \<br>1 & 0<br>\end{array}\right]\left[\begin{array}{c}<br>F(n) \<br>F(n-1)<br>\end{array}\right]=\left[\begin{array}{c}<br>F(n)+F(n-1) \<br>F(n)<br>\end{array}\right]=\left[\begin{array}{c}<br>F(n+1) \<br>F(n)<br>\end{array}\right]<br>$$</p>
+<p>因此有:<br>$$<br>\left[\begin{array}{c}<br>F(n+1) \<br>F(n)<br>\end{array}\right]=\left[\begin{array}{ll}<br>1 & 1 \<br>1 & 0<br>\end{array}\right]^{n}\left[\begin{array}{l}<br>F(1) \<br>F(0)<br>\end{array}\right]<br>$$<br>所以只要计算矩阵$[1,1;1,0]$的$n$次幂就能得到第N项的值.</p>
+<p>(要考试, 先留着, 过两天写)</p>
+<h3 id="法3-通项公式">法3: 通项公式<a class="post-anchor" href="#法3-通项公式"></a></h3><p>$$<br>F(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^{n}-\left(\frac{1-\sqrt{5}}{2}\right)^{n}\right]<br>$$</p>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2021/01/03/21-01-03/">LeetCode(86) 分隔链表</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">L1NE</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2021/01/04/21-01-04/">https://mondaycha.github.io/2021/01/04/21-01-04/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">L1NE</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2021
