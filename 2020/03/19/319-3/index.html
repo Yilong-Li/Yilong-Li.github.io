@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -216,6 +216,7 @@
 <h3 id="①-程序结构分析">① 程序结构分析<a class="post-anchor" href="#①-程序结构分析"></a></h3><p>UML类图：</p>
 <p>第一次作业的幂函数因子较为简单，代码中仅提炼出Poly对象，并在其内部实现求导方法。</p>
 <p><strong>Method复杂度：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -225,14 +226,15 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Derivative.main(String[])</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Derivative.printAnswer(HashMap<BigInteger,  Poly>)</td>
+<td>Derivative.printAnswer(HashMap<biginteger, poly>)</biginteger,></td>
 <td>4</td>
 <td>5</td>
 <td>7</td>
@@ -309,7 +311,9 @@
 <td>9</td>
 <td>10</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>第一次作业中，化简主要在主类Derivative的printAnswer()方法（将第一个正项优先输出）和Poly类的toString()方法中，printAnswer()涉及对表达式的遍历，基本复杂性高；toString()则包含大量条件语句，多次调用了BigInteger中的方法，循环依赖性高。而表达式解析我采用的是正则+状态机的策略（这个策略三次作业均沿用，感觉还是很舒服的），在getfirstitem()中处理不同类型输入并归一化，代码较为复杂。</p>
 <h3 id="②-程序Bug分析">② 程序Bug分析<a class="post-anchor" href="#②-程序Bug分析"></a></h3><p>第一次作业在强测、互测中均未出现Bug。</p>
 <h3 id="③-互测采用策略">③ 互测采用策略<a class="post-anchor" href="#③-互测采用策略"></a></h3><p>互测时我采用的策略是“补刀”。我先是用简单的自动测试程序跑了下房间内成员的代码，不过貌似没有出现问题；然而圣杯战争发生了转机——Rider竟然拿下了一血！</p>
@@ -321,6 +325,7 @@
 <h3 id="①-程序结构分析-1">① 程序结构分析<a class="post-anchor" href="#①-程序结构分析-1"></a></h3><p><strong>UML类图</strong>：</p>
 <p>架构基本沿用第一次作业，UML也差不多，不过这次的简化更复杂一些。</p>
 <p><strong>Method复杂度：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -330,14 +335,15 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>DeriPrinter.DeriPrinter(HashMap<String,  MutiItem>)</td>
+<tbody>
+<tr>
+<td>DeriPrinter.DeriPrinter(HashMap<string, mutiitem>)</string,></td>
 <td>1</td>
 <td>7</td>
 <td>7</td>
 </tr>
 <tr>
-<td>DeriPrinter.getAnswer(HashMap<String,  MutiItem>)</td>
+<td>DeriPrinter.getAnswer(HashMap<string, mutiitem>)</string,></td>
 <td>4</td>
 <td>5</td>
 <td>7</td>
@@ -517,19 +523,19 @@
 <td><strong>14</strong></td>
 </tr>
 <tr>
-<td>Simplify.Simplify(HashMap<String,  MutiItem>)</td>
+<td>Simplify.Simplify(HashMap<string, mutiitem>)</string,></td>
 <td>1</td>
 <td>2</td>
 <td>2</td>
 </tr>
 <tr>
-<td>Simplify.exitmatch(BigInteger,Item,Item,Item,HashMap<Item,  BigInteger>)</td>
+<td>Simplify.exitmatch(BigInteger,Item,Item,Item,HashMap<item, biginteger>)</item,></td>
 <td>2</td>
 <td>3</td>
 <td>4</td>
 </tr>
 <tr>
-<td>Simplify.searchcos(HashMap<Item,  BigInteger>)</td>
+<td>Simplify.searchcos(HashMap<item, biginteger>)</item,></td>
 <td><strong>4</strong></td>
 <td>6</td>
 <td>9</td>
@@ -540,14 +546,15 @@
 <td>3</td>
 <td>4</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>由于一开始并没有明确的化简思路，在第一遍实现了基本求导功能的代码通过中测之后，我为了实现化简功能，又对代码内类的结构做了很多修改，在这一过程中，尽管我确实用类将表达式中的Item与MulItem做了封装，但我却胡乱修改内部方法，这并不符合面向对象的思想，也导致最后代码可读性极差，也为互测时被发现的Bug埋下了祸根。具体表现到MetricReloaded的分析上，就是ParseExp类的getFirstitem()依然是复杂度重灾区，没有采用工厂模式也使得它与其他类的依赖极为严重，优化输出的内容依然有很高的基本复杂性。</p>
 <h3 id="②-程序Bug分析-1">② 程序Bug分析<a class="post-anchor" href="#②-程序Bug分析-1"></a></h3><p>强测中获得性能分为16.545/20，在处理表达式化简时，我所采用的是暴力搜索的方式，每次搜索到可以合并的项就将其合并，然后进行重新搜索。</p>
 <p>这种方法显然只能找到一个极优解，却不能找到最优解，表达式项存储顺序对结果也有很大影响。一种更加可行的方式是采用深度优先搜索，不过当时并没有想出具体的实现方法，只好作罢。</p>
 <p>互测时被找出来一个Bug，同时发现Berserker的一个Bug（狂战士日常躺枪）。而我的Bug是HashMap的Key写错，在生成MulItem的Key时，我采用的是将指数拼接为String的方式，在指数较大时，可能会导致不同项被当作同一项存入HashMap中，造成求导错误。</p>
 <p>修改也很简单，只需要在生成String的时候给不同指数加个分隔符就好了——</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MutiItem</span><span class="hljs-params">(BigInteger a, BigInteger b, BigInteger c, BigInteger d)</span> </span>{<br>    <span class="hljs-keyword">this</span>.coeff = a;<br>    <span class="hljs-keyword">this</span>.item = <span class="hljs-keyword">new</span> Item(b, c, d);<br>    <span class="hljs-comment">// before: identity = "" + b + c + d;</span><br>    identity = <span class="hljs-string">""</span> + b + <span class="hljs-string">"."</span> + c + <span class="hljs-string">"."</span> + d;<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>可以发现这里我的MutiItem的构造方法是非常混乱的，不过没有发现这么明显的Bug，一方面就是混乱的优化带来的副作用；另一方面也是因为这样的数据出现几率确实很小，同屋里也只有一个同学发现了这个Bug（我后来和hack我的同学交流了下，果然是长时间跑随机自动测试程序才找到的……）</p>
 <h3 id="③-互测采用策略-1">③ 互测采用策略<a class="post-anchor" href="#③-互测采用策略-1"></a></h3><p>在这次互测是采用对拍+手动构造样例+Python生成随机数据自动评测的方式。屋内除我只有一个Bug，大家很快找到之后也比较佛系。</p>
 <p>互测中阅读了同屋子大佬处理简化的DFS，确实厉害；另外还拜读了另一个房间Alterego的架构，类似Sympy的表达式结构简直叫人拍案叫绝，计算方式优美，让我看到了什么是真正的封装、多态、继承，也有更多信心去面对第三次作业。（不过听说在那个屋Alterego被hack的很惨，悲）</p>
@@ -563,6 +570,7 @@
 <h3 id="①-程序结构分析-2">① 程序结构分析<a class="post-anchor" href="#①-程序结构分析-2"></a></h3><p><strong>UML类图：</strong></p>
 <p>这一次的类图很乱，主要原因还是在于表达式也可以作为一个因子嵌套进三角函数中，类之间的相互调用也比较明显。</p>
 <p><strong>Method复杂度：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -572,7 +580,8 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass.main(String[])</td>
 <td>1</td>
 <td>2</td>
@@ -1005,7 +1014,7 @@
 <td>3</td>
 </tr>
 <tr>
-<td>homework.polyitem.item.ItemAdd.ItemAdd(HashMap<String,  Derivable>)</td>
+<td>homework.polyitem.item.ItemAdd.ItemAdd(HashMap<string, derivable>)</string,></td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -1196,9 +1205,12 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>MetricReloaded分析程序复杂度更加病态了，大量方法的结构化程度存在问题，并且集中在与化简有关的方法中。表达式解析中的readOneItem()方法三项均超标，虽然我已经进行了采用了一部分的工厂模式、将正则表达式存入单独的类中以被调用的解耦合的努力。</p>
 <p><strong>Package复杂度：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1207,7 +1219,8 @@
 <th>v(G)tot</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework</td>
 <td>2</td>
 <td>2</td>
@@ -1227,12 +1240,12 @@
 <td>3.38</td>
 <td>115</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>通过分包，将几大功能区分开（不过这次看到20%的性能分，增加了暴力搜索提取公因式的简化方法，还是放在Exp处理中，所以耦合度也有点高）。</p>
 <h3 id="②-程序Bug分析-2">② 程序Bug分析<a class="post-anchor" href="#②-程序Bug分析-2"></a></h3><p>“OO中最惨的，不是被同屋hack了50个同质Bug，而是在截止提交的下一秒意识到了自己的Bug”</p>
-<p align="right">——沃茨基·硕德</p>
-在第三次作业中，我为了简化做了不少工作，也用随机数据自动测试程序做了大量的检验。然而就在周六晚上截止提交后的几秒，我突然意识到我的输出是有问题的——对于表达式因子，我将其设置为继承了Factor类，同样拥有指数Index属性，在输出时，采用的是和幂函数、三角函数一样的输出方式——“`(exp)**index`”，但在输入时表达式因子是不允许有指数的，因此属于WF。但对于Sympy，表达式的格式限定很宽松，通过计算并不能找到错误。
-
+<p></p><p align="right">——沃茨基·硕德</p><br>在第三次作业中，我为了简化做了不少工作，也用随机数据自动测试程序做了大量的检验。然而就在周六晚上截止提交后的几秒，我突然意识到我的输出是有问题的——对于表达式因子，我将其设置为继承了Factor类，同样拥有指数Index属性，在输出时，采用的是和幂函数、三角函数一样的输出方式——“<code>(exp)**index</code>”，但在输入时表达式因子是不允许有指数的，因此属于WF。但对于Sympy，表达式的格式限定很宽松，通过计算并不能找到错误。<p></p>
 <p>那能咋办……周六晚上看番转移注意力，周日在互测中尽可能挽回损失……最后发现强测没有出现这种输出，但互测时被同屋两名Servent发现了这个Bug。好在修复工作也比较简单，实在是侥幸。</p>
 <h3 id="③-互测采用策略-2">③ 互测采用策略<a class="post-anchor" href="#③-互测采用策略-2"></a></h3><p>在这次互测依然是采用对拍（对军宝具）+手动构造样例（我自己构造了可能会TLE的样例，也分享到了群里）+Python生成随机数据自动评测的方式。</p>
 <p>在这次对Python生成随机数据做了优化，比如Caster在指数为0时会出现各种吊诡的错误，然而互测限定指数>0，于是我将对Caster的随机数据设为指数始终>0，其他成员照旧，避免了反复查看不能hack的Bug带来的失落感。</p>
@@ -1305,7 +1318,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

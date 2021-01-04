@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -220,20 +220,15 @@
 <p>在这里采用了一种特殊的链表形式，如上图（我找不到这个课件了，图片来自群成员）</p>
 <p>链表的插入操作，对注释做了一点修正——</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Note: assign a to b <==> a = b</span><br><span class="hljs-comment">//Step 1, assign elm.next to listelem.next.</span><br><span class="hljs-comment">//Step 2: Judge whether listelm.next is NULL, if not, then assign listelm.next.pre to a proper value.</span><br><span class="hljs-comment">//step 3: Assign listelm.next to a proper value.</span><br><span class="hljs-comment">//step 4: Assign elm.pre to a proper value.</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>这个设计感觉还是很巧妙的。</p>
 <h3 id="关于全局变量">关于全局变量<a class="post-anchor" href="#关于全局变量"></a></h3><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 1: Initialize basemem.</span><br><span class="hljs-comment">* (When use real computer, CMOS tells us how many kilobytes there are). */</span><br>basemem = <span class="hljs-number">0x4000000</span>;<br>maxpa = <span class="hljs-number">0x4000000</span>;<br>extmem = <span class="hljs-number">0x0</span>;<br><span class="hljs-comment">// Step 2: Calculate corresponding npage value.</span><br>npage = basenum >> <span class="hljs-number">12</span>;<br></code></pre></td></tr></tbody></table></figure>
-
 <p>后来看了一下在mmu.h里面有对SHIFT的定义，更严谨的来说应该是要写那个吧。</p>
 <h3 id="如何用命令行压缩文件">如何用命令行压缩文件<a class="post-anchor" href="#如何用命令行压缩文件"></a></h3><p>压缩服务器上当前目录的内容为xxx.zip文件</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">zip -r xxx.zip ./*<br></code></pre></td></tr></tbody></table></figure>
-
 <p>解压zip文件到当前目录</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">unzip filename.zip<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这样就可以从实验环境copy代码了！</p>
 <h3 id="如何运行内核">如何运行内核<a class="post-anchor" href="#如何运行内核"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">gxemul -E testmips -C R3000 -M 64<br></code></pre></td></tr></tbody></table></figure>
-
 <p>后面可以跟vmlinux的地址，也可以写个sh脚本来运行。</p>
 <h3 id="课程群零散知识点收集">课程群零散知识点收集<a class="post-anchor" href="#课程群零散知识点收集"></a></h3><h4 id="2-1">2.1<a class="post-anchor" href="#2-1"></a></h4><ol>
 <li>助教提示：typeof的使用</li>
@@ -247,11 +242,9 @@
 <p>借助pb的test程序</p>
 <h4 id="2">2<a class="post-anchor" href="#2"></a></h4><p>Exercise 2.4，输出如下结果——</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">-------------------------------------------------------------------------------<br><br>main.c: main is start ...<br><br>init.c: mips_init() is called<br><br>Physical memory: 65536K available, base = 65536K, extended = 0K<br><br>to memory 80401000 for struct page directory.<br><br>to memory 80431000 for struct Pages.<br><br>pmap.c:  mips vm init success<br><br>[ dev_mp: unimplemented relative addr 0x8 ]<br>[ dev_mp: unimplemented relative addr 0x14 ]<br>Segmentation fault (core dumped)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>初步分析：与pmap.c中的三个函数填写有关</p>
 <p>检查警告——</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">pmap.c: In function 'page_init':<br>pmap.c:183: warning: passing argument 1 of 'va2pa' from incompatible pointer type<br>pmap.c: In function 'page_alloc':<br>pmap.c:230: warning: passing argument 1 of 'bzero' makes pointer from integer without a cast<br></code></pre></td></tr></tbody></table></figure>
-
 <p>说明type不对，进行修改完成debug工作。</p>
 </body></html>
 
@@ -318,7 +311,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -231,7 +231,6 @@
 </blockquote>
 <p>区别主要在遇到空元素或队列无元素时, 是抛异常还是返回false或者null. 所以最常用的还是<code>offer</code>和<code>poll</code>/<code>peek</code>吧.</p>
 <h2 id="Java代码">Java代码<a class="post-anchor" href="#Java代码"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] maxSlidingWindow(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k) {<br>        Deque<Integer> deque = <span class="hljs-keyword">new</span> LinkedList<>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i < k; i++) {<br>            <span class="hljs-keyword">while</span> (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {<br>                deque.pollLast();<br>            }<br>            deque.offerLast(i);<br>        }<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n - k + <span class="hljs-number">1</span>];<br>        ans[<span class="hljs-number">0</span>] = nums[deque.peekFirst()];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = k; i < n; i++) {<br>            <span class="hljs-keyword">while</span> (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {<br>                deque.pollLast();<br>            }<br>            deque.offerLast(i);<br>            <span class="hljs-keyword">while</span> (deque.peekFirst() < i - k + <span class="hljs-number">1</span>) {<br>                deque.pollFirst();<br>            }<br>            ans[i - k + <span class="hljs-number">1</span>] = nums[deque.peekFirst()];<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <h2 id="复杂度">复杂度<a class="post-anchor" href="#复杂度"></a></h2><ul>
 <li><p>时间复杂度为$O(n)$</p>
 <blockquote>
@@ -245,7 +244,6 @@
 </li>
 </ul>
 <h2 id="解答结果">解答结果<a class="post-anchor" href="#解答结果"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">执行用时: 35 ms<br>内存消耗: 58.2 MB<br></code></pre></td></tr></tbody></table></figure>
-
 </body></html>
 
   
@@ -311,7 +309,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -254,15 +254,16 @@
 <h2 id="文件系统结构">文件系统结构<a class="post-anchor" href="#文件系统结构"></a></h2><h3 id="Exercise-5-3">Exercise 5.3<a class="post-anchor" href="#Exercise-5-3"></a></h3><p>文件系统需要负责维护磁盘块的申请和释放，在回收一个磁盘块时，需 要更改位图中的标志位。如果要将一个磁盘块设置为 free，只需要将位图中对应的 位的值设置为 1 即可。请完成 fs/fs.c 中的 free_block 函数，实现这一功能。同时 思考为什么参数 blockno 的值不能为 0 ？</p>
 <h3 id="Thinking-5-3">Thinking 5.3<a class="post-anchor" href="#Thinking-5-3"></a></h3><p>一个磁盘块最多存储 1024 个指向其他磁盘块的指针，试计算，我们 的文件系统支持的单个文件的最大大小为多大？</p>
 <p>答：</p>
-<p>每个磁盘块的大小为4KB，一个磁盘块最多存储 1024 个指向其他磁盘块的指针，因此单个文件的最大大小为：<br>$$<br>1024×4KB=4MB<br>$$</p>
-<h3 id="Thinking-5-4">Thinking 5.4<a class="post-anchor" href="#Thinking-5-4"></a></h3><p>查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件控制块？一个目录下最多能有多少个文件？</p>
+<p>每个磁盘块的大小为4KB，一个磁盘块最多存储 1024 个指向其他磁盘块的指针，因此单个文件的最大大小为：</p>
+<script type="math/tex; mode=display">
+1024×4KB=4MB</script><h3 id="Thinking-5-4">Thinking 5.4<a class="post-anchor" href="#Thinking-5-4"></a></h3><p>查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件控制块？一个目录下最多能有多少个文件？</p>
 <p>答：</p>
-<p>一个磁盘块中最多能存储FILE2BLK个文件控制块，即16个文件控制块。<br>$$<br>FILE2BLK = \frac{BY2BLK}{BY2FILE}=16<br>$$</p>
-<h3 id="Exercise-5-4">Exercise 5.4<a class="post-anchor" href="#Exercise-5-4"></a></h3><p>请参照文件系统的设计，完成 fsformat.c 中的 create_file函数，并按 照个人兴趣完成 write_directory 函数（不作为考察点），实现将一个文件或指定 目录下的文件按照目录结构写入到 fs/fs.img 的根目录下的功能。关于如何创建二 进制文件的镜像，请参考 fs/Makefile。 在实现的过程中，你可以将你的实现同我们给出的参考可执行文件tools/fsformat 进行对比。具体来讲，你可以通过 Linux 提供的 xxd 命令将两个 fsformat 产生的二 进制镜像转化为可阅读的文本文件，手工进行查看或使用 diff 等工具进行对比。</p>
+<p>一个磁盘块中最多能存储FILE2BLK个文件控制块，即16个文件控制块。</p>
+<script type="math/tex; mode=display">
+FILE2BLK = \frac{BY2BLK}{BY2FILE}=16</script><h3 id="Exercise-5-4">Exercise 5.4<a class="post-anchor" href="#Exercise-5-4"></a></h3><p>请参照文件系统的设计，完成 fsformat.c 中的 create_file函数，并按 照个人兴趣完成 write_directory 函数（不作为考察点），实现将一个文件或指定 目录下的文件按照目录结构写入到 fs/fs.img 的根目录下的功能。关于如何创建二 进制文件的镜像，请参考 fs/Makefile。 在实现的过程中，你可以将你的实现同我们给出的参考可执行文件tools/fsformat 进行对比。具体来讲，你可以通过 Linux 提供的 xxd 命令将两个 fsformat 产生的二 进制镜像转化为可阅读的文本文件，手工进行查看或使用 diff 等工具进行对比。</p>
 <h3 id="Thinking-5-5">Thinking 5.5<a class="post-anchor" href="#Thinking-5-5"></a></h3><p>请思考，在满足磁盘块缓存的设计的前提下，我们实验使用的内核支持的最大磁盘大小是多少？</p>
 <p>答：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Maximum disk size we can handle (1GB) */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DISKMAX		0x40000000</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>我们实验使用的内核支持的最大磁盘大小是DISKMAX，大小为1G。</p>
 <h3 id="Thinking-5-6">Thinking 5.6<a class="post-anchor" href="#Thinking-5-6"></a></h3><p>如果将 DISKMAX 改成 0xC0000000, 超过用户空间，我们的文件系统还能正常工作吗？为什么？</p>
 <p>答：</p>
@@ -270,23 +271,19 @@
 <h3 id="Exercise-5-5">Exercise 5.5<a class="post-anchor" href="#Exercise-5-5"></a></h3><p>fs/fs.c 中的 diskaddr 函数用来计算指定磁盘块对应的虚存地址。完成 diskaddr 函数，根据一个块的序号 (block number)，计算这一磁盘块对应的 512 bytes 虚存的起始地址。（提示：fs/fs.h 中的宏 DISKMAP 和 DISKMAX 定义了磁盘映射虚存的地址空间）。</p>
 <h3 id="Exercise-5-6">Exercise 5.6<a class="post-anchor" href="#Exercise-5-6"></a></h3><p>实现 map_block 函数，检查指定的磁盘块是否已经映射到内存，如果没有，分配一页内存来保存磁盘上的数据。对应地，完成 unmap_block 函数，用于解除磁盘块和物理内存之间的映射关系，回收内存。（提示：注意磁盘虚拟内存地址 空间和磁盘块之间的对应关系）。</p>
 <h3 id="Exercise-5-7">Exercise 5.7<a class="post-anchor" href="#Exercise-5-7"></a></h3><p>补全 dir_lookup 函数，查找某个目录下是否存在指定的文件。（提示： 使用file_get_block可以将某个指定文件指向的磁盘块读入内存）。</p>
-<h3 id="Thinking-5-7">Thinking 5.7<a class="post-anchor" href="#Thinking-5-7"></a></h3><p>阅读 user/file.c ，你会发现很多函数中都会将一个 struct Fd * 型的 指针转换为 struct Filefd * 型的指针，请解释为什么这样的转换可行。</p>
+<h3 id="Thinking-5-7">Thinking 5.7<a class="post-anchor" href="#Thinking-5-7"></a></h3><p>阅读 user/file.c ，你会发现很多函数中都会将一个 struct Fd <em> 型的 指针转换为 struct Filefd </em> 型的指针，请解释为什么这样的转换可行。</p>
 <p>答：</p>
 <p>在user/fd.h中可以找到Fd和Filefd的定义：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// file descriptor</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Fd</span> {</span><br>	u_int fd_dev_id;<br>	u_int fd_offset;<br>	u_int fd_omode;<br>};<br><br><span class="hljs-comment">// file descriptor + file</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Filefd</span> {</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Fd</span> <span class="hljs-title">f_fd</span>;</span><br>	u_int f_fileid;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">File</span> <span class="hljs-title">f_file</span>;</span><br>};<br></code></pre></td></tr></tbody></table></figure>
-
-<p>可以看到Filefd结构体的第一个成员就是Fd结构体，从指针角度， struct Fd * 型的指针与struct Filefd * 型的指针所指向的数据的起始部分是相同的，转换后可以增加Filefd中的新属性。</p>
+<p>可以看到Filefd结构体的第一个成员就是Fd结构体，从指针角度， struct Fd <em> 型的指针与struct Filefd </em> 型的指针所指向的数据的起始部分是相同的，转换后可以增加Filefd中的新属性。</p>
 <h3 id="Thinking-5-8">Thinking 5.8<a class="post-anchor" href="#Thinking-5-8"></a></h3><p>请解释 Fd, Filefd, Open 结构体及其各个域的作用。比如各个结构体 会在哪些过程中被使用，是否对应磁盘上的物理实体还是单纯的内存数据等。说明形式自定，要求简洁明了，可大致勾勒出文件系统数据结构与物理实体的对应关系 与设计框架。</p>
 <p>答：</p>
 <p>Fd结构体：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// file descriptor</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Fd</span> {</span><br>	u_int fd_dev_id; 	<span class="hljs-comment">// 设备id：用于校验等操作</span><br>	u_int fd_offset; 	<span class="hljs-comment">// 文件指针偏移：在write/read时标记当前读写位置</span><br>	u_int fd_omode;		<span class="hljs-comment">// 文件权限：在进行文件的write操作时需要校验是否可写</span><br>    					<span class="hljs-comment">// 低两位00表示只读，01表示只写，10表示读写均可</span><br>};<br></code></pre></td></tr></tbody></table></figure>
-
 <p>Filefd结构体：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// file descriptor + file</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Filefd</span> {</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Fd</span> <span class="hljs-title">f_fd</span>;</span> 	<span class="hljs-comment">// 文件描述符：同上</span><br>	u_int f_fileid; 	<span class="hljs-comment">// 文件id：用于fsipc_close等根据id修改文件的操作</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">File</span> <span class="hljs-title">f_file</span>;</span> <span class="hljs-comment">// 文件控制块：对应磁盘上的物理实体</span><br>};<br></code></pre></td></tr></tbody></table></figure>
-
 <p>Open结构体：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Open</span> {</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">File</span> *<span class="hljs-title">o_file</span>;</span> <span class="hljs-comment">// 映射文件控制块的指针：对应磁盘上的物理实体</span><br>	u_int o_fileid;		 <span class="hljs-comment">// 文件id：同上</span><br>	<span class="hljs-keyword">int</span> o_mode;			 <span class="hljs-comment">// 文件读写权限：同上</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Filefd</span> *<span class="hljs-title">o_ff</span>;</span> <span class="hljs-comment">// 文件描述符：同上</span><br>};<br></code></pre></td></tr></tbody></table></figure>
-
 </body></html>
 
   
@@ -352,7 +349,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

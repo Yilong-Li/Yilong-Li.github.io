@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -212,12 +212,10 @@
     </div>
     <html><head></head><body><h2 id="练习0-1">练习0.1<a class="post-anchor" href="#练习0-1"></a></h2><p>在 bash 中分别输入</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">echo “Hello Ubuntu”<br><br>bash –version<br><br>ls<br></code></pre></td></tr></tbody></table></figure>
-
 <p>三条命令，简单思考其回显结果</p>
 <h2 id="思考0-1">思考0.1<a class="post-anchor" href="#思考0-1"></a></h2><p>通过你的使用经验，简单分析 CLI Shell，GUI Shell 在你使用过程中的各自优劣（100 字以内）</p>
 <h2 id="练习-0-2">练习 0.2<a class="post-anchor" href="#练习-0-2"></a></h2><p>执行如下命令,并查看结果</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">echo first<br>echo second > output.txt<br>echo third > output.txt<br>echo forth > > output.txt<br></code></pre></td></tr></tbody></table></figure>
-
 <p>ctags，很好用的小工具</p>
 <p>(若实验环境中tree命令无效，输入sudo apt-get install tree命令安装，后面locate、tmux等同理)</p>
 <h2 id="练习0-3">练习0.3<a class="post-anchor" href="#练习0-3"></a></h2><p>在/home/17xxxxxx_2019_jac/learnGit（已init）目录下创建一个名为README.txt的文件。这时使用 git status > Untracked.txt 。</p>
@@ -235,9 +233,9 @@
 <p>在文件里加入Testing 1，add，commit，提交说明写 1。</p>
 <p>模仿上述做法，把1分别改为 2 和 3，再提交两次。</p>
 <p>使用 git log命令查看一下提交日志，看是否已经有三次提交了？记下提交说明为 3 的哈希值1。</p>
-<p>开动时光机！使用 git reset –hard HEAD^ ，现在再使用git log，看看什么没了？</p>
-<p>找到提交说明为1的哈希值，使用 git reset –hard <hash-code> ，再使用git log，看看什么没了？</hash-code></p>
-<p>现在我们已经回到过去了，为了再次回到未来，使用 git reset –hard <hash-code> ，再使用git log，我胡汉三又回来了！</hash-code></p>
+<p>开动时光机！使用 git reset —hard HEAD^ ，现在再使用git log，看看什么没了？</p>
+<p>找到提交说明为1的哈希值，使用 git reset —hard <hash-code> ，再使用git log，看看什么没了？</hash-code></p>
+<p>现在我们已经回到过去了，为了再次回到未来，使用 git reset —hard <hash-code> ，再使用git log，我胡汉三又回来了！</hash-code></p>
 <h2 id="思考题0-5">思考题0.5<a class="post-anchor" href="#思考题0-5"></a></h2><p>思考下面四个描述，你觉得哪些正确，哪些错误，请给出你参考的资料或实验证据。</p>
 <p>克隆时所有分支均被克隆，但只有HEAD指向的分支被检出。</p>
 <p>克隆出的工作区中执行 git log、git status、git checkout、git commit等操作不会去访问远程版本库。</p>
@@ -312,7 +310,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

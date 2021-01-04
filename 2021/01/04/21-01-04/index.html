@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -216,17 +216,38 @@
     </div>
     <html><head></head><body><h2 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h2><p>看到是斐波那契数, 默默写了个时间复杂度和空间复杂度都是$O(n)$的解法……</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">执行耗时:0 ms,击败了100.00% 的Java用户<br>内存消耗:35.1 MB,击败了67.02% 的Java用户<br></code></pre></td></tr></tbody></table></figure>
-
 <p>因为限制了N的大小, 理论上你甚至可以打表:</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{<br>    <span class="hljs-keyword">int</span>[] fibArrays = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">31</span>];<br>    fibArrays[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    fibArrays[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i <= n; i++) {<br>      fibArrays[i] = fibArrays[i - <span class="hljs-number">1</span>] + fibArrays[i - <span class="hljs-number">2</span>];<br>    }<br>    <span class="hljs-keyword">return</span> fibArrays[n];<br>  }<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>不过我这种解法在面试官面前显然毫无亮点啊……下面是膜拜官方题解时间.</p>
 <h2 id="官方题解">官方题解<a class="post-anchor" href="#官方题解"></a></h2><h3 id="法1-动态规划">法1: 动态规划<a class="post-anchor" href="#法1-动态规划"></a></h3><p>和我的差不多, 可以进一步优化空间复杂度.</p>
-<h3 id="法2-矩阵快速幂">法2: 矩阵快速幂<a class="post-anchor" href="#法2-矩阵快速幂"></a></h3><p>$$<br>\left[\begin{array}{cc}<br>1 & 1 \<br>1 & 0<br>\end{array}\right]\left[\begin{array}{c}<br>F(n) \<br>F(n-1)<br>\end{array}\right]=\left[\begin{array}{c}<br>F(n)+F(n-1) \<br>F(n)<br>\end{array}\right]=\left[\begin{array}{c}<br>F(n+1) \<br>F(n)<br>\end{array}\right]<br>$$</p>
-<p>因此有:<br>$$<br>\left[\begin{array}{c}<br>F(n+1) \<br>F(n)<br>\end{array}\right]=\left[\begin{array}{ll}<br>1 & 1 \<br>1 & 0<br>\end{array}\right]^{n}\left[\begin{array}{l}<br>F(1) \<br>F(0)<br>\end{array}\right]<br>$$<br>所以只要计算矩阵$[1,1;1,0]$的$n$次幂就能得到第N项的值.</p>
+<h3 id="法2-矩阵快速幂">法2: 矩阵快速幂<a class="post-anchor" href="#法2-矩阵快速幂"></a></h3><script type="math/tex; mode=display">
+\left[\begin{array}{cc}
+1 & 1 \\
+1 & 0
+\end{array}\right]\left[\begin{array}{c}
+F(n) \\
+F(n-1)
+\end{array}\right]=\left[\begin{array}{c}
+F(n)+F(n-1) \\
+F(n)
+\end{array}\right]=\left[\begin{array}{c}
+F(n+1) \\
+F(n)
+\end{array}\right]</script><p>因此有:</p>
+<script type="math/tex; mode=display">
+\left[\begin{array}{c}
+F(n+1) \\
+F(n)
+\end{array}\right]=\left[\begin{array}{ll}
+1 & 1 \\
+1 & 0
+\end{array}\right]^{n}\left[\begin{array}{l}
+F(1) \\
+F(0)
+\end{array}\right]</script><p>所以只要计算矩阵$[1,1;1,0]$的$n$次幂就能得到第N项的值.</p>
 <p>(要考试, 先留着, 过两天写)</p>
-<h3 id="法3-通项公式">法3: 通项公式<a class="post-anchor" href="#法3-通项公式"></a></h3><p>$$<br>F(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^{n}-\left(\frac{1-\sqrt{5}}{2}\right)^{n}\right]<br>$$</p>
-</body></html>
+<h3 id="法3-通项公式">法3: 通项公式<a class="post-anchor" href="#法3-通项公式"></a></h3><script type="math/tex; mode=display">
+F(n)=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^{n}-\left(\frac{1-\sqrt{5}}{2}\right)^{n}\right]</script></body></html>
 
   
     <div class="post-reward">
@@ -289,7 +310,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -237,28 +237,22 @@
 </ol>
 <h2 id="物理内存管理">物理内存管理<a class="post-anchor" href="#物理内存管理"></a></h2><h3 id="初始化流程说明">初始化流程说明<a class="post-anchor" href="#初始化流程说明"></a></h3><p>在Lab2，内核加载完毕后跳转到<code>init/main.c</code>下执行程序， <code>main.c</code>内部调用了<code>mips_init();</code>，这是一个死循环函数，如果停止则会通过<code>panic</code>报错。那么<code>panic</code>是啥呢？在<code>include/printf.h</code>下可以找到定义：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> panic(...) _panic(__FILE__, __LINE__, __VA_ARGS__)</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>具体查看<code>include/printf.c</code>，发现在打印错误信息之后就陷入死循环等待中断处理。</p>
 <p><code>mips_init();</code>通过<code>mips_detect_memory();</code>，<code>mips_vm_init();</code>，<code>page_init();</code>三个函数来实现物理内存管理的相关数据结构的初始化。</p>
 <h3 id="内存控制块">内存控制块<a class="post-anchor" href="#内存控制块"></a></h3><p>4KB为一页，内存分配也是以页为基本单位进行。为了记录分配情况，课程中使用Page结构体保存一页内存相关信息，定义在<code>include/pamp.h</code>中：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">LIST_ENTRY</span><span class="hljs-params">(Page)</span> Page_LIST_entry_t</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Page</span> {</span><br>	Page_LIST_entry_t pp_link;	<span class="hljs-comment">/* free list link */</span><br><br>	<span class="hljs-comment">// Ref is the count of pointers (usually in page table entries)</span><br>	<span class="hljs-comment">// to this page.  This only holds for pages allocated using</span><br>	<span class="hljs-comment">// page_alloc.  Pages allocated at boot time using pmap.c's "alloc"</span><br>	<span class="hljs-comment">// do not have valid reference count fields.</span><br><br>	u_short pp_ref;<br>};<br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>pp_link</code>的类型为<code>LIST_ENTRY(Page)</code>，其定义可以在<code>include/queue.h</code>中找到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Use this inside a structure "LIST_ENTRY(type) field" to use</span><br><span class="hljs-comment"> * x as the list piece.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * The le_prev points at the pointer to the structure containing</span><br><span class="hljs-comment"> * this very LIST_ENTRY, so that if we want to remove this list entry,</span><br><span class="hljs-comment"> * we can do *le_prev = le_next to update the structure pointing at us.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_ENTRY(type)                                                \</span><br>        <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>                                                                \<br>                <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">type</span> *<span class="hljs-title">le_next</span>;</span>   <span class="hljs-comment">/* next element */</span>                      \<br>                <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">type</span> **<span class="hljs-title">le_prev</span>;</span>  <span class="hljs-comment">/* address of previous next element */</span>  \<br>        }<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这就是在上次的总结中提过的特殊的双重链表结构，好处是删除方便。所以在<code>Page</code>结构体中，<code>pp_link</code>有两个域，其中<code>le_next</code>指向下一个页结构体，<code>le_prev</code>指向上一个页结构体的<code>pp_link</code>的<code>le_next</code>。<code>(listelm)->field.le_prev</code>是<code>listelm</code>上一个<code>elm</code>的<code>le_next</code>，让它指向新增的<code>elm</code>。关于这一点可以在<code>include/queue.h</code>中的<code>LIST_INSERT_AFTER</code>定义中找到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">(elm)->field.le_prev = &((listelm)->field.le_next);<br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>pp_ref</code>则是这一页面的引用次数。所以Page结构体大概就是一张存储页使用信息、地址的链表，本身并不是物理内存页。之后的exercise2.1就是关于链表操作函数<code>LIST_INSERT_HEAD</code>和<code>LIST_INSERT_TAIL</code>的补全。单从插入效率的角度<code>LIST_INSERT_HEAD</code>函数显然更好一些，后者还要遍历链表。</p>
 <p>这边的链表操作函数实在是绕……比如<code>LIST_INSERT_BEFORE</code>函数：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Insert the element "elm" *before* the element "listelm" which is</span><br><span class="hljs-comment"> * already in the list.  The "field" name is the link element</span><br><span class="hljs-comment"> * as above.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_INSERT_BEFORE(listelm, elm, field) do {                    \</span><br>                (elm)->field.le_prev = (listelm)->field.le_prev;        \<br>                LIST_NEXT((elm), field) = (listelm);                    \<br>                *(listelm)->field.le_prev = (elm);                      \	<br>                (listelm)->field.le_prev = &LIST_NEXT((elm), field);    \	<br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这里的9是<code>*((listelm)->field.le_prev)</code>，也就是<code>listelm</code>的上一个<code>preelm</code>的<code>next</code>指向插入的<code>elm</code>；10则是让<code>listelm</code>的<code>prev</code>指针指向<code>elm</code>的<code>next</code>指针，从而实现链表的前插操作。</p>
 <p>再次祭出这张群友发的图（现在想想数据结构是大一下，彼时是大二下的助教们大概率就是从OS课上获得的灵感）：</p>
 <p><a href="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" alt></a></p>
 <p>所以<code>LIST_REMOVE</code>函数就是这么写的：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Remove the element "elm" from the list.</span><br><span class="hljs-comment"> * The "field" name is the link element as above.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_REMOVE(elm, field) do {                                    \</span><br>                <span class="hljs-keyword">if</span> (LIST_NEXT((elm), field) != <span class="hljs-literal">NULL</span>)                    \<br>                        LIST_NEXT((elm), field)->field.le_prev =        \<br>                                        (elm)->field.le_prev;           \<br>                *(elm)->field.le_prev = LIST_NEXT((elm), fieldc);       \<br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>要从链表中删除<code>elm</code>，那么就先把<code>elm</code>的下一个元素的<code>prev</code>指针设置为<code>elm</code>的前一个元素的<code>next</code>，再将<code>elm</code>的上一个<code>preelm</code>的<code>next</code>指向后一个<code>elm</code>。删除这个元素只需知道其自身。</p>
 <h3 id="内存分配和释放">内存分配和释放<a class="post-anchor" href="#内存分配和释放"></a></h3><p>在exercise2.2需要补全<code>mips_detect_memory()</code>函数，这是我们init的第一步。这里需要让操作系统知道可用的物理内存的大小和范围，也就是对提示的四个全局变量进行设置。根据输出判断extra为0，gxemul模拟内核运行环境的时候并没有模拟插外置存储的情况。</p>
 <p>之后在<code>mips_vm_init()</code>中完成了对操作系统内核所必须的数据结构 – 页目录（pgdir）、内存控制块数组（pages）和进程控制块数组（envs）所需的物理内存的分配，这一部分会在最后的启动流程中再梳理一遍。在完成对这几个关键部分的内存分配之后，剩余的内存就可以加入到空闲链表中，这一步需要用到<code>page_init()</code>函数，也就是exercise2.3的实验内容。</p>
@@ -278,35 +272,26 @@
 <h3 id="创建页表">创建页表<a class="post-anchor" href="#创建页表"></a></h3><p>在exercise2.5，需要对<code>mm/pmap.c</code>中的<code>boot_pgdir_walk</code>和<code>pgdir_walk</code>函数进行填充，其中<code>boot_pgdir_walk</code>是在内核刚启动的时候运行，通过<code>alloc</code>直接以字节为单位分配物理内存；后者在空闲页面链表初始化之后运行，使用<code>page_alloc</code>以页为单位分配物理内存。</p>
 <p>首先来看看<code>boot_pgdir_walk</code>：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Overview:</span><br><span class="hljs-comment"> 	Get the page table entry for virtual address `va` in the given</span><br><span class="hljs-comment"> 	page directory `pgdir`.</span><br><span class="hljs-comment">	If the page table is not exist and the parameter `create` is set to 1,</span><br><span class="hljs-comment">	then create it.*/</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> Pte *<span class="hljs-title">boot_pgdir_walk</span><span class="hljs-params">(Pde *pgdir, u_long va, <span class="hljs-keyword">int</span> create)</span></span><br><span class="hljs-function"></span>{<br><br>    Pde *pgdir_entryp;<br>    Pte *pgtable, *pgtable_entry;<br><br>    <span class="hljs-comment">/* Step 1: Get the corresponding page directory entry and page table. */</span><br>    <span class="hljs-comment">/* Hint: Use KADDR and PTE_ADDR to get the page table from page directory</span><br><span class="hljs-comment">     * entry value. */</span><br>    pgdir_entryp = pgdir + PDX(va);<br>    <span class="hljs-comment">// 通过 PDX(va) 来获得一个虚拟地址对应的页目录索引</span><br>    <span class="hljs-comment">// 凭借索引在页目录中得到对应的二级页表的基址(物理地址)</span><br><br>    <span class="hljs-keyword">if</span> ((*pgdir_entryp) && PTE_V)		<span class="hljs-comment">// 检测地址是否有效</span><br>    {<br>        pgtable = (Pte *)KADDR(PTE_ADDR(*pgdir_entryp));<br>        <span class="hljs-comment">// 把这个物理地址转化为内核虚拟地址(KADDR)</span><br>    }<br><br>    <span class="hljs-comment">/* Step 2: If the corresponding page table is not exist and parameter `create`</span><br><span class="hljs-comment">     * is set, create one. And set the correct permission bits for this new page</span><br><span class="hljs-comment">     * table. */</span><br>    <span class="hljs-comment">// 如果虚拟地址所对应的二级页表不存在</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (create == <span class="hljs-number">1</span>)<br>    <span class="hljs-comment">// 为这个虚拟地址创建一个新的页表</span><br>    {<br>        pgtable = (Pte *)alloc(BY2PG, BY2PG, <span class="hljs-number">1</span>);<br>        <span class="hljs-comment">// 申请一页物理内存来存放这个页表</span><br>        <span class="hljs-comment">// 将它的物理地址赋值给对应的页目录项</span><br>        <br>        *pgdir_entryp = PADDR(pgtable) | PTE_V;<br>        <span class="hljs-comment">// 设置好页目录项的权限位</span><br>    }<br><br>    <span class="hljs-comment">/* Step 3: Get the page table entry for `va`, and return it. */</span><br>    pgtable_entry = &pgtable[PTX(va)];<br>    <span class="hljs-comment">// 通过 PTX(va) 获得这个虚存地址对应的页表索引</span><br>    <br>    <span class="hljs-keyword">return</span> pgtable_entry;<br>    <span class="hljs-comment">// 从页表中得到对应的页面的物理地址</span><br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>返回值是<code>Pte</code>，输入值则包括<code>Pde</code>的指针，这两者的定义在<code>include/mmu.h</code>中可以找到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> u_long Pde;<br><span class="hljs-keyword">typedef</span> u_long Pte;<br></code></pre></td></tr></tbody></table></figure>
-
 <p>两者都是<code>unsigned long</code>类型，长度为32位，而虚拟地址的长度也是32位，方便转换。</p>
 <p>这里理解还不够深入，援引学长的解释：</p>
 <blockquote>
 <p>下面说明一下<code>Pde*</code>的理解（<code>Pde*</code>和<code>Pte*</code>是一样的）</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">Pde *pgdir_entryp;<br></code></pre></td></tr></tbody></table></figure>
-
 <p>在<code>include/mmu.h</code>中定义了</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span>` `u_long Pde;<br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>Pde</code>的类型就是<code>unsigned long</code>，占4B。它的指针是要寻找虚拟空间，大小也是一个页表项，4B。<code>Pde</code>和<code>Pde*</code>都是4B，使它们的转换非常方便。指针实际上一块以它为地址的内存单元。所以<code>Pde</code>的指针(<code>Pde*</code>)所指的地址就是虚拟地址，而这块地址的内容(<code>Pde</code>)是物理地址，所以实现了虚拟地址和物理地址的映射关系。</p>
 </blockquote>
 <p>而<code>pgdir_walk</code>函数也与之类似，区别在于创建时的处理：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (create == <span class="hljs-number">1</span>)<br>    {<br>        <span class="hljs-keyword">if</span> (page_alloc(&ppage) == -E_NO_MEM) <span class="hljs-comment">// out of memory.</span><br>        {<br>            <span class="hljs-keyword">return</span> -E_NO_MEM;<br>        }<br>    	<span class="hljs-comment">// 已经申请好了页，传入的指针已经改变</span><br>        pgtable = page2kva(ppage);<br>        *pgdir_entryp = PADDR(pgtable) | PTE_R | PTE_V;<br>    	<span class="hljs-comment">// PTE_R：脏位</span><br>	    ppage->pp_ref++;<br>    	<span class="hljs-comment">// 这个设置ref的操作不要忘了……</span><br>    }<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="地址映射">地址映射<a class="post-anchor" href="#地址映射"></a></h3><p>将相应的物理页面地址填入对应虚拟地址的页表项，填充<code>mm/pmap.c</code>中的<code>boot_map_segment</code>函数。</p>
 <p>在exercise2.6，将[va, va+size)的虚拟地址映射到物理地址[pa,pa+size)中，根据perm对这个地址标记位更新，实现了在虚拟地址所对应的二级页表里存放（物理页框的）物理地址。</p>
 <p>通过for循环实现，函数内还给了临时变量。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Step 2: Map virtual address space to physical address. */</span><br><span class="hljs-comment">/* Hint: Use `boot_pgdir_walk` to get the page table </span><br><span class="hljs-comment"> * entry of virtual address `va`. */</span><br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i < (<span class="hljs-built_in">size</span> / BY2PG); i++)<br><span class="hljs-comment">// 这里回头记得修改，感觉Pb说的很有道理……</span><br>{<br>    va_temp = va + i * BY2PG;	<br>    <span class="hljs-comment">// 突然发现这里可以用更好的方式……</span><br>    pgtable_entry = boot_pgdir_walk(pgdir, va_temp, <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 返回页表项的虚拟地址</span><br>    *pgtable_entry = (pa + i * BY2PG) | perm | PTE_V;<br>    <span class="hljs-comment">// 指向物理地址，设置标记位</span><br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这个函数完成了对于[va,va+size)这一片虚拟地址的页表的设置，把对应的物理地址存入了对应的页表中。</p>
 <h3 id="page-insert-and-page-remove">page insert and page remove<a class="post-anchor" href="#page-insert-and-page-remove"></a></h3><p>在exercise2.7，需要填充<code>page_insert</code>函数，该函数将va虚拟地址和其要对应的物理页pp的映射关系以perm的权限设置加入页目录。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">page_insert</span><span class="hljs-params">(Pde *pgdir, struct Page *pp, u_long va, u_int perm)</span></span>;<br></code></pre></td></tr></tbody></table></figure>
-
 <p>然后就是复习汇编知识……想到我的78分祭祖理论课瑟瑟发抖……从MIPS手册中查找tlbp和tlbwi指令。</p>
 <blockquote>
 <p>Format: TLBP MIPS32<br>Purpose: To find a matching entry in the TLB.</p>
@@ -380,7 +365,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

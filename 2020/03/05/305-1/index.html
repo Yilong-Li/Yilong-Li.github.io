@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -228,9 +228,14 @@
 <li>$sin^2(x)-cos^2(x)=1-2cos^2(x)$</li>
 </ul>
 <p>其中三角函数的化简较为复杂。</p>
-<p>前者，我们注意到，对于形如<br>$$<br>a<em>x^i</em>sin^j(x)<em>cos^k(x)<br>$$<br>的项，能够以此规则化简的只有两种形式——<br>$$<br>a</em>x^i<em>sin^{j+2}(x)</em>cos^{k-2}(x)<br>$$</p>
-<p>$$<br>a<em>x^i</em>sin^{j-2}(x)*cos^{k+2}(x)<br>$$</p>
-<p>化简后两项合并为——<br>$$<br>2<em>a</em>x^i<em>sin^{j-2}(x)</em>cos^{k-2}(x)<br>$$<br>因此我们可以遍历容器并检查邻项是否存在，从而化简；而后者，在<code>j=2|k=2</code>时是肯定可以提升性能分的，方法与$sin^2(x)+cos^2(x)=1$的类似。</p>
+<p>前者，我们注意到，对于形如</p>
+<script type="math/tex; mode=display">
+a*x^i*sin^j(x)*cos^k(x)</script><p>的项，能够以此规则化简的只有两种形式——</p>
+<script type="math/tex; mode=display">
+a*x^i*sin^{j+2}(x)*cos^{k-2}(x)</script><script type="math/tex; mode=display">
+a*x^i*sin^{j-2}(x)*cos^{k+2}(x)</script><p>化简后两项合并为——</p>
+<script type="math/tex; mode=display">
+2*a*x^i*sin^{j-2}(x)*cos^{k-2}(x)</script><p>因此我们可以遍历容器并检查邻项是否存在，从而化简；而后者，在<code>j=2|k=2</code>时是肯定可以提升性能分的，方法与$sin^2(x)+cos^2(x)=1$的类似。</p>
 <p>当然，个人觉得除非针对后两点构造数据，其出现的机率并不大，是否要为了性能分牺牲性能也是一个问题。</p>
 <p><strong>也求有想法的大佬交流下更好的方法与隐藏的内卷点(～￣▽￣)～</strong></p>
 <p>为了获得更多的性能分，个人目前想到了以下注意点：</p>
@@ -252,9 +257,9 @@
 </ul>
 <p>其中三角函数的化简较为复杂。</p>
 <p>前者，我们注意到，对于形如$a*x^i*sin^j(x)*cos^k(x) $<br>的项，能够以此规则化简的只有两种形式——</p>
-<p>$$<br>a*x^i*sin^{j+2}(x)*cos^{k-2}(x)<br>$$</p>
-<p>$$<br>a*x^i*sin^{j-2}(x)*cos^{k+2}(x)<br>$$</p>
-<p>化简后两项合并为——$2*a*x^i*sin^{j-2}(x)*cos^{k-2}(x)$</p>
+<script type="math/tex; mode=display">
+a\*x^i\*sin^{j+2}(x)\*cos^{k-2}(x)</script><script type="math/tex; mode=display">
+a\*x^i\*sin^{j-2}(x)\*cos^{k+2}(x)</script><p>化简后两项合并为——$2*a*x^i*sin^{j-2}(x)*cos^{k-2}(x)$</p>
 <p>因此我们可以遍历容器并检查邻项是否存在，从而化简；而后者，在<code>j=2|k=2</code>时是肯定可以提升性能分的，方法与$sin^2(x)+cos^2(x)=1$的类似。</p>
 <p>当然，个人觉得除非针对后两点构造数据，其出现的机率并不大，是否要为了性能分牺牲性能也是一个问题。</p>
 <p><strong>也求有想法的大佬交流下更好的方法与隐藏的内卷点(～￣▽￣)～</strong></p>
@@ -331,7 +336,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

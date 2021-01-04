@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -225,7 +225,6 @@
 </ol>
 <p>这里，关于第六步，有两种办法：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">git push -u origin master<br>git push -f origin master<br></code></pre></td></tr></tbody></table></figure>
-
 <p>后者是强制上传覆盖远程文件。</p>
 <p>最后总算是提交成功了，附上仓库地址——</p>
 <p><a href="https://github.com/MondayCha/BUAA-CO-2019" target="_blank" rel="noopener">https://github.com/MondayCha/BUAA-CO-2019</a></p>
@@ -294,7 +293,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

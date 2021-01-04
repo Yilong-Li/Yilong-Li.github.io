@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -226,7 +226,7 @@
 <p>工作区>>>>暂存区>>>>仓库</p>
 <p>git add把文件从工作区>>>>暂存区，git commit把文件从暂存区>>>>仓库，</p>
 <p>git diff查看工作区和暂存区差异，</p>
-<p>git diff –cached查看暂存区和仓库差异，</p>
+<p>git diff —cached查看暂存区和仓库差异，</p>
 <p>git diff HEAD 查看工作区和仓库的差异，</p>
 <p>git add的反向命令git checkout，撤销工作区修改，即把暂存区最新版本转移到工作区，</p>
 <p>git commit的反向命令git reset HEAD，就是把仓库最新版本转移到暂存区。</p>
@@ -238,15 +238,12 @@
 <h3 id="删除文件">删除文件<a class="post-anchor" href="#删除文件"></a></h3><p>从版本库中删除文件<code>git rm</code></p>
 <p>并且使用<code>git commit</code>进行提交操作</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">$ git rm test.txt<br>rm 'test.txt'<br><br>$ git commit -m <span class="hljs-string">"remove test.txt"</span><br>[master d46f35e] <span class="hljs-built_in">remove</span> test.txt<br> <span class="hljs-number">1</span> file changed, <span class="hljs-number">1</span> deletion(-)<br> <span class="hljs-keyword">delete</span> mode <span class="hljs-number">100644</span> test.txt<br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>git checkout</code>是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
 <h3 id="远程仓库">远程仓库<a class="post-anchor" href="#远程仓库"></a></h3><p>ssh密钥的配置在研究HEXO的时候做过了，感动！</p>
 <h3 id="添加远程库">添加远程库<a class="post-anchor" href="#添加远程库"></a></h3><p>origin: Git远程库的名字</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">$ git push -u origin master<br></code></pre></td></tr></tbody></table></figure>
-
 <p>只要本地作了提交，就可以通过命令：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">$ git push origin master<br></code></pre></td></tr></tbody></table></figure>
-
 <p>把本地<code>master</code>分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！</p>
 <ul>
 <li>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code>；</li>
@@ -323,7 +320,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

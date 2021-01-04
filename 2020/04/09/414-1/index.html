@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -217,7 +217,6 @@
 <p>而对于对于存储人群信息的队列，我采用了单独的WaitMul、ElevatorMul封装<code>HashMap<Integer, Queue<Person>></code>的方式，指向来去楼层，并配置各种方法，外部可以对Multitude进行塞人取人的操作，Multitude内部的存储方式是不透明的。</p>
 <h3 id="1-2-性能优化策略">1.2 性能优化策略<a class="post-anchor" href="#1-2-性能优化策略"></a></h3><h4 id="1-2-1-第五次作业">1.2.1 第五次作业<a class="post-anchor" href="#1-2-1-第五次作业"></a></h4><p>性能上，本次作业我采用的是在SSTF的基础上，自己瞎琢磨的“选择最短路径”贪心算法，比较电梯原目标与反方向新目标的最短距离：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cntFloor, <span class="hljs-keyword">int</span> goalFloor, <span class="hljs-keyword">int</span> tmpFloor, <span class="hljs-keyword">int</span> tmpGoal)</span> </span>{<br>	<span class="hljs-keyword">int</span> dis1 = Math.abs(goalFloor - cntFloor) + Math.abs(goalFloor - tmpFloor) <br>        + Math.abs(tmpGoal - tmpFloor);<br>	<span class="hljs-keyword">int</span> dis2 = Math.abs(cntFloor - tmpFloor) + Math.abs(tmpGoal - tmpFloor) <br>        + Math.abs(goalFloor - tmpGoal);<br>    <span class="hljs-keyword">if</span> (dis1 > dis2) {<br>    	<span class="hljs-keyword">return</span> tmpGoal;<br>    } <span class="hljs-keyword">else</span> {<br>    	<span class="hljs-keyword">return</span> goalFloor;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>然而这种方法有很大的缺陷……在某些特定楼层会有小几率出现反复横跳……最后逼近截止时间一直在改，又增加了防止锁死的机制（当检测到死循环时弃用这一优化），代价是拉低了性能，最后性能分16多。</p>
 <h4 id="1-2-2-第六次作业">1.2.2 第六次作业<a class="post-anchor" href="#1-2-2-第六次作业"></a></h4><p>感谢CJB，他在第五次作业得到很高的性能分，也慷概地将他的算法分享给了我们——</p>
 <blockquote>
@@ -226,12 +225,10 @@
 </blockquote>
 <p>所以在第六次多电梯，我的单电梯也采用了相同（也许）的策略。</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/***************</span><br><span class="hljs-comment"> * SSTF</span><br><span class="hljs-comment"> * *************/</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getGoalFloor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cnt, <span class="hljs-keyword">boolean</span> isEleFull)</span> </span>{<br>    <span class="hljs-comment">// 传入参数：电梯当前楼层、电梯满员状态</span><br>    <span class="hljs-keyword">if</span> (elevator.isEmpty()) {<br>        <span class="hljs-keyword">return</span> scheduler.getMinDisWhenEmpty(cnt, eleId);<br>        <span class="hljs-comment">// 电梯为空时，按情况进入wait状态</span><br>    } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-keyword">int</span> inReq = elevator.getMinDisReq(cnt, goalFloor);<br>        <span class="hljs-keyword">if</span> (isEleFull) {<br>            <span class="hljs-keyword">return</span> inReq;<br>            <span class="hljs-comment">// 电梯满员时，不考虑外部新请求</span><br>        }<br>        <span class="hljs-keyword">int</span> outReq = scheduler.getMinDis(cnt, inReq, eleId);<br>        <span class="hljs-keyword">if</span> (outReq == LOST) {<br>            <span class="hljs-keyword">return</span> inReq;<br>            <span class="hljs-comment">// 外部没有请求，直接相应内部请求</span><br>        } <span class="hljs-keyword">else</span> {<br>            <span class="hljs-keyword">return</span> Math.abs(outReq - cnt) < Math.abs(inReq - cnt) ? outReq : inReq;<br>            <span class="hljs-comment">// 选择最近上楼或最近出电梯的</span><br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>射射CJB！CJB, YYDS! 最后性能分19多。</p>
 <h4 id="1-2-3-第七次作业">1.2.3 第七次作业<a class="post-anchor" href="#1-2-3-第七次作业"></a></h4><p>在第七次作业沿用了CJB的SSTF策略以及部分，为啥不用LOOK呢？我感觉这种性能分权重还是优先接人收益高。</p>
 <p>而对于换乘，我用到了两组数组：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[][] canStopOfType = {<br>    <span class="hljs-comment">/*********1***********************9****************15****************/</span><br>    {<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>},<br>    {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>},<br>    {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>}<br>    <span class="hljs-comment">/*********1***********************9****************15****************/</span><br>};<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[][] mustFromName = {<br>    <span class="hljs-comment">/********(1)**********************9***************(15)***************/</span><br>    {<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>},<br>    {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>},<br>    {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>}<br>    <span class="hljs-comment">/*********1***********************9****************15****************/</span><br>};<br><span class="hljs-comment">/*** A B C ***/</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>canStopOfType</code>存储的是电梯可以停的楼层，<code>mustFromName</code>数组则是电梯必须接受这一楼层的请求（1和15层三个类型都可以，就让电梯自由竞争）。</p>
 <p>换乘时会把人从电梯重新塞进等待队列，所以之后就与没有换乘的情况一样了。其实感觉5层作为换乘站也不错……后来不想改了……最后性能分19多。</p>
 <h2 id="二、可扩展性">二、可扩展性<a class="post-anchor" href="#二、可扩展性"></a></h2><p>(2)从功能设计和性能设计的平衡方面，更细和总结自己<strong>第三次作业</strong>架构设计的可扩展性</p>
@@ -240,7 +237,7 @@
 <p><a href="https://www.cnblogs.com/i-love-ange-and-oo-forever/p/10756828.html" target="_blank" rel="noopener">https://www.cnblogs.com/i-love-ange-and-oo-forever/p/10756828.html</a></p>
 </blockquote>
 <p>最后迭代开发的效果还算马马虎虎……但每次加入新功能都会引入不少Bug，测试花的时间很多。</p>
-<h3 id="功能设计">功能设计<a class="post-anchor" href="#功能设计"></a></h3><p>电梯是一台有限状态机，有WAIT, OPEN, CLOSE, CLOSED, PASS, UP, DOWN一共7种状态，三次作业的状态转移图都差不多，如下：![](G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\面向对象设计与构造\博客2\电梯流程图.jpg)</p>
+<h3 id="功能设计">功能设计<a class="post-anchor" href="#功能设计"></a></h3><p>电梯是一台有限状态机，有WAIT, OPEN, CLOSE, CLOSED, PASS, UP, DOWN一共7种状态，三次作业的状态转移图都差不多，如下：<a href="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\面向对象设计与构造\博客2\电梯流程图.jpg" data-caption data-fancybox="images"><img src="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\面向对象设计与构造\博客2\电梯流程图.jpg" alt></a></p>
 <p>这样做的优势是每部电梯自身都独挡一面，人可以随时选择最近的电梯、呼叫多部电梯，方便增加电梯数量的扩展。</p>
 <h3 id="性能设计">性能设计<a class="post-anchor" href="#性能设计"></a></h3><p>根据上面那个丑哭的状态转移图可知，在CLOSED, PASS两种状态下会调用获取目标楼层的方法，因此我所有的优化都只要写在获取目标楼层的方法getGoalFloor中，同样有利于迭代开发，比如第七次作业的getGoalFloor方法和前面提到过的第六次作业getGoalFloor方法比较，完全没有变化。</p>
 <h3 id="SOLID原则分析">SOLID原则分析<a class="post-anchor" href="#SOLID原则分析"></a></h3><p>以第七次作业分析：</p>
@@ -255,6 +252,7 @@
 <h2 id="三、度量分析">三、度量分析<a class="post-anchor" href="#三、度量分析"></a></h2><h3 id="3-1-第五次作业">3.1 第五次作业<a class="post-anchor" href="#3-1-第五次作业"></a></h3><p>▼ 基本结构图，MainClass启动输入线程和电梯线程，外部的楼层等待人群和内部的电梯货运人群采用了继承抽象类人群的方式，将对人的存储方式封装起来。</p>
 <p>▼ 时序图，用插件自动生成的，感觉不是很准确……感觉参看我的有限状态机图更好一点……</p>
 <p>▼ 依赖关系，还可以。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -266,7 +264,8 @@
 <th>Dpt*</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass</td>
 <td>0</td>
 <td>3</td>
@@ -354,8 +353,11 @@
 <td>3</td>
 <td>3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>▼ 复杂度，ElevatorController作为一台大状态机以及“抢人”的独立个体，自身的run方法作为状态机判断条件很多，圈复杂度也飘红；获取最优目标的getGoal方法这次写的很复杂……</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -365,7 +367,8 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass.main(String[])</td>
 <td>1</td>
 <td>1</td>
@@ -378,7 +381,7 @@
 <td>1</td>
 </tr>
 <tr>
-<td>homework.custumer.Elevator.close(HashMap<Person,  Integer>)</td>
+<td>homework.custumer.Elevator.close(HashMap<person, integer>)</person,></td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -498,7 +501,7 @@
 <td>1</td>
 </tr>
 <tr>
-<td>homework.tray.MulInside.addInsideMul(HashMap<Person,  Integer>)</td>
+<td>homework.tray.MulInside.addInsideMul(HashMap<person, integer>)</person,></td>
 <td>1</td>
 <td>2</td>
 <td>2</td>
@@ -707,8 +710,11 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>类复杂度上，ElevatorController飘红。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -717,7 +723,8 @@
 <th>1</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.custumer.Elevator</td>
 <td>1.3</td>
 <td>13</td>
@@ -767,10 +774,13 @@
 <td>2.6</td>
 <td>26</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="3-2-第六次作业">3.2 第六次作业<a class="post-anchor" href="#3-2-第六次作业"></a></h3><p>▼ 基本结构图，MainClass启动输入线程和多个电梯线程，这次放弃了继承，并且优化了传递人员的方式，降低了耦合性。</p>
 <p>▼ 时序图。</p>
 <p>▼ 依赖关系，这次的架构是在第五次的基础上修改，也差不多。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -782,7 +792,8 @@
 <th>Dpt*</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass</td>
 <td>0</td>
 <td>3</td>
@@ -862,8 +873,11 @@
 <td>1</td>
 <td>5</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>▼ 复杂度，几个寻找最优解的方法都较为复杂，比如getBestOne中用了大量循环遍历比较获取最小值，基本复杂度和圈复杂度都比较差。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -873,7 +887,8 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass.main(String[])</td>
 <td>1</td>
 <td>1</td>
@@ -1299,8 +1314,11 @@
 <td>4</td>
 <td>4</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>类复杂度上，这次的WaitMul设计由于放弃了继承关系，也不是很乐观。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1309,7 +1327,8 @@
 <th>WMC</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass</td>
 <td>1</td>
 <td>1</td>
@@ -1359,10 +1378,13 @@
 <td>3.91</td>
 <td>43</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="3-3-第七次作业">3.3 第七次作业<a class="post-anchor" href="#3-3-第七次作业"></a></h3><p>▼ 基本结构图，MainClass启动输入线程和电梯线程。</p>
 <p>▼ 时序图，这次加了SafeOutput的封装，虽然不加也没什么影响……</p>
 <p>▼ 依赖关系，同第六次作业。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1374,7 +1396,8 @@
 <th>Dpt*</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass</td>
 <td>6</td>
 <td>2</td>
@@ -1470,8 +1493,11 @@
 <td>1</td>
 <td>6</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>▼ 复杂度，问题和之前的都差不多。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1481,7 +1507,8 @@
 <th>v(G)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass.main(String[])</td>
 <td>1</td>
 <td>1</td>
@@ -2057,8 +2084,11 @@
 <td>4</td>
 <td>4</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>类复杂度也一样。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -2067,7 +2097,8 @@
 <th>WMC</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>homework.MainClass</td>
 <td>1</td>
 <td>1</td>
@@ -2127,14 +2158,15 @@
 <td>3.24</td>
 <td>81</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="四、三省吾身">四、三省吾身<a class="post-anchor" href="#四、三省吾身"></a></h2><h3 id="4-1-第五次作业">4.1 第五次作业<a class="post-anchor" href="#4-1-第五次作业"></a></h3><p>本次作业在强测中没有出现Bug，在互测中没有被Hack。</p>
 <h3 id="4-2-第六次作业">4.2 第六次作业<a class="post-anchor" href="#4-2-第六次作业"></a></h3><p>本次作业在强测中没有出现Bug，在互测中没有被Hack。</p>
 <h3 id="4-3-第七次作业">4.3 第七次作业<a class="post-anchor" href="#4-3-第七次作业"></a></h3><p>本次作业在强测中没有出现Bug，在互测中被Hack一次。</p>
 <p>这次很惨地被Rider暴捶，Rider实在是一个居住在OO网站上的狠人，最终战绩30 / 168，从头到尾穷追不舍Berserker，hack了我试了好几次也打不到的Alterego（我本地会测出他有死锁的情况），用运行超时死锁虐了我和Saber……</p>
 <p>Rider从头到尾就在提交一个数据（除了固定欺负Berserker，还会捎带暴捶我们）：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">[1.0]651-FROM-5-TO-15<br>[1.0]404-FROM-9-TO-1<br>[5.0]797-FROM-10-TO-1<br>[5.0]75-FROM-2-TO--2<br>[5.0]816-FROM-1-TO-7<br>[5.0]699-FROM-9-TO--3<br>[9.0]46-FROM-11-TO-2<br>[9.0]592-FROM--3-TO--2<br>[9.0]152-FROM-1-TO--3<br>[9.0]480-FROM-1-TO-2<br>[9.0]385-FROM--3-TO-6<br>[9.0]199-FROM--3-TO-1<br>[9.0]632-FROM-13-TO-20<br>[9.0]562-FROM-6-TO-12<br>[9.0]72-FROM-9-TO-4<br>[13.0]995-FROM-1-TO--2<br>[13.0]977-FROM-1-TO-12<br>[13.0]633-FROM-1-TO-3<br>[13.0]176-FROM-1-TO-11<br>[13.0]865-FROM-2-TO-1<br>[13.0]471-FROM-8-TO-1<br>[13.0]594-FROM-11-TO-4<br>[13.0]765-FROM-3-TO--3<br>[13.0]478-FROM-1-TO--3<br>[17.0]357-FROM-1-TO-11<br>[17.0]604-FROM-9-TO-8<br>[17.0]447-FROM-1-TO-10<br>[17.0]106-FROM-9-TO-14<br>[17.0]194-FROM-7-TO-1<br>[17.0]387-FROM-12-TO-1<br>[17.0]760-FROM-1-TO-14<br>[17.0]X1-ADD-ELEVATOR-C<br>[17.0]874-FROM-16-TO--3<br>[17.0]369-FROM-1-TO-9<br>[17.0]268-FROM-8-TO--3<br>[17.0]498-FROM--3-TO-5<br>[17.0]340-FROM-10-TO-4<br>[17.0]859-FROM-1-TO-8<br>[17.0]423-FROM-1-TO-14<br>[17.0]211-FROM--1-TO-2<br>[21.0]518-FROM-17-TO-14<br>[21.0]242-FROM-10-TO-1<br>[25.0]871-FROM--3-TO-6<br>[25.0]427-FROM--1-TO-1<br>[25.0]X2-ADD-ELEVATOR-A<br>[29.0]975-FROM-14-TO-1<br>[29.0]504-FROM-1-TO--1<br>[29.0]942-FROM-1-TO--1<br>[29.0]96-FROM-1-TO--1<br>[29.0]133-FROM--3-TO-1<br>[29.0]558-FROM-15-TO--3<br>[29.0]X3-ADD-ELEVATOR-A<br></code></pre></td></tr></tbody></table></figure>
-
 <p>单看数据，这组数据的特点是分几个时间段，在同一时刻进行大量乘客投放和电梯增加操作。</p>
 <p>那么为什么会发生死锁呢？相信我们房间的同学都很想了解为什么会发生死锁，小编对于会发生死锁这件事也感到很惊讶，但是就是发生死锁了，那么这就是发生死锁的故事了。对于这件事情大家有什么看法呢，欢迎在评论区留言哦。</p>
 <p>……言归正传……我本地将这个数据跑了1000次，也没有成功复现。而根据课程组提供的加密输出，可以发现产生死锁的样例输出中间有明显间隔期，然而CPU时间为1.2s，说明没有发生暴力轮询，而我所采用的架构是人类在每次电梯发生楼层改变时都会重新呼叫当前最近的电梯，所以……我是真的想不出来原因了……解决办法就是给wait价格时间限制试试？但我也不清楚这个的作用，毕竟直接再交一遍也过了……</p>
@@ -2214,7 +2246,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

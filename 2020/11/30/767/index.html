@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -215,8 +215,6 @@
       </div>
     </div>
     <html><head></head><body><h2 id="思路分析">思路分析<a class="post-anchor" href="#思路分析"></a></h2><h2 id="代码实现">代码实现<a class="post-anchor" href="#代码实现"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//给定一个字符串S，检查是否能重新排布其中的字母，使得两相邻的字符不同。 </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 若可行，输出任意可行的结果。若不可行，返回空字符串。 </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 示例 1: </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">//输入: S = "aab"</span><br><span class="hljs-comment">//输出: "aba"</span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 示例 2: </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">//输入: S = "aaab"</span><br><span class="hljs-comment">//输出: ""</span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 注意: </span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">// S 只包含小写字母并且长度在[1, 500]区间内。 </span><br><span class="hljs-comment">// </span><br><span class="hljs-comment">// Related Topics 堆 贪心算法 排序 字符串 </span><br><span class="hljs-comment">// 👍 167 👎 0</span><br><br><br><span class="hljs-keyword">package</span> leetcode.editor.cn;<br><br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.Comparator;<br><span class="hljs-keyword">import</span> java.util.PriorityQueue;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReorganizeString</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        Solution solution = <span class="hljs-keyword">new</span> ReorganizeString().<span class="hljs-keyword">new</span> Solution();<br>        System.out.println(solution.reorganizeString(<span class="hljs-string">"zqugrfbsznyiwbokwkpvpmeyvaosdkedbgjogzdpwawwl"</span>));<br>    }<br><br>    <span class="hljs-comment">//leetcode submit region begin(Prohibit modification and deletion)</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">reorganizeString</span><span class="hljs-params">(String S)</span> </span>{<br>            <span class="hljs-keyword">int</span> sLength = S.length();<br>            <span class="hljs-keyword">if</span> (sLength < <span class="hljs-number">2</span>) {<br>                <span class="hljs-keyword">return</span> S;<br>            }<br>            <span class="hljs-keyword">int</span>[] bucket = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">26</span>];<br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i < sLength; i++) {<br>                <span class="hljs-keyword">int</span> index = S.charAt(i) - <span class="hljs-string">'a'</span>;<br>                bucket[index]++;<br>            }<br>            <span class="hljs-keyword">int</span> maxIndex = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i < <span class="hljs-number">26</span>; i++) {<br>                <span class="hljs-keyword">if</span> (bucket[i] > bucket[maxIndex]) {<br>                    maxIndex = i;<br>                }<br>            }<br>            <span class="hljs-keyword">if</span> (bucket[maxIndex] > (sLength + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>) {<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;<br>            }<br>            <span class="hljs-keyword">char</span>[] answer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[sLength];<br>            <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span> (bucket[maxIndex] > <span class="hljs-number">0</span>) {<br>                answer[i] = (<span class="hljs-keyword">char</span>) (maxIndex + <span class="hljs-string">'a'</span>);<br>                i += <span class="hljs-number">2</span>;<br>                bucket[maxIndex]--;<br>            }<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j < <span class="hljs-number">26</span>; j++) {<br>                <span class="hljs-keyword">while</span>(bucket[j] > <span class="hljs-number">0</span>){<br>                    <span class="hljs-keyword">if</span>(i >= sLength){<br>                        i = <span class="hljs-number">1</span>;<br>                    }<br>                    answer[i] = (<span class="hljs-keyword">char</span>) (j + <span class="hljs-string">'a'</span>);<br>                    i += <span class="hljs-number">2</span>;<br>                    bucket[j]--;<br>                }<br>            }<br>            <span class="hljs-keyword">return</span> String.valueOf(answer);<br>        }<br>    }<br><span class="hljs-comment">//leetcode submit region end(Prohibit modification and deletion)</span><br><br>}<br></code></pre></td></tr></tbody></table></figure>
-
-
 </body></html>
 
   
@@ -282,7 +280,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

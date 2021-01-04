@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -238,7 +238,6 @@
 </ol>
 <h3 id="Exercise-4-1">Exercise 4.1<a class="post-anchor" href="#Exercise-4-1"></a></h3><p>填写user/syscall_wrap.S 中的msyscall 函数，使得用户部分的系统调用机制可以正常工作。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">LEAF(msyscall)<br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> you JUST need to execute a `syscall` instruction and return from msyscall</span><br>	syscall<br>    jr ra<br>    nop<br>END(msyscall)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>执行syscall指令，然后从函数返回。</p>
 <h3 id="Thinking-4-1">Thinking 4.1<a class="post-anchor" href="#Thinking-4-1"></a></h3><p>思考并回答下面的问题：</p>
 <ul>
@@ -251,22 +250,16 @@
 <p>在通过特权指令syscall 陷入内核态后，处理器将PC 寄存器指向一个相同的内核异常入口。在trap_init 函数中将系统调用类型的异常的入口设置为了handle_sys 函数。</p>
 <p>第一个TODO，MIPS有异常程序计数器（exception program counter,EPC)，属于CP0寄存器，用于保存造成异常的那条指令的地址。让EPC值+4到下一条指令，这样就不会陷入反复中断的死循环之中。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*** exercise 4.2 ***/</span><br>NESTED(handle_sys,TF_SIZE, sp)			<span class="hljs-comment">// 把用户态的所有寄存器存进栈帧，sp相当于栈顶</span><br>    SAVE_ALL                            <span class="hljs-comment">// 用于保存所有寄存器的汇编宏</span><br>    CLI                                 <span class="hljs-comment">// 用于屏蔽中断位的设置的汇编宏</span><br>    nop<br>    .<span class="hljs-built_in">set</span> at                             <span class="hljs-comment">// 恢复$at寄存器的使用</span><br><br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Fetch EPC from Trapframe, calculate a proper value and store it back to trapframe.</span><br>	lw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 将Trapframe的EPC寄存器取出</span><br>	addu 	t0, <span class="hljs-number">4</span> 						<span class="hljs-comment">// 计算一个合理的值</span><br>	sw 		t0, TF_EPC(sp) 				<span class="hljs-comment">// 存回Trapframe中</span><br></code></pre></td></tr></tbody></table></figure>
-<p>第二个TODO，这里其实是多余的，因为a0的值没有改变过。</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">   <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Copy the syscall number into $a0.</span><br>lw 		a0, TF_REG4(sp) 			<span class="hljs-comment">// 将系统调用号“复制”入寄存器$a0，a0是4号寄存器</span><br></code></pre></td></tr></tbody></table></figure>
-<p>之后是保存其他的值啦。</p>
+<p>第二个TODO，这里其实是多余的，因为a0的值没有改变过。<br></p><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">   <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Copy the syscall number into $a0.</span><br>lw 		a0, TF_REG4(sp) 			<span class="hljs-comment">// 将系统调用号“复制”入寄存器$a0，a0是4号寄存器</span><br></code></pre></td></tr></tbody></table></figure><br>之后是保存其他的值啦。<p></p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">addiu   a0, a0, -__SYSCALL_BASE     <span class="hljs-comment">// a0 <- “相对”系统调用号</span><br>sll     t0, a0, <span class="hljs-number">2</span>                   <span class="hljs-comment">// t0 <- 相对系统调用号* 4</span><br>la      t1, sys_call_table          <span class="hljs-comment">// t1 <- 系统调用函数的入口表基地址</span><br>addu    t1, t1, t0                  <span class="hljs-comment">// t1 <- 特定系统调用函数入口表项地址</span><br>lw      t2, <span class="hljs-number">0</span>(t1)                   <span class="hljs-comment">// t2 <- 特定系统调用函数入口函数地址</span><br><br>lw      t0, TF_REG29(sp)            <span class="hljs-comment">// t0 <- 用户态的栈指针</span><br>lw      t3, <span class="hljs-number">16</span>(t0)                  <span class="hljs-comment">// t3 <- msyscall的第5个参数</span><br>lw      t4, <span class="hljs-number">20</span>(t0)                  <span class="hljs-comment">// t4 <- msyscall的第6个参数</span><br></code></pre></td></tr></tbody></table></figure>
 <p>这里有一步还原偏移的操作，__SYSCALL_BASE的定义在unistd.h里可以看到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> UNISTD_H</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> UNISTD_H</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __SYSCALL_BASE 9527</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __NR_SYSCALLS 20</span><br><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_putchar 		((__SYSCALL_BASE ) + (0 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_getenvid 		((__SYSCALL_BASE ) + (1 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_yield			((__SYSCALL_BASE ) + (2 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_env_destroy		((__SYSCALL_BASE ) + (3 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_pgfault_handler	((__SYSCALL_BASE ) + (4 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_alloc		((__SYSCALL_BASE ) + (5 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_map			((__SYSCALL_BASE ) + (6 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_mem_unmap		((__SYSCALL_BASE ) + (7 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_env_alloc		((__SYSCALL_BASE ) + (8 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_env_status	((__SYSCALL_BASE ) + (9 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_set_trapframe		((__SYSCALL_BASE ) + (10 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_panic			((__SYSCALL_BASE ) + (11 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_ipc_can_send		((__SYSCALL_BASE ) + (12 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_ipc_recv		((__SYSCALL_BASE ) + (13 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SYS_cgetc			((__SYSCALL_BASE ) + (14 ) )</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>第三个TODO，和MIPS的传参有关，前4 个参数会被syscall 开头的函数分别存入a0−a3（$4~$7） 寄存器的空间内，同时栈帧底部保留16 字节的空间；后2个参数只会被存入在前4的参数的预留空间之上的8字节空间内。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Allocate a space of six arguments on current kernel stack and copy the six arguments to proper location</span><br>lw      a0, TF_REG4(sp)				<span class="hljs-comment">// 这一步也是多余的</span><br>lw      a1, TF_REG5(sp)<br>lw      a2, TF_REG6(sp)<br>lw      a3, TF_REG7(sp)<br>subu    sp, sp, <span class="hljs-number">24</span><br>sw      t3, <span class="hljs-number">16</span>(sp)					<span class="hljs-comment">// 0-16：栈帧底部保留的16字节空间</span><br>sw      t4, <span class="hljs-number">20</span>(sp)<br><br>jalr    t2                          <span class="hljs-comment">// 调用sys_*函数</span><br>nop<br></code></pre></td></tr></tbody></table></figure>
-<p>第四个TODO，恢复sp指针的值。</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Resume current kernel stack</span><br>	addiu 	sp, sp, <span class="hljs-number">24</span>					<span class="hljs-comment">// 恢复栈指针到分配前的状态</span><br>    <br><br>    sw      v0, TF_REG2(sp)             <span class="hljs-comment">// 此时已经从系统调用中返回，将返回值存入Trapframe</span><br><br>    j       ret_from_exception          <span class="hljs-comment">// 从异常中返回（恢复现场）</span><br>    nop<br>END(handle_sys)<br></code></pre></td></tr></tbody></table></figure>
-
+<p>第四个TODO，恢复sp指针的值。<br></p><figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Resume current kernel stack</span><br>	addiu 	sp, sp, <span class="hljs-number">24</span>					<span class="hljs-comment">// 恢复栈指针到分配前的状态</span><br>    <br><br>    sw      v0, TF_REG2(sp)             <span class="hljs-comment">// 此时已经从系统调用中返回，将返回值存入Trapframe</span><br><br>    j       ret_from_exception          <span class="hljs-comment">// 从异常中返回（恢复现场）</span><br>    nop<br>END(handle_sys)<br></code></pre></td></tr></tbody></table></figure><p></p>
 <p>最后就将返回值保存到v0，同时从系统调用中返回了。</p>
 <h3 id="Exercise-4-3">Exercise 4.3<a class="post-anchor" href="#Exercise-4-3"></a></h3><p>实现lib/syscall_all.c 中的int sys_mem_alloc(int sysno,u_int envid,u_int va, u_int perm) 函数。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 概述:</span><br><span class="hljs-comment"> * 分配一页内存，并映射到'va'的权限</span><br><span class="hljs-comment"> * 'envid'的地址空间中的'perm'。</span><br><span class="hljs-comment"> * 如果一个页面已经在'va'被映射，那么该页面将被取消映射。</span><br><span class="hljs-comment"> * 前提:</span><br><span class="hljs-comment"> * perm：需要PTE_V，不允许使用PTE_COW(返回-E_INVAL)，</span><br><span class="hljs-comment"> * 其他位是可选的。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 后置条件:</span><br><span class="hljs-comment"> * 成功返回0，错误< 0</span><br><span class="hljs-comment"> * va必须 < UTOP</span><br><span class="hljs-comment"> * env可以修改自己的地址空间或其子节点的地址空间</span><br><span class="hljs-comment"> * /</span><br><span class="hljs-comment">/*** exercise 4.3 ***/</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sys_mem_alloc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sysno, u_int envid, u_int va, u_int perm)</span></span><br><span class="hljs-function"></span>{<br>	<span class="hljs-comment">// Your code here.</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Env</span> *<span class="hljs-title">env</span>;</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Page</span> *<span class="hljs-title">ppage</span>;</span><br>	<span class="hljs-keyword">int</span> ret;<br>	ret = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-comment">// 2020-04-28</span><br>	<span class="hljs-keyword">if</span> (va >= UTOP || (perm & PTE_COW) || !(perm & PTE_V)) 	<span class="hljs-comment">// PTE_V may?</span><br>		<span class="hljs-keyword">return</span> -E_INVAL;<br><br>	ret = envid2env(envid, &env, <span class="hljs-number">0</span>);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	ret = page_alloc(&ppage);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	ret = page_insert(env->env_pgdir, ppage, va, perm);<br>	<span class="hljs-keyword">if</span> (ret < <span class="hljs-number">0</span>)<br>		<span class="hljs-keyword">return</span> ret;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 </body></html>
 
   
@@ -332,7 +325,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -218,6 +218,7 @@
 </blockquote>
 <p>也就是说，JML是一种对代码语言的抽象——不同的语言有着不同的语法，而JML通过自己的规则对代码进行了形式化的表述，一旦规格确定，除非涉及复杂的算法要求，实现代码就变成了一个相对简单的事情。</p>
 <h3 id="1-2-JML语言基本语法">1.2 JML语言基本语法<a class="post-anchor" href="#1-2-JML语言基本语法"></a></h3><p>JML的核心在于用表达式对规格进行描述，首先从常见的表达式说起，给人的感觉类似离散数学：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -225,7 +226,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>\result</td>
 <td>方法的返回值（非void类型）</td>
 </tr>
@@ -289,8 +291,11 @@
 <td>\nothing</td>
 <td>空集</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>表达式中容易错的地方在于\old(<code>expr</code>)表达式，作为一般规则，任何情况下，都应该使用\old把关心的表达式取值整体括起来。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -298,7 +303,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>requires</td>
 <td>表达的意思是“要求调用者确保P为真”</td>
 </tr>
@@ -326,8 +332,11 @@
 <td>signals</td>
 <td>结构为<code>signals (***Exception e) b_expr;</code>，意思是当<code>b_expr</code>为<code>true</code>时，方法会抛出括号中给出的相应异常<code>e</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>最后是类型规格，指针对类或接口所设计的约束规则。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -335,7 +344,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>invariant</td>
 <td>不变式，只针对可见状态(即当下可见状态)的取值进行约束</td>
 </tr>
@@ -343,7 +353,9 @@
 <td>constraint</td>
 <td>状态变化约束，对前序可见状态和当前可见状态的关系进行约束</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="1-3-应用工具链情况">1.3 应用工具链情况<a class="post-anchor" href="#1-3-应用工具链情况"></a></h3><p>在网络上查找JML工具链，搜索到的大多是OO博客的内容。工具主要包括OpenJML、JMLUnitNG等。</p>
 <ul>
 <li>OpenJML: <a href="http://www.openjml.org/" target="_blank" rel="noopener">http://www.openjml.org/</a></li>
@@ -352,17 +364,14 @@
 <p>在编写三次作业时，我用的java版本是JDK13，无法使用相关工具链，于是也在作业中并没有使用；撰写本次博客时重新安装了JRE1.8，具体使用在下面的部分描述。</p>
 <h2 id="2-SMT-Solver验证">2. SMT Solver验证<a class="post-anchor" href="#2-SMT-Solver验证"></a></h2><p>参考了J哥的教程（<a href="https://www.cnblogs.com/pekopekopeko/p/12920417.html#4581709），进行OpenJML的基础组件SMT" target="_blank" rel="noopener">https://www.cnblogs.com/pekopekopeko/p/12920417.html#4581709），进行OpenJML的基础组件SMT</a> Solver验证，文件树如下：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">PS G:\STUDY\BUAA-2020-OO\Week12> tree /F<br>卷 办公 的文件夹 PATH 列表<br>卷序列号为 AA85-2D30<br>G:.<br>│  Group.java<br>│  Person.java<br>│<br>└─openjml-0.8.44-20200413<br>    │  epl-v10.html<br>    │  jml-reference-manual.pdf<br>    │  jmlruntime.jar<br>    │  jmlspecs.jar<br>    │  LICENSE.rtf<br>    │  openjml-template.properties<br>    │  openjml.jar<br>    │  OpenJMLUserGuide.pdf<br>    │  VERSION_INFO<br>    │<br>    ├─Solvers-linux<br>    │      cvc4-1.6<br>    │      z3-4.3.0<br>    │      z3-4.3.1<br>    │      z3-4.7.1<br>    │<br>    ├─Solvers-macos<br>    │      cvc4-1.6<br>    │      z3-4.3.1<br>    │      z3-4.5.0<br>    │      z3-4.6.0<br>    │      z3-4.7.1<br>    │<br>    └─Solvers-windows<br>            cvc4-1.6.exe<br>            z3-4.3.2.exe<br>            z3-4.7.1.exe<br></code></pre></td></tr></tbody></table></figure>
-
 <p>先运行静态验证指令：<code>java -jar .\openjml.jar -exec .\Solvers-windows\z3-4.7.1.exe -esc ..\Group.java</code>，得到初步结果：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">public class Person {<br>       ^<br>..\Group.java:34: 警告: A non-pure method is being called where it is not permitted: Person.isLinked(Person)<br>      @          (\sum int j; 0 <= j && j < people.length && people[i].isLinked(people[j]); 1));<br>                                                                               ^<br>..\Group.java:40: 警告: A non-pure method is being called where it is not permitted: Person.isLinked(Person)<br>      @           people[i].isLinked(people[j]); people[i].queryValue(people[j])));<br>                                    ^<br>..\Group.java:40: 警告: A non-pure method is being called where it is not permitted: Person.queryValue(Person)<br>..\Group.java:47: 警告: A non-pure method is being called where it is not permitted: Person.getCharacter()<br>      @          temp.length == people.length && temp[0] == people[0].getCharacter();<br>                                                                                  ^<br>..\Group.java:49: 警告: A non-pure method is being called where it is not permitted: Person.getCharacter()<br>      @            temp[i] == temp[i-1].xor(people[i].getCharacter())) &&<br>                                                                  ^<br>..\Group.java:59: 警告: A non-pure method is being called where it is not permitted: Person.getAge()<br>                                                                            ^<br>..\Group.java:58: 错误: 不可比较的类型: int和INT#1<br>    /*@ ensures \result == (people.length == 0? 0 :<br>                        ^<br>  其中, INT#1是交叉类型:<br>    INT#1扩展Number,Comparable<br>      @          (people[i].getAge() - getAgeMean()) * (people[i].getAge() - getAgeMean())) /<br>                                  ^<br>..\Group.java:64: 警告: A non-pure method is being called where it is not permitted: Person.getAge()<br>      @          (people[i].getAge() - getAgeMean()) * (people[i].getAge() - getAgeMean())) /<br>                                                                        ^<br>..\Group.java:63: 错误: 不可比较的类型: int和INT#1<br>                        ^<br>  其中, INT#1是交叉类型:<br>    INT#1扩展Number,Comparable<br>3 个错误<br>8 个警告<br></code></pre></td></tr></tbody></table></figure>
-
 <p>报错和警告主要有两种，在不允许的地方调用非纯方法，以及不可比较的类型（貌似是不能识别三目运算符？），动态验证的信息就更多了。</p>
 <p>总之我感觉看着结果云里雾里的，SMT Solver目前好像也无法对exist等进行验证，不过作者一直在更新，相信下一届的同学们可以享受到更加舒适的SMT Solver的！</p>
 <h2 id="3-JMLUnitNG-JMLUnit自动生成测试用例">3. JMLUnitNG/JMLUnit自动生成测试用例<a class="post-anchor" href="#3-JMLUnitNG-JMLUnit自动生成测试用例"></a></h2><p>辛辛苦苦以10KB/S的速度下载下来，一运行傻了——</p>
 <p>到百度求助，表示版本太低，然而我已经下载了官网最新的1.8版本……另外发现这中间似乎插了句人话：<code>错误: 非法的类型开始 value = new ArrayList<>();</code>，感情必须要写成<code>value = new ArrayList<Integer>();</code>的形式？这也太OUT了吧……</p>
 <p>之后又出现了群里提到的神秘的++，触发了<code>JmlInternalError</code>,更加迷惑了。</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">org.jmlspecs.openjml.JmlInternalError: The operation symbol ++ for type java.lang.Object could not be resolved<br></code></pre></td></tr></tbody></table></figure>
-
 <h4 id="简要分析">简要分析<a class="post-anchor" href="#简要分析"></a></h4><p>最后我折腾了很久还是不行……运行完什么结果也没有……我也很疑惑为什么运行SMT Solver时就相对顺风顺水但JMLUnitNG怎么整都不行（对帮我找问题的PB同学深表歉意）。因为我的电脑不能生成，所以就看了很多同学的博客，这里借用@VOIDMalkuth的测试结果：</p>
 <p>从同学们的结果来看，JMLUnitNG自动生成的样例可以检测到一定的错误，对于INT数据测试了极端情况等与实际应用不符合的数据输入，要成为真正有用的工具，还有很长的路要走……</p>
 <h2 id="4-架构设计梳理与模型构建策略分析">4. 架构设计梳理与模型构建策略分析<a class="post-anchor" href="#4-架构设计梳理与模型构建策略分析"></a></h2><h3 id="4-1-第九次作业">4.1 第九次作业<a class="post-anchor" href="#4-1-第九次作业"></a></h3><p>UML类图如下：</p>
@@ -371,7 +380,6 @@
 <h3 id="4-2-第十次作业">4.2 第十次作业<a class="post-anchor" href="#4-2-第十次作业"></a></h3><p>UML类图如下：</p>
 <p>第十次作业与第九次作业相比新增了Group，在MyNetwork中调用MyGroup。我直到周四才开始动笔，此时同学们已经把雷区排得差不多了……于是在Group的方法上我采用了缓存法的形式。需要特别注意的是缓存法在addRelation时也要更新缓存，我采用的方式为为Group增加更新的检索方法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addRelation</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id1, <span class="hljs-keyword">int</span> id2, <span class="hljs-keyword">int</span> value)</span> </span>{<br>    <span class="hljs-keyword">if</span> (people.containsKey(id1) && people.containsKey(id2)) {<br>        relationSum += <span class="hljs-number">2</span>;<br>        valueSum += (<span class="hljs-number">2</span> * value);<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>而在计算方差时，则出现了过度化简导致误差的问题，同样需要注意。</p>
 <p>另外需要注意的是初始化问题，HashMap默认容量为16，当当前的size超过容量×常数时就会进行扩容，而扩容操作需要耗费的时间较多，因此我直接将关系表初始化为8192容量。</p>
 <h3 id="4-3-第十一次作业">4.3 第十一次作业<a class="post-anchor" href="#4-3-第十一次作业"></a></h3><p>UML类图如下：</p>
@@ -382,13 +390,11 @@
 <li>queryStrongLink原本在想要不要学tarjan，但发现助教给的标程复杂度很宽容，所以就用了两步BFS，特判第一次BFS找到的为直连路径的情况，我写了一个忽略某点的BFS函数：</li>
 </ul>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">searchIgnore</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id1, <span class="hljs-keyword">int</span> id2, <span class="hljs-keyword">int</span> ignore)</span> </span>{<br>    <span class="hljs-keyword">if</span> (id1 == ignore || id2 == ignore || id1 == id2) {<br>        <span class="hljs-comment">// err("meet id1 == ignore || id2 == ignore || id1 == id2");</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    }<br>    HashSet<Integer> visited = <span class="hljs-keyword">new</span> HashSet<>(<span class="hljs-number">1024</span>);<br>    Queue<Integer> queue = <span class="hljs-keyword">new</span> LinkedList<>();<br>    queue.add(id1);<br>    <span class="hljs-keyword">while</span> (!queue.isEmpty()) {<br>        <span class="hljs-keyword">int</span> currentId = queue.poll();<br>        <span class="hljs-keyword">if</span> (visited.contains(currentId)) {<br>            <span class="hljs-keyword">continue</span>;<br>        }<br>        ArrayList<Integer> points = ((MyPerson) getPerson(currentId)).getAcquaintance();<br>        <span class="hljs-keyword">for</span> (Integer i : points) {<br>            <span class="hljs-keyword">if</span> (i == id2) {<br>                <span class="hljs-comment">// err("Succeed! searchIgnore");</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!visited.contains(i) && i != ignore) {<br>                queue.offer(i);<br>                <span class="hljs-comment">// err("queue update to " + queue);</span><br>            }<br>        }<br>        visited.add(currentId);<br>        <span class="hljs-comment">// err("point " + currentId + " has been searched");</span><br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
-
 <p>如果第一次找到的路径长度为2，那么就遍历起点的邻接表，找到一条不经过起点就能到终点的路径就返回成功；否则依次忽略第一次路径中的点，如果每次都能找到路径就返回成功。最后在研讨课也学了tarjan，在求割点的过程中求出所有双连通分量，进而判断点双。</p>
 <p>这样的结构导致MyNetwork非常臃肿，我因此将并查集、堆优化的Dijkstra单独抽象为一个类。</p>
 <h2 id="5-代码bug和修复情况">5. 代码bug和修复情况<a class="post-anchor" href="#5-代码bug和修复情况"></a></h2><p>第九次、第十一次作业均未出现Bug。</p>
 <h3 id="第十次作业">第十次作业<a class="post-anchor" href="#第十次作业"></a></h3><p>第九次作业整体相对简单，也就让我放松了警惕，在第十次作业时，我最后改了一行代码，却忘了测试：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> (HashSet<Integer>) acquaintance.keySet();<br></code></pre></td></tr></tbody></table></figure>
-
 <p>就是这行代码，让我直接RE了大部分测试点……在编写时想当然地以为HashMap的KeySet可以用强制类型转换为HashSet，之后又没有做哪怕一次对isCircle的测试，于是强测直接爆炸……在互测屋里，看到了没有除零直接RE的同学；看到了缓存更新不及时的同学，看到了好多Bug一起犯的同学……是一次难忘的体验。</p>
 <p><a href="https://pic.downk.cc/item/5ec73f83c2a9a83be528b8bc.png" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="https://pic.downk.cc/item/5ec73f83c2a9a83be528b8bc.png" alt></a></p>
 <h3 id="第十一次作业">第十一次作业<a class="post-anchor" href="#第十一次作业"></a></h3><p>在第十一次作业，吸取了第十次作业的惨痛教训，用Junit对新加入的函数进行单元测试，优化算法，没有出现Bug。</p>
@@ -460,7 +466,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

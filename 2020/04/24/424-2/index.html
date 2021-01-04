@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -236,9 +236,8 @@
 <h3 id="Thinking-3-4">Thinking 3.4<a class="post-anchor" href="#Thinking-3-4"></a></h3><p>思考user_data 这个参数的作用。没有这个参数可不可以？为什么？（如果你能说明哪些应用场景中可能会应用这种设计就更好了。可以举一个实际的库中的例子）</p>
 <p>答：</p>
 <p>不可以。在我们的实验中，与user_data有关的函数是load_icode、load_elf、load_icode_mapper，其中的user_data就是进程e的指针，是不可或缺的。</p>
-<p>应用场景：load_icode_mapper是一个回调函数，回调函数就是允许用户把需要调用的函数的指针作为参数传递给一个函数，以便该函数在处理相似事件的时候可以灵活的使用不同的方法。C语言标准库<stdlib.h>中的排序qsort就用到了这种设计：</p>
+<p>应用场景：load_icode_mapper是一个回调函数，回调函数就是允许用户把需要调用的函数的指针作为参数传递给一个函数，以便该函数在处理相似事件的时候可以灵活的使用不同的方法。C语言标准库<stdlib.h>中的排序qsort就用到了这种设计：</stdlib.h></p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">qsort</span><span class="hljs-params">(<span class="hljs-keyword">void</span>*base,<span class="hljs-keyword">size_t</span> num,<span class="hljs-keyword">size_t</span> <span class="hljs-built_in">width</span>,<span class="hljs-keyword">int</span>(__cdecl*compare)(<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span>*,<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span>*))</span></span>;<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这之中的compare就是回调函数，两个形参是const void *型，有着很高的泛用性，与user_data的设计类似。</p>
 <h3 id="Thinking-3-5">Thinking 3.5<a class="post-anchor" href="#Thinking-3-5"></a></h3><p>结合load_icode_mapper 的参数以及二进制镜像的大小，考虑该函数可能会面临哪几种复制的情况？你是否都考虑到了？ （提示：1、页面大小是多少；2、回顾lab1中的ELF文件解析，什么时候需要自动填充.bss段）</p>
 <p>答：</p>
@@ -269,15 +268,11 @@
 <p>(1) TIMESTACK以下<code>[TIMESTACK - sizeof(struct Trapframe), TIMESTACK)</code>的空间存储着异常发生时的寄存器信息，是时钟中断的存储区。</p>
 <p>(2) 在include/stackframe.h中可以找到：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">.macro get_sp<br>	mfc0	k1, CP0_CAUSE<br>	andi	k1, <span class="hljs-number">0x107C</span><br>	xori	k1, <span class="hljs-number">0x1000</span><br>	bnez	k1, <span class="hljs-number">1f</span><br>	nop<br>	li	sp, <span class="hljs-number">0x82000000</span><br>	j	<span class="hljs-number">2f</span><br>	nop<br><span class="hljs-number">1</span>:<br>	bltz	sp, <span class="hljs-number">2f</span><br>	nop<br>	lw	sp, KERNEL_SP<br>	nop<br><br><span class="hljs-number">2</span>:	nop<br><br><br>.endm<br></code></pre></td></tr></tbody></table></figure>
-
 <p>其中的0x82000000即TIMESTACK的值。本次实验产生的都是时钟中断（4号异常），进行的是<code>li    sp, 0x82000000</code>的操作，因此是时钟中断的存储区。</p>
 <p>(3) TIMESTACK是时钟中断的存储区，而KERNEL_SP应当是系统调用的存储区。</p>
 <h3 id="Thinking-3-9">Thinking 3.9<a class="post-anchor" href="#Thinking-3-9"></a></h3><p>阅读 kclock_asm.S  文件并说出每行汇编代码的作用。</p>
 <p>答：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">.macro	setup_c0_status <span class="hljs-built_in">set</span> clr	<span class="hljs-comment">// 定义宏setup_c0_status，传入set置位和clr清零形参</span><br>	.<span class="hljs-built_in">set</span>	push				<span class="hljs-comment">// 保存现场</span><br>	mfc0	t0, CP0_STATUS		<span class="hljs-comment">// 读CP0_STATUS的值到t0寄存器		</span><br>	<span class="hljs-keyword">or</span>	t0, \<span class="hljs-built_in">set</span>|\clr			<span class="hljs-comment">// t0=(t0|set|clr)，将set为1的置1</span><br>	<span class="hljs-keyword">xor</span>	t0, \clr				<span class="hljs-comment">// t0= xor(t0,clr)，将clr为1的置0</span><br>	mtc0	t0, CP0_STATUS		<span class="hljs-comment">// 将t0寄存器写回CP0_STATUS</span><br>	.<span class="hljs-built_in">set</span>	pop					<span class="hljs-comment">// 恢复现场</span><br>.endm							<span class="hljs-comment">// 结束宏语句			</span><br><br>	.<span class="hljs-built_in">text</span>						<span class="hljs-comment">// 代码段</span><br>LEAF(set_timer)					<span class="hljs-comment">// LEAF定义不调用其他函数的叶子函数set_timer</span><br><br>	li t0, <span class="hljs-number">0x01</span>					<span class="hljs-comment">// t0设为1</span><br>	sb t0, <span class="hljs-number">0xb5000100</span>			<span class="hljs-comment">// 设置实时钟中断的频率为1秒1次</span><br>	sw	sp, KERNEL_SP			<span class="hljs-comment">// 保存堆栈现场到KERNEL_SP</span><br>setup_c0_status STATUS_CU0|<span class="hljs-number">0x1001</span> <span class="hljs-number">0</span>	<span class="hljs-comment">// 设置CP0_STATUS，set为0x10001001</span><br>	jr ra						<span class="hljs-comment">// 函数返回</span><br><br>	nop							<span class="hljs-comment">// 延迟槽</span><br>END(set_timer)					<span class="hljs-comment">// 结束函数</span><br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="Thinking-3-10">Thinking 3.10<a class="post-anchor" href="#Thinking-3-10"></a></h3><p>阅读相关代码，思考操作系统是怎么根据时钟周期切换进程的。</p>
 <p>答：</p>
 <ol>
@@ -352,7 +347,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -242,7 +242,6 @@
 <h3 id="Thinking-4-4">Thinking 4.4<a class="post-anchor" href="#Thinking-4-4"></a></h3><p>如果仔细阅读上述这一段话, 你应该可以发现, 我们并不是对所有的用户空间页都使用duppage 进行了保护。那么究竟哪些用户空间页可以保护，哪些不可以呢，请结合include/mmu.h 里的内存布局图谈谈你的看法。</p>
 <p>答：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment">o  UTOP,UENVS   -----> +----------------------------+------------0x7f40 0000    |</span><br><span class="hljs-comment">o  UXSTACKTOP -/       |     user exception stack   |     BY2PG                 |</span><br><span class="hljs-comment">o                      +----------------------------+------------0x7f3f f000    |</span><br><span class="hljs-comment">o                      |       Invalid memory       |     BY2PG                 |</span><br><span class="hljs-comment">o      USTACKTOP ----> +----------------------------+------------0x7f3f e000    |</span><br><span class="hljs-comment">o                      |     normal user stack      |     BY2PG                 |</span><br><span class="hljs-comment">o                      +----------------------------+------------0x7f3f d000    |</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>在[0,UTOP)的用户空间中，[USTACKTOP,USTACKTOP+BY2PG)是无效内存，子进程缺页中断时作为临时空间，不需要保护；[USTACKTOP+BY2PG,UXSTACKTOP)是错误栈，不需要保护，否则父子进程错误栈相同，会陷入死循环中。</p>
 <p>另外在duppage函数内部，对不同权限的页有着不同的处理方式。对于只读、共享、写时复制保持其原有的权限即可，对于可写页面则需要对父子进程的页表项加上PTE_COW 标记。</p>
 <h3 id="Thinking-4-5">Thinking 4.5<a class="post-anchor" href="#Thinking-4-5"></a></h3><p>在遍历地址空间存取页表项时你需要使用到vpd 和vpt 这两个“指针的指针”，请思考并回答这几个问题：</p>
@@ -255,11 +254,9 @@
 <p>答：</p>
 <p>1）在user/entry.S中可以看到定义：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">	.globl vpt<br>vpt:<br>	.<span class="hljs-keyword">word</span> UVPT<br><br>	.globl vpd<br>vpd:<br>	.<span class="hljs-keyword">word</span> (UVPT+(UVPT>><span class="hljs-number">12</span>)*<span class="hljs-number">4</span>)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>因此<code>*vpt</code>是指向用户页表的指针，而根据页表的自映射机制，<code>*vpd</code>是指向用户页目录的指针。</p>
 <p>使用方式：可以将其作为数组使用，获得虚拟地址va对应的页表项和页目录项。</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">(*vpt)[va >> PGSHIFT]		<span class="hljs-comment">// 获得对应的页表项</span><br>(*vpd)[va >> PDSHIFT]		<span class="hljs-comment">// 获得对应的页目录项</span><br></code></pre></td></tr></tbody></table></figure>
-
 <p>2）在fork函数中，我们需要检查页表项是否有效，进而进行duppage的操作。通过vpt 和vpd访问的方式，为用户态提供了访问页表的途径。</p>
 <p>3）vpd的地址为(UVPT+(UVPT>>12)*4)，是页表项，也是页目录项，体现了自映射设计。</p>
 <p>4）不能，这里只能通过这种方式读取页表信息，进而判断是否有效，不可以修改页表。</p>
@@ -293,7 +290,7 @@
 <p>首先的难点在于MIPS传参机制（在Extra，我由于没有深入理解这一点而吃了很大的苦头），而fork函数同样是一大难点，在什么时候要为父子进程设置什么、返回什么，课程组很贴心的给了一张流程图：</p>
 <p><a href="http://cscore.net.cn/assets/courseware/v1/ec04bb966e3083678fe5dcabe84273ee/asset-v1:Internal+B3I062140+2019_T2+type@asset+block/4_fork_process.png" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="http://cscore.net.cn/assets/courseware/v1/ec04bb966e3083678fe5dcabe84273ee/asset-v1:Internal+B3I062140+2019_T2+type@asset+block/4_fork_process.png" alt></a></p>
 <p>而我自己的难点树如下：</p>
-<p>![](G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\Lab4 个人难点.png)</p>
+<p><a href="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\Lab4 个人难点.png" data-caption data-fancybox="images"><img src="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\Lab4 个人难点.png" alt></a></p>
 <h2 id="三、体会与感想">三、体会与感想<a class="post-anchor" href="#三、体会与感想"></a></h2><p><strong>Lab4难度评价：</strong>★★★★☆</p>
 <p><strong>Lab4-extra难度评价：</strong>★★★★★</p>
 <p><strong>花费时间：</strong>Lab4 10h，Lab4-extra 10h</p>
@@ -366,7 +363,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -225,40 +225,24 @@
 <p>具体实现的过程中思考下列问题：<code>echo echo Shell Start</code> 与 <code>echo 'echo Shell Start'</code>效果是否有区别；<code>echo echo \$c>file1</code> 与 <code>echo 'echo \$c>file1'</code> 效果是否有区别？</p>
 <p><strong>command文件：</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">touch test<br>echo 'echo Shell Start...' > test<br>echo 'echo set a = 1' >> test<br>echo 'a=1' >> test<br>echo 'echo set b = 2' >> test<br>echo 'b=2' >> test<br>echo 'echo set c = a+b' >> test<br>echo 'c=$[$a+$b]' >> test<br>echo 'echo c = $c' >> test<br>echo 'echo save c to ./file1' >> test<br>echo 'echo $c>file1' >> test<br>echo 'echo save b to ./file2' >> test<br>echo 'echo $b>file2' >> test<br>echo 'echo save a to ./file3' >> test<br>echo 'echo $a>file3' >> test<br>echo 'echo save file1 file2 file3 to file4' >> test<br>echo 'cat file1>file4' >> test<br>echo 'cat file2>>file4' >> test<br>echo 'cat file3>>file4' >> test<br>echo 'echo save file4 to ./result' >> test<br>echo 'cat file4>>result' >> test<br></code></pre></td></tr></tbody></table></figure>
-
 <p><strong>result文件：</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">3<br>2<br>1<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <p><strong>效果是否有区别：</strong></p>
 <p><code>echo echo Shell Start</code> 与 <code>echo 'echo Shell Start'</code>效果没有区别，均在Shell中打印<code>echo Shell Start</code>内容。</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> Shell Start</span><br>echo Shell Start<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo Shell Start'</span></span><br>echo Shell Start<br></code></pre></td></tr></tbody></table></figure>
-
 <p><code>echo echo \$c>file1</code> 与 <code>echo 'echo \$c>file1'</code> 效果有区别：前者将<code>echo $c</code>重定向至file1，后者在Shell中打印<code>echo \$c>file1</code>内容。</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> cat file1</span><br>3<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$c</span>>file1</span><br><br><span class="hljs-meta">$</span><span class="bash"> cat file1</span><br>echo $c<br><br><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">'echo \$c>file1'</span></span><br>echo \$c>file1<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="思考题0-3">思考题0.3<a class="post-anchor" href="#思考题0-3"></a></h3><p>仔细看看这张图，思考一下箭头中的 add the file 、stage the file 和commit 分别对应的是 Git 里的哪些命令呢？</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git add		// add the file<br>git add		// stage the file<br>git commit	// commit<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="思考题0-4">思考题0.4<a class="post-anchor" href="#思考题0-4"></a></h3><p>深夜，小明在做操作系统实验。困意一阵阵袭来，小明睡倒在了键盘上。等到小明早上醒来的时候，他惊恐地发现，他把一个重要的代码文件printf.c删除掉了。苦恼的小明向你求助，你该怎样帮他把代码文件恢复呢？</p>
 <p>正在小明苦恼的时候，小红主动请缨帮小明解决问题。小红很爽快地在键盘上敲下了git rm printf.c，这下事情更复杂了，现在你又该如何处理才能弥补小红的过错呢？</p>
 <p>处理完代码文件，你正打算去找小明说他的文件已经恢复了，但突然发现小明的仓库里有一个叫Tucao.txt，你好奇地打开一看，发现是吐槽操作系统实验的，且该文件已经被添加到暂存区了，面对这样的情况，你该如何设置才能使Tucao.txt在不从工作区删除的情况下不会被git commit指令提交到版本库？</p>
 <p><strong>(1)帮小明把代码文件恢复：</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git checkout -- printf.c<br></code></pre></td></tr></tbody></table></figure>
-
 <p><strong>(2)弥补小红的过错：</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git reset HEAD printf.c<br>git checkout -- printf.c<br></code></pre></td></tr></tbody></table></figure>
-
 <p><strong>(3)删除暂存区文件：</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git rm --cached Tucao.txt<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="思考题0-5">思考题0.5<a class="post-anchor" href="#思考题0-5"></a></h3><p>思考下面四个描述，你觉得哪些正确，哪些错误，请给出你参考的资料或实验证据。</p>
 <ol>
 <li><p>克隆时所有分支均被克隆，但只有HEAD指向的分支被检出。</p>
@@ -346,7 +330,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

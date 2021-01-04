@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -232,7 +232,6 @@
 </ol>
 <h3 id="Thinking-2-3">Thinking 2.3<a class="post-anchor" href="#Thinking-2-3"></a></h3><p>在我们的实验中，有许多对虚拟地址或者物理地址操作的宏函数(详见include/mmu.h ),那么我们在调用这些宏的时候需要弄清楚需要操作的地址是物理地址还是虚拟地址，阅读下面的代码，指出x是一个物理地址还是虚拟地址。</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">int x;<br>char *value = return_a_pointer();<br>*value = 10;<br>x = (int) value;<br></code></pre></td></tr></tbody></table></figure>
-
 <p><strong>答：</strong></p>
 <p>x是虚拟地址。</p>
 <h3 id="Thinking-2-4">Thinking 2.4<a class="post-anchor" href="#Thinking-2-4"></a></h3><p>我们在 include/queue.h 中定义了一系列的宏函数来简化对链表的操作。实际上，我们在 include/queue.h 文件中定义的链表和 glibc 相关源码较为相似，这一链表设计也应用于 Linux 系统中 (sys/queue.h 文件)。请阅读这些宏函数的代码，说说它们的原理和巧妙之处。</p>
@@ -253,9 +252,6 @@
 <p><strong>答：</strong></p>
 <p><strong>C:</strong></p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">struct Page_list{<br>    struct {<br>        struct {<br>            struct Page *le_next;<br>            struct Page **le_prev;<br>        } pp_link;<br>        u_short pp_ref;<br>    }* lh_first;<br>}<br></code></pre></td></tr></tbody></table></figure>
-
-
-
 <h3 id="Thinking-2-8">Thinking 2.8<a class="post-anchor" href="#Thinking-2-8"></a></h3><p>在 <code>mmu.h</code> 中定义了 <code>bzero(void *b, size_t)</code> 这样一个函数,请你思考，此处的b指针是一个物理地址， 还是一个虚拟地址呢？</p>
 <p><strong>答：</strong></p>
 <p>虚拟地址。</p>
@@ -298,16 +294,14 @@
 <p><a href="http://cscore.net.cn/assets/courseware/v1/79285678df7ddb18b4761b7d88a87de9/asset-v1:Internal+B3I062140+2019_T2+type@asset+block/lab2-pic-2.jpg" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="http://cscore.net.cn/assets/courseware/v1/79285678df7ddb18b4761b7d88a87de9/asset-v1:Internal+B3I062140+2019_T2+type@asset+block/lab2-pic-2.jpg" alt></a></p>
 <p>另外一个地方就是双重链表的操作，这边的链表操作函数实在是绕……比如<code>LIST_INSERT_BEFORE</code>函数：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Insert the element "elm" *before* the element "listelm" which is</span><br><span class="hljs-comment"> * already in the list.  The "field" name is the link element</span><br><span class="hljs-comment"> * as above.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_INSERT_BEFORE(listelm, elm, field) do {                    \</span><br>                (elm)->field.le_prev = (listelm)->field.le_prev;        \<br>                LIST_NEXT((elm), field) = (listelm);                    \<br>                *(listelm)->field.le_prev = (elm);                      \	<br>                (listelm)->field.le_prev = &LIST_NEXT((elm), field);    \	<br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>这里的9是<code>*((listelm)->field.le_prev)</code>，也就是<code>listelm</code>的上一个<code>preelm</code>的<code>next</code>指向插入的<code>elm</code>；10则是让<code>listelm</code>的<code>prev</code>指针指向<code>elm</code>的<code>next</code>指针，从而实现链表的前插操作。</p>
 <p>再次祭出这张群友发的图（现在想想数据结构是大一下，彼时是大二下的助教们大概率就是从OS课上获得的灵感）：</p>
 <p><a href="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" target="_blank" rel="noopener" data-caption data-fancybox="images"><img src="https://pic.downk.cc/item/5e78981c5c56091129c65218.png" alt></a></p>
 <p>所以<code>LIST_REMOVE</code>函数就是这么写的：</p>
 <figure class="highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Remove the element "elm" from the list.</span><br><span class="hljs-comment"> * The "field" name is the link element as above.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIST_REMOVE(elm, field) do {                                    \</span><br>                <span class="hljs-keyword">if</span> (LIST_NEXT((elm), field) != <span class="hljs-literal">NULL</span>)                    \<br>                        LIST_NEXT((elm), field)->field.le_prev =        \<br>                                        (elm)->field.le_prev;           \<br>                *(elm)->field.le_prev = LIST_NEXT((elm), fieldc);       \<br>        } <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)<br></code></pre></td></tr></tbody></table></figure>
-
 <p>要从链表中删除<code>elm</code>，那么就先把<code>elm</code>的下一个元素的<code>prev</code>指针设置为<code>elm</code>的前一个元素的<code>next</code>，再将<code>elm</code>的上一个<code>preelm</code>的<code>next</code>指向后一个<code>elm</code>。删除这个元素只需知道其自身。</p>
 <p>最后是思维导图式的难点树——</p>
-<p>![](G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\内存管理难点.png)</p>
+<p><a href="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\内存管理难点.png" data-caption data-fancybox="images"><img src="G:\OneDrive\OneDrive - buaa.edu.cn\MWD\学习\操作系统\作业\Refer\内存管理难点.png" alt></a></p>
 <h2 id="三、体会与感想">三、体会与感想<a class="post-anchor" href="#三、体会与感想"></a></h2><p><strong>Lab2难度评价：</strong>★★★★☆</p>
 <p><strong>Lab2-extra难度评价：</strong>★★★☆☆</p>
 <p><strong>花费时间：</strong>Lab2 15h，Lab2-extra 4h</p>
@@ -379,7 +373,23 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">
