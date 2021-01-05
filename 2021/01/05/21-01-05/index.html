@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-       MondayCha&#39;s  - Blog
+      LeetCode(830) 较大分组的位置 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思路"><span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#出现问题"><span class="toc-text">出现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java代码"><span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解答结果"><span class="toc-text">解答结果</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -164,299 +169,115 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        
-<div class="posts">
-  <ul>
-     
-
-    
-
-  <li class="item">
-
+        <article class="post-entry">
+    <div class="header">
       
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2020/02/07/207-2/">Git-Day2</a>
-        </div>
-        <div class="date">
+      <div class="title">LeetCode(830) 较大分组的位置</div>
+      <div class="meta">
+        <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>20/02/07</span>
-        </div>
+          <span>2021/01/05</span>
+        </span>
+
         
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
               
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                 
-                <a href="/categories/学习">学习</a>
-                 
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                 
-                <a href="/tags/Git">Git</a>
-                  
-                <a href="/tags/廖雪峰">廖雪峰</a>
-                 
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2020/02/07/207-2/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2020/02/07/207-2/">
-                <a href="#">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2020/02/07/207-2/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
-     
-
-    
-
-  <li class="item">
-
-      
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2020/02/06/206-1/">Git-Day1</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>20/02/06</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                 
-                <a href="/categories/学习">学习</a>
-                 
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                 
-                <a href="/tags/Git">Git</a>
-                  
-                <a href="/tags/廖雪峰">廖雪峰</a>
-                 
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2020/02/06/206-1/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2020/02/06/206-1/">
-                <a href="#">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2020/02/06/206-1/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
-     
-
-    
-
-  <li class="item">
-
-      
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2020/02/03/203-1/">『ePub资源』有时间谈恋爱不如去抽卡！01</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>20/02/03</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                 
-                <a href="/categories/资源">资源</a>
-                 
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                 
-                <a href="/tags/ACG">ACG</a>
-                  
-                <a href="/tags/轻小说">轻小说</a>
-                 
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2020/02/03/203-1/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2020/02/03/203-1/">
-                <a href="#">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2020/02/03/203-1/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
-     
-
-    
-
-  <li class="item">
-
-      
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2020/02/02/202-1/">第一篇文章！</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>20/02/02</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                 
-                <a href="/categories/日记">日记</a>
-                 
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                 
-                <a href="/tags/随笔">随笔</a>
-                 
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2020/02/02/202-1/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2020/02/02/202-1/">
-                <a href="#">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2020/02/02/202-1/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
-     
-
-    
-
-  <li class="item">
-
-      
-
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2020/02/01/201-1/">Hello World</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>20/02/01</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
                 
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
+                  <a href="/categories/LeetCode">LeetCode</a>
                 
-              </span>
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/每日一题">每日一题</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h2 id="基本思路">基本思路<a class="post-anchor" href="#基本思路"></a></h2><p>一次遍历.</p>
+<h2 id="出现问题">出现问题<a class="post-anchor" href="#出现问题"></a></h2><p>虽然以为是简单题, 但是提交之后直接报了错……</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">17:00	info<br>			解答失败:<br>			测试用例:"aaa"<br>			测试结果:[]<br>			期望结果:[[0,2]]<br>			stdout:<br></code></pre></td></tr></tbody></table></figure>
+<p>我一看, ┗|｀O′|┛ 嗷~~, 原来是昨天, 啊不, 原来是没特判最后一个数.</p>
+<h2 id="Java代码">Java代码<a class="post-anchor" href="#Java代码"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{<br>  <span class="hljs-keyword">public</span> List<List<Integer>> largeGroupPositions(String s) {<br>    List<List<Integer>> ans = <span class="hljs-keyword">new</span> LinkedList<>();<br>    <span class="hljs-keyword">int</span> currentLength = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> currentBegin = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i < s.length(); ++i) {<br>      <span class="hljs-keyword">if</span> (s.charAt(i) == s.charAt(i - <span class="hljs-number">1</span>)) {<br>        currentLength++;<br>      } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-keyword">if</span> (currentLength >= <span class="hljs-number">3</span>) {<br>          List<Integer> one = <span class="hljs-keyword">new</span> LinkedList<>();<br>          one.add(currentBegin);<br>          one.add(i - <span class="hljs-number">1</span>);<br>          ans.add(one);<br>        }<br>        currentLength = <span class="hljs-number">1</span>;<br>        currentBegin = i;<br>      }<br>    }<br>    <span class="hljs-keyword">if</span> (currentLength >= <span class="hljs-number">3</span>) {<br>      List<Integer> one = <span class="hljs-keyword">new</span> LinkedList<>();<br>      one.add(currentBegin);<br>      one.add(s.length() - <span class="hljs-number">1</span>);<br>      ans.add(one);<br>    }<br>    <span class="hljs-keyword">return</span> ans;<br>  }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="复杂度">复杂度<a class="post-anchor" href="#复杂度"></a></h2><ul>
+<li><p>时间复杂度为$O(n)$</p>
+<blockquote>
+<p>遍历了数组一次</p>
+</blockquote>
+</li>
+<li><p>空间复杂度为$O(1)$</p>
+</li>
+</ul>
+<h2 id="解答结果">解答结果<a class="post-anchor" href="#解答结果"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">17:02	info<br>			解答成功:<br>			执行耗时:1 ms,击败了100.00% 的Java用户<br>			内存消耗:38.7 MB,击败了50.54% 的Java用户<br></code></pre></td></tr></tbody></table></figure>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
             </div>
             
-            <div class="warp">
-              <div class="share" data-url="/2020/02/01/201-1/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2020/02/01/201-1/">
-                <a href="#">分享</a>
-              </div>
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
             </div>
-          </div>
-          <div class="r">
-            <a href="/2020/02/01/201-1/">Read More</a>
-          </div>
+            
         </div>
       </div>
-    </li>
-    
-  </ul>
-</div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2021/01/04/21-01-04/">LeetCode(509) 斐波那契数</a>
+        
+    </div>
+  </div>
 
-<div class="paginator">
-  <a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
-</div>
+  
 
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">L1NE</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2021/01/05/21-01-05/">https://mondaycha.github.io/2021/01/05/21-01-05/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">L1NE</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2021

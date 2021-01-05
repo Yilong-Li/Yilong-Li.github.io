@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2021-01-04T05:25:37.574Z</updated>
+  <updated>2021-01-05T09:08:55.140Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode(830) 较大分组的位置</title>
+    <link href="https://mondaycha.github.io/2021/01/05/21-01-05/"/>
+    <id>https://mondaycha.github.io/2021/01/05/21-01-05/</id>
+    <published>2021-01-05T09:04:50.000Z</published>
+    <updated>2021-01-05T09:08:55.140Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;基本思路&quot;&gt;基本思路&lt;a class=&quot;post-anchor&quot; href=&quot;#基本思路&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一次遍历.&lt;/p&gt;
+&lt;h2 id=&quot;出现问题&quot;&gt;出现问题&lt;a class=&quot;post-anchor
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://mondaycha.github.io/categories/LeetCode/"/>
+    
+    
+      <category term="每日一题" scheme="https://mondaycha.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode(509) 斐波那契数</title>
@@ -516,30 +541,6 @@
     
     
       <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统 OS Lab3 实验报告</title>
-    <link href="https://mondaycha.github.io/2020/04/24/424-2/"/>
-    <id>https://mondaycha.github.io/2020/04/24/424-2/</id>
-    <published>2020-04-24T02:43:36.000Z</published>
-    <updated>2021-01-02T07:05:45.114Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;OS-Lab3-实验报告&quot;&gt;OS Lab3 实验报告&lt;a class=&quot;post-anchor&quot; href=&quot;#OS-Lab3-实验报告&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h2 id=&quot;一、实验思考题&quot;&gt;一、实验思考题&lt;a c
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
     
   </entry>
   
