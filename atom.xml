@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2021-01-05T09:08:55.140Z</updated>
+  <updated>2021-01-08T10:04:30.235Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字节跳动 客户端研发实习生 一面凉经</title>
+    <link href="https://mondaycha.github.io/2021/01/08/21-01-08/"/>
+    <id>https://mondaycha.github.io/2021/01/08/21-01-08/</id>
+    <published>2021-01-08T09:36:30.000Z</published>
+    <updated>2021-01-08T10:04:30.235Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;啊, 结束了.&lt;/p&gt;
+&lt;p&gt;这个网站还没备案, 所以就放在这里自己看看.&lt;/p&gt;
+&lt;h2 id=&quot;Q0-于是并没有做自我介绍&quot;&gt;Q0: 于是并没有做自我介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#Q0-
+      
+    
+    </summary>
+    
+    
+      <category term="求职" scheme="https://mondaycha.github.io/categories/%E6%B1%82%E8%81%8C/"/>
+    
+    
+      <category term="实习面试" scheme="https://mondaycha.github.io/tags/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode(830) 较大分组的位置</title>
@@ -517,30 +543,6 @@
       <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
     
       <category term="学习笔记" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《航空航天概论》Week9</title>
-    <link href="https://mondaycha.github.io/2020/04/30/430-1/"/>
-    <id>https://mondaycha.github.io/2020/04/30/430-1/</id>
-    <published>2020-04-30T11:48:43.000Z</published>
-    <updated>2020-04-30T12:19:37.670Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;爱课程-8-1-飞机机体构造&quot;&gt;爱课程 8.1 飞机机体构造&lt;a class=&quot;post-anchor&quot; href=&quot;#爱课程-8-1-飞机机体构造&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;不同飞行器的飞机机体的构造也不一样。A
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
     
   </entry>
   
