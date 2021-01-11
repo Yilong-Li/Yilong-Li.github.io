@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      分类 - Blog
+      简陋的Java生产者消费者模型 - Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -65,7 +65,7 @@
           归档
         </a>
         
-        <a href="/categories" class="current">
+        <a href="/categories" class="">
           分类
         </a>
         
@@ -119,7 +119,7 @@
             归档
           </a>
           
-          <a href="/categories" class="current">
+          <a href="/categories" class="">
             分类
           </a>
           
@@ -164,123 +164,111 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-     
-        <div class="title">
-            分类 - 学习
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/05/06/506-1/" title="谈谈对《关于费尔巴哈的提纲》第三条的理解">
-                <span>2020/05/06</span>
-                <span>谈谈对《关于费尔巴哈的提纲》第三条的理解</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/05/06/506-2/" title="操作系统 OS Lab4-extra 学习笔记">
-                <span>2020/05/06</span>
-                <span>操作系统 OS Lab4-extra 学习笔记</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/05/05/505-1/" title="操作系统 OS Lab4 学习笔记">
-                <span>2020/05/05</span>
-                <span>操作系统 OS Lab4 学习笔记</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/30/430-1/" title="《航空航天概论》Week9">
-                <span>2020/04/30</span>
-                <span>《航空航天概论》Week9</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/24/424-2/" title="操作系统 OS Lab3 实验报告">
-                <span>2020/04/24</span>
-                <span>操作系统 OS Lab3 实验报告</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/24/424-1/" title="操作系统 OS Lab3 学习笔记">
-                <span>2020/04/24</span>
-                <span>操作系统 OS Lab3 学习笔记</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/23/423-1/" title="《航空航天概论》Week8">
-                <span>2020/04/23</span>
-                <span>《航空航天概论》Week8</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/16/419-1/" title="冯如杯创业大赛第一次修改意见">
-                <span>2020/04/16</span>
-                <span>冯如杯创业大赛第一次修改意见</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/16/421-1/" title="冯如杯创业大赛-风险投资部分">
-                <span>2020/04/16</span>
-                <span>冯如杯创业大赛-风险投资部分</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/04/16/416-1/" title="《航空航天概论》Week7">
-                <span>2020/04/16</span>
-                <span>《航空航天概论》Week7</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0/page/3/">3</a><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0/page/4/">4</a><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0/page/5/">5</a>
-</div>
-</div>
+      <div class="title">简陋的Java生产者消费者模型</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2021/01/11</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/学习">学习</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/OO">OO</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>上次面试的时候, 一面面试官问我怎么用多线程写个生产者消费者模型. 在圣杯战争之后, 我就再也没碰过Java多线程了, 上次Vue项目里需要向后台发送多条并列请求时是直接抄的别人写好的轮子……</p>
+<p>在LeetCode上做了几道多线程的题目, 已经封装好了, 只需要写内部实现, 但是面试的时候是全手撸呀…… 于是今天复习了一下怎么写Java的多线程, 用<code>BlockQueue</code>实现的最简单的一种:</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">import</span> java.util.concurrent.ArrayBlockingQueue;<br><span class="hljs-keyword">import</span> java.util.concurrent.BlockingQueue;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Producer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> BlockingQueue<Integer> queue;<br><br>    Producer(BlockingQueue<Integer> queue) {<br>        <span class="hljs-keyword">this</span>.queue = queue;<br>    }<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">try</span> {<br>            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {<br>                Thread.sleep(<span class="hljs-number">1000</span>);<br>                queue.put(produce());<br>            }<br>        } <span class="hljs-keyword">catch</span> (InterruptedException e) {<br>            e.printStackTrace();<br>        }<br>    }<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">produce</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">int</span> n = <span class="hljs-keyword">new</span> Random().nextInt(<span class="hljs-number">10000</span>);<br>        System.out.println(<span class="hljs-string">"Producer name is "</span> + Thread.currentThread().getName()+ <span class="hljs-string">" put "</span> + n);<br>        <span class="hljs-keyword">return</span> n;<br>    }<br>}<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> BlockingQueue<Integer> queue;<br><br>    Customer(BlockingQueue<Integer> queue) {<br>        <span class="hljs-keyword">this</span>.queue = queue;<br>    }<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">try</span> {<br>            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {<br>                Thread.sleep(<span class="hljs-number">2000</span>);<br>                consume(queue.take());<br>            }<br>        } <span class="hljs-keyword">catch</span> (InterruptedException e) {<br>            e.printStackTrace();<br>        }<br>    }<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">consume</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>{<br>        System.out.println(<span class="hljs-string">"Customer name is "</span> + Thread.currentThread().getName()+ <span class="hljs-string">" take "</span> + n);<br>    }<br>}<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">main</span> </span>{<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        BlockingQueue<Integer> queue = <span class="hljs-keyword">new</span> ArrayBlockingQueue<>(<span class="hljs-number">100</span>);<br>        Producer p = <span class="hljs-keyword">new</span> Producer(queue);<br>        Customer c1 = <span class="hljs-keyword">new</span> Customer(queue);<br>        Customer c2 = <span class="hljs-keyword">new</span> Customer(queue);<br>        Thread producer = <span class="hljs-keyword">new</span> Thread(p);<br>        producer.setName(<span class="hljs-string">"生产者"</span>);<br>        Thread cm1 = <span class="hljs-keyword">new</span> Thread(c1);<br>        Thread cm2 = <span class="hljs-keyword">new</span> Thread(c2);<br>        cm1.setName(<span class="hljs-string">"消费者1"</span>);<br>        cm2.setName(<span class="hljs-string">"消费者2"</span>);<br>        producer.start();<br>        cm1.start();<br>        cm2.start();<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>最后总结一下创建线程时的要点:</p>
+<ul>
+<li>继承Thread: 没有共享资源</li>
+<li>实现<code>Runnable</code>接口</li>
+<li>Callable和Future: 不会</li>
+</ul>
+<p>在主线程中, 则是这样初始化的:</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java">Producer p = <span class="hljs-keyword">new</span> Producer(queue);<br>Thread producer = <span class="hljs-keyword">new</span> Thread(p);<br>producer.setName(<span class="hljs-string">"生产者"</span>);<br>producer.start();<br></code></pre></td></tr></tbody></table></figure>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2021/01/09/21-01-09/">排序算法学习笔记</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://mondaycha.github.io">L1NE</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://mondaycha.github.io/2021/01/11/21-01-11/">https://mondaycha.github.io/2021/01/11/21-01-11/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://mondaycha.github.io">L1NE</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2021

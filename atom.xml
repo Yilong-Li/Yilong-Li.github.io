@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2021-01-09T15:27:07.168Z</updated>
+  <updated>2021-01-11T04:52:39.817Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简陋的Java生产者消费者模型</title>
+    <link href="https://mondaycha.github.io/2021/01/11/21-01-11/"/>
+    <id>https://mondaycha.github.io/2021/01/11/21-01-11/</id>
+    <published>2021-01-11T04:46:58.000Z</published>
+    <updated>2021-01-11T04:52:39.817Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;上次面试的时候, 一面面试官问我怎么用多线程写个生产者消费者模型. 在圣杯战争之后, 我就再也没碰过Java多线程了, 上次Vue项目里需要向后台发送多条并列请求时是直接抄的别人写好的轮子……&lt;/p&gt;
+&lt;p&gt;在LeetCod
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="OO" scheme="https://mondaycha.github.io/tags/OO/"/>
+    
+  </entry>
   
   <entry>
     <title>排序算法学习笔记</title>
@@ -514,33 +539,6 @@
     
     
       <category term="马克思主义" scheme="https://mondaycha.github.io/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统 OS Lab4-extra 学习笔记</title>
-    <link href="https://mondaycha.github.io/2020/05/06/506-2/"/>
-    <id>https://mondaycha.github.io/2020/05/06/506-2/</id>
-    <published>2020-05-06T02:22:36.000Z</published>
-    <updated>2021-01-02T07:06:12.631Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Lab4-extra-学习笔记&quot;&gt;Lab4-extra 学习笔记&lt;a class=&quot;post-anchor&quot; href=&quot;#Lab4-extra-学习笔记&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Extra，干巴爹。&lt;/p&gt;
-&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
-    
-      <category term="学习笔记" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
