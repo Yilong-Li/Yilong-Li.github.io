@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2021-01-11T05:01:02.685Z</updated>
+  <updated>2021-01-11T13:42:00.994Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字节跳动 客户端研发实习生 二面面经</title>
+    <link href="https://mondaycha.github.io/2021/01/11/21-01-11-1/"/>
+    <id>https://mondaycha.github.io/2021/01/11/21-01-11-1/</id>
+    <published>2021-01-11T09:15:39.000Z</published>
+    <updated>2021-01-11T13:42:00.994Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我逐渐明白, 没学计算机网络, 是我最大的幸运.&lt;/p&gt;
+&lt;h2 id=&quot;二面面试碎碎念&quot;&gt;二面面试碎碎念&lt;a class=&quot;post-anchor&quot; href=&quot;#二面面试碎碎念&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这波感觉和网上的
+      
+    
+    </summary>
+    
+    
+      <category term="求职" scheme="https://mondaycha.github.io/categories/%E6%B1%82%E8%81%8C/"/>
+    
+    
+      <category term="实习面试" scheme="https://mondaycha.github.io/tags/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>简陋的Java生产者消费者模型</title>
@@ -513,32 +538,6 @@
     
     
       <category term="航概" scheme="https://mondaycha.github.io/tags/%E8%88%AA%E6%A6%82/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>谈谈对《关于费尔巴哈的提纲》第三条的理解</title>
-    <link href="https://mondaycha.github.io/2020/05/06/506-1/"/>
-    <id>https://mondaycha.github.io/2020/05/06/506-1/</id>
-    <published>2020-05-06T06:37:06.000Z</published>
-    <updated>2020-05-08T07:24:48.419Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;第十一周作业&quot;&gt;第十一周作业&lt;a class=&quot;post-anchor&quot; href=&quot;#第十一周作业&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;一、辨析对错，并说明原因。&lt;/p&gt;
-&lt;p&gt;一切历史都是思想史。&lt;/p&gt;
-&lt;p&gt;答：&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="马克思主义" scheme="https://mondaycha.github.io/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
     
   </entry>
   
