@@ -12,7 +12,7 @@
 </script> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="null" />
     <meta name="description" content="" />
     
     <title>
@@ -254,6 +254,8 @@ DP[i] = 2 * DP[i-1] + DP[P[i-1]] + 2</script><h2 id="代码实现">代码实现<
   <div class="post-guide">
     <div class="item left">
         
+          <a href="/2021/02/03/210203/">Windows 10 安装 Ubuntu 20.04 双系统不完全踩坑记录</a>
+        
     </div>
     <div class="item right">
         
@@ -308,7 +310,23 @@ DP[i] = 2 * DP[i-1] + DP[P[i-1]] + 2</script><h2 id="代码实现">代码实现<
         </footer>
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
   
 </html>
 <script type="text/javascript">

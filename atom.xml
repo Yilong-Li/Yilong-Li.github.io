@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mondaycha.github.io/"/>
-  <updated>2021-01-18T11:59:10.000Z</updated>
+  <updated>2021-02-03T14:17:25.514Z</updated>
   <id>https://mondaycha.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 10 安装 Ubuntu 20.04 双系统不完全踩坑记录</title>
+    <link href="https://mondaycha.github.io/2021/02/03/210203/"/>
+    <id>https://mondaycha.github.io/2021/02/03/210203/</id>
+    <published>2021-02-03T14:17:25.000Z</published>
+    <updated>2021-02-03T14:17:25.514Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;blockquote&gt;
+&lt;p&gt;2021.2.2 在第三次重装后终于成功了……记录下中间踩的坑&lt;br&gt;硬件设备: 联想Y7000 2018, GTX1050显卡&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;网上关于Windows 1
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
+    
+  </entry>
   
   <entry>
     <title>『DP』房间传送门问题</title>
@@ -513,32 +540,6 @@
     
     
       <category term="马克思主义" scheme="https://mondaycha.github.io/tags/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统 OS Lab4 实验报告</title>
-    <link href="https://mondaycha.github.io/2020/05/10/510-1/"/>
-    <id>https://mondaycha.github.io/2020/05/10/510-1/</id>
-    <published>2020-05-10T08:43:36.000Z</published>
-    <updated>2021-01-02T07:06:18.232Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;OS-Lab4-实验报告&quot;&gt;OS Lab4 实验报告&lt;a class=&quot;post-anchor&quot; href=&quot;#OS-Lab4-实验报告&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h2 id=&quot;一、实验思考题&quot;&gt;一、实验思考题&lt;a c
-      
-    
-    </summary>
-    
-    
-      <category term="学习" scheme="https://mondaycha.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="OS" scheme="https://mondaycha.github.io/tags/OS/"/>
-    
-      <category term="学习笔记" scheme="https://mondaycha.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
